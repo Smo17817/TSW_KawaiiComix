@@ -11,6 +11,9 @@
 <meta name="robots" content="index,follow" />
 <link rel="icon" href="./icons/Luffys_flag_2_icon-icons.com_76119.ico" />
 <link rel="stylesheet" href="./style.css" />
+<link
+	href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap"
+	rel="stylesheet" />
 <title>Kawaii Comix</title>
 </head>
 <body>
@@ -18,9 +21,9 @@
 		<nav>
 			<h1 id="logo">KawaiiComix</h1>
 			<ul class="links">
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Catalogo</a></li>
-				<li><a href="#">News</a></li>
+				<li><a href="index.jsp">Home</a></li>
+				<li><a href="catalogo.jsp">Catalogo</a></li>
+				<li><a href="news.jsp">News</a></li>
 			</ul>
 			<ul class="utilities">
 				<li><a href=""> <img
@@ -30,7 +33,7 @@
 				<li><a href="profilo.jsp"><img
 						src="./icons/user_person_profile_avatar_icon_190943.ico"
 						alt="avatar utente" /></a></li>
-				<li><a href=""><img
+				<li><a href="carrello.jsp"><img
 						src="./icons/shopping-cart_icon-icons.com_65051.ico" alt="" /></a>
 				</li>
 			</ul>
@@ -44,7 +47,7 @@
 		<h2>Il mio Account</h2>
 		<a href="datipersonali.jsp">Dati personali</a> <br> 
 		<a href="indirizzo.jsp">Indirizzo</a> <br>
-		<a href="">Carrello</a> <br>
+		<a href="carrello.jsp">Carrello</a> <br>
 		<a href="">I miei Ordini</a> <br>
 		<a href="">Esci</a>
 	</div>

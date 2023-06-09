@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,7 +13,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap"
 	rel="stylesheet" />
-<title>Kawaii Comix</title>
+<title>Insert title here</title>
 </head>
 <body>
 	<header class="main-head">
@@ -34,26 +33,16 @@
 						src="./icons/user_person_profile_avatar_icon_190943.ico"
 						alt="avatar utente" /></a></li>
 				<li><a href="carrello.jsp"><img
-						src="./icons/shopping-cart_icon-icons.com_65051.ico" alt="" /></a></li>
+						src="./icons/shopping-cart_icon-icons.com_65051.ico" alt="" /></a>
+				</li>
 			</ul>
 		</nav>
 	</header>
 	<main>
 		<section class=""></section>
 	</main>
-	<div class="signup">
-		<h3>Iscrizione</h3>
-		<form action="" name="login" method="get">
-			<fieldset>					
-				<p>Nome <input type="text"> </p>
-				<p>Cognome <input type="text"> </p>
-				<p>E-mail <input type=email placeholder="E-mail"> </p>
-				<p>Password <input type=password placeholder="Password"> 	
-				<input type="button" value="Salva"> 
-			</fieldset>
-			
-			<p> Sei iscritto? <a href="login.jsp">Accedi</a>
-		</form>
+	<div>
+		<h2>Carrello</h2>
 	</div>
 </body>
 </html>
