@@ -1,0 +1,40 @@
+@charset "ISO-8859-1";
+
+h2 {
+	padding: 20px 0px 0px 0px;
+	text-align: center;
+}
+
+.mid {
+	background-image: url("./icons/bkgrd.jpg");
+	/*backdrop-filter: blur(100px);*/
+}
+
+.account {
+	margin: 20px;
+	padding: 20px;
+	
+}
+
+.account img {
+	width: 6rem;
+}
+
+.account li{
+	border: 1px solid black;
+	border-radius: 20px;
+  	padding: 10px;
+  	margin-bottom: 10px;
+	list-style: none;
+	background-color: white;
+}
+
+.account a{
+	opacity: 0.5;
+}
+
+.account a:hover{
+	opacity: 1;
+	
+}
+

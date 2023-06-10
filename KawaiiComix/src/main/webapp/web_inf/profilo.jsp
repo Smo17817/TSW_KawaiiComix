@@ -14,6 +14,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap"
 	rel="stylesheet" />
+<link rel="stylesheet" href="./profilo.css" />
 <title>Kawaii Comix</title>
 </head>
 <body>
@@ -42,14 +43,28 @@
 	<main>
 		<section class=""></section>
 	</main>
-
-	<div class="Il tuo account">
+	
+	<div class="mid">
 		<h2>Il mio Account</h2>
-		<a href="datipersonali.jsp">Dati personali</a> <br> 
-		<a href="indirizzo.jsp">Indirizzo</a> <br>
-		<a href="carrello.jsp">Carrello</a> <br>
-		<a href="">I miei Ordini</a> <br>
-		<a href="">Esci</a>
+		<div class="account">
+			<ul>
+				<li><a href="datipersonali.jsp"> <img
+						src="./icons/profile.ico"> Dati personali
+				</a></li>
+				<li><a href="indirizzo.jsp"> <img src="./icons/address.ico">
+						Indirizzo
+				</a></li>
+				<li><a href="carrello.jsp"> <img src="./icons/cart.ico">
+						Carrello
+				</a></li>
+				<li><a href=""> <img src="./icons/calendar.ico"> I
+						miei Ordini
+				</a></li>
+				<li><a href=""> <img src="./icons/exit.ico">Esci
+				</a></li>
+			</ul>
+
+		</div>
 	</div>
 </body>
 </html>
