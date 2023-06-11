@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Kawaii Comix</title>
 </head>
 <body>
-
+	<jsp:include page="./Nav.jsp" flush="true"/>
 </body>
 </html>

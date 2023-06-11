@@ -1,32 +1,66 @@
-@charset "ISO-8859-1";
-
-h2 {
-	padding: 20px 0px 0px 0px;
-	text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+html {
+  font-size: 62.5%;
+}
+
 
 .mid {
-	background-image: url("./icons/bkgrd.jpg");
-	/*backdrop-filter: blur(100px);*/
-}
-
-.account {
-	margin: 20px;
-	padding: 20px;
+	min-height: 90vh;
+	display: flex;
+	flex-wrap: wrap;
 	
 }
 
+
+#maschotte{
+	height : 50rem;
+	width : 50rem;
+	flex : 1 1 40rem;
+	
+}
+
+
+.justaimg{
+	background-image: linear-gradient(rgba(0,0,0,0.5), transparent) , url("../icons/bkgrd.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	
+}
+
+.account h2{
+	margin: 2rem 0rem;
+	text-align: center;
+	color : white
+}
+
+
+.account {
+	flex : 5 1 40rem;
+	padding: 2rem;
+	width: 70%;
+	margin: 2rem;
+}
+
 .account img {
-	width: 6rem;
+	width: 5rem;
+	height : 5rem;
 }
 
 .account li{
-	border: 1px solid black;
-	border-radius: 20px;
-  	padding: 10px;
-  	margin-bottom: 10px;
+	border: 0.1rem solid black;
+	border-radius: 2rem;
+  	padding: 1rem;
+  	margin-bottom: 1rem;
 	list-style: none;
 	background-color: white;
+	display:flex;
+	align-items:center;
 }
 
 .account a{
