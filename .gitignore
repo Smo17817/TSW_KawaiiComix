@@ -1,3 +1,10 @@
 /.metadata/
-.DS_Store
-Servers/
+/.DS_Store
+/Servers/
+/build/
+/target/
+/.classpath
+/.idea/
+/.settings
+/.project
+/classes/
