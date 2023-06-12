@@ -22,7 +22,7 @@
 				<h2>Il mio Account</h2>
 				<ul>
 					<li><img src= "./icons/profile.ico"><a href="datipersonali.jsp"> 
-							 Dati personali
+							 Dati porcodio
 					</a></li>
 					<li><img src="./icons/address.ico"><a href="indirizzo.jsp">
 							Indirizzo
