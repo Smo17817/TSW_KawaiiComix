@@ -8,8 +8,8 @@
 			<div id="login-img"><img src="./images/anya.jpg"/></div>
 			<h3>Accedi al tuo account</h3>
 				<form action="Login" name="login" method="POST" class="login-form" >
-						<input type="email" placeholder="E-mail">
-						<input type="password" placeholder="Password">
+						<input type="email" placeholder="E-mail" name="email">
+						<input type="password" placeholder="Password" name="password">
 						<button type="submit">Invia</button>
 				</form>
 				<div class="links">
