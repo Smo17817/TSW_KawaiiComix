@@ -57,10 +57,17 @@ body{
 	padding: 0.5rem 4rem;
 }
 
+.sub-class{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
 .form-wrapper button{
+	align-self : center;
 	border: none;
 	font-size: 2rem;
-	width: 50%;
+	width: 70%;
 	padding : 1rem;
 	border-radius: 2rem;
 	background-color: #ff6f88;
@@ -73,11 +80,7 @@ body{
 	
 }
 
-.nome-form ,
-.cognome-form,
-.email-form,
-.pass-form,
-.conf-pass-form{
+.form-row{
 	display: flex;
 	align-items: center;
     padding: 3rem;
