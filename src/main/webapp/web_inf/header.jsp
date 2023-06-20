@@ -33,6 +33,7 @@
    }  else if(currentPage.equals("/web_inf/news.jsp")){
 	   AdditionalCss = true;
    }  else if(currentPage.equals("/web_inf/signup.jsp")){
+	   cssFile = "signup.css";
 	   AdditionalCss = true;
    }  else if(currentPage.equals("/web_inf/catalogo.jsp")){
 	   AdditionalCss = true;

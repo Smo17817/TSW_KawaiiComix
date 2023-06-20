@@ -7,7 +7,7 @@
 		<section id="login">
 			<div id="login-img"><img src="./images/anya.jpg"/></div>
 			<h3>Accedi al tuo account</h3>
-				<form action="" name="login" method = "POST" class= "login-form">
+				<form action="" method = "POST" class= "login-form">
 						<input type="email" placeholder="E-mail">
 						<input type="password" placeholder="Password">
 						<button type="submit">Invia</button>
