@@ -8,13 +8,13 @@
 	</main>
 	<div class="signup">
 		<h3>Iscrizione</h3>
-		<form action="" name="login" method="get">
+		<form method="get" action="Signup" name="signup">
 			<fieldset>					
 				<p>Nome <input type="text"> </p>
 				<p>Cognome <input type="text"> </p>
 				<p>E-mail <input type=email placeholder="E-mail"> </p>
 				<p>Password <input type=password placeholder="Password"> 	
-				<input type="button" value="Salva"> 
+				<input type="submit" value="Salva"> 
 			</fieldset>
 			
 			<p> Sei iscritto? <a href="login.jsp">Accedi</a>

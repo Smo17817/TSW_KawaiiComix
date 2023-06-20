@@ -89,17 +89,3 @@ h5 {
 	background:#c83c54;
 	
 }
-
-.links{
-	margin-top: 2rem;
-	display: flex;
-}
-
-.links + a{
-	flex: 1 1 20rem;
-}
-
-.links p{
-	flex: 1 1 20rem;
-	text-align: end;
-}
