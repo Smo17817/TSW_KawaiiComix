@@ -38,8 +38,12 @@ public class SignupServlet extends HttpServlet {
 			ps.setString(3, email);
 			ps.setString(4, password);
 			
-			int rowCount = ps.executeUpdate();
+			int rowCount = 0;
+			if(!((nome.isEmpty()) || (cognome.isEmpty()) || (email.isEmpty()) || (password.isEmpty()))) {
+				rowCount = ps.executeUpdate();
+			}
 			dispatcher = request.getRequestDispatcher("./signup.jsp");
+			
 			
 			if(rowCount > 0) {
 				request.setAttribute("status", "success");

@@ -5,12 +5,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css">
 <%String status = (String) request.getAttribute("status");%>
 <script type ="text/javascript">
-	if('<%= status %>' == "success"){
-			swal(
-				  'Congratulazioni!',
-				  'Sei iscritto!',
-				  'successo'
-				);
+	if('<%= status %>' == 'success'){
+		alert("bravo");
 	}
 </script>
 <body>
