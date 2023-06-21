@@ -25,6 +25,7 @@
 	   cssFile = "login.css";
 	   AdditionalCss = true;
    }  else if(currentPage.equals("/index.jsp")){
+	   cssFile = "index.css";
 	   AdditionalCss = true;
    }  else if(currentPage.equals("/indirizzo.jsp")){
 	   AdditionalCss = true;
@@ -32,7 +33,6 @@
 	   AdditionalCss = true;
    }  else if(currentPage.equals("/news.jsp")){
 	   AdditionalCss = true;
-   }  else if(currentPage.equals("/web_inf/signup.jsp")){
    }  else if(currentPage.equals("/signup.jsp")){
 	   cssFile = "signup.css";
 	   AdditionalCss = true;
