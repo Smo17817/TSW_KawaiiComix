@@ -87,19 +87,17 @@ h5 {
 
 .login-form button:hover{
 	background:#c83c54;
-<<<<<<< HEAD:src/main/webapp/web_inf/CSS/login.css
+
+}	
 	
-}
-
 .links{
-	width: 30%;
-	margin-top: 2rem;
-	display: flex;
+ 	width: 30%;
+ 	margin-top: 2rem;
+ 	display: flex;
 }
 
 
-.links p{
-	text-align: center;
-=======
->>>>>>> main:src/main/webapp/CSS/login.css
-}
+
+ .links p{
+ 	text-align: center;
+ }
