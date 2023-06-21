@@ -32,7 +32,11 @@
 	   AdditionalCss = true;
    }  else if(currentPage.equals("/news.jsp")){
 	   AdditionalCss = true;
+<<<<<<< HEAD:src/main/webapp/web_inf/header.jsp
+   }  else if(currentPage.equals("/web_inf/signup.jsp")){
+=======
    }  else if(currentPage.equals("/signup.jsp")){
+>>>>>>> main:src/main/webapp/header.jsp
 	   cssFile = "signup.css";
 	   AdditionalCss = true;
    }  else if(currentPage.equals("/catalogo.jsp")){
