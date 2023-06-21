@@ -5,6 +5,10 @@
 	<jsp:include page="./Nav.jsp" flush="true"/>
 	<main>
 		<section class=""></section>
+		<form action="/ProductServlet" method="get">
+		<a href="prodotto.jsp?isbn=12345678901234567">Clicca qui</a>
+		</form>
+		
 	</main>
 </body>
 </html>
