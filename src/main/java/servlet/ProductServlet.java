@@ -1,5 +1,6 @@
 package servlet;
 
+import java.io.Console;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -7,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,12 +25,12 @@ public class ProductServlet extends HttpServlet {
 		Connection c = null;
 		
 		try {
+			PrintWriter out = response.getWriter();
 			DbManager manager = new DbManager();
 			c = manager.getConnection();
 			PreparedStatement ps = c.prepareStatement("SELECT * FROM prodotti WHERE isbn = ?");
 			ps.setString(1, isbn);
 			ResultSet rs = ps.executeQuery();
-			System.out.println("ciao");
 			
 			if(rs.next()) {
 				String nome = rs.getString("nome");
@@ -38,11 +40,11 @@ public class ProductServlet extends HttpServlet {
 				String categoria = rs.getString("categoria_nome");
 				int quantita = rs.getInt("quantita");
 				double prezzo = rs.getDouble("prezzo");
-				System.out.println(nome);
 				Prodotto p = new Prodotto(isbn, nome, descrizione, img, genere, categoria, quantita, prezzo);
 				
-				request.setAttribute("prodotto", nome);
-				request.getRequestDispatcher("prodotto.jsp").forward(request, response);
+				request.setAttribute("prodotto", p);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("prodotto.jsp");
+				dispatcher.forward(request, response);
 			}
 			rs.close();
 		
@@ -56,7 +58,6 @@ public class ProductServlet extends HttpServlet {
 					e.printStackTrace();
 				}
 		}
-		
 	}
 
 

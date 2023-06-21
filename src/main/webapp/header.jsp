@@ -39,6 +39,7 @@
    }  else if(currentPage.equals("/catalogo.jsp")){
 	   AdditionalCss = true;
    }  else if(currentPage.equals("/prodotto.jsp")){
+	   cssFile = "prodotto.css";
 	   AdditionalCss = true;
    }
    

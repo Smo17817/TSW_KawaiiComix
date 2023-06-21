@@ -1,14 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" import="java.util.*"%>
+    <%@ page import="java.util.*, servlet.Prodotto" %>
 <jsp:include page="./header.jsp" flush="true"/>
 <body>
 	<jsp:include page="./Nav.jsp" flush="true"/>
-	<main>
-		<form action="ProductServlet" method="GET">
-			<h3>${prodotto}</h3>
-			<h3>ciao</h3>
-		</form>
-	</main>
 
+	<% Prodotto p = (Prodotto) request.getAttribute("prodotto");%>
+	<main>
+		<div class="prod_img">
+			<img src="<%=p.getImg()%>" alt=""/>
+		</div>
+		<div class="specs">
+			<h3><%=p.getNome()%></h3>
+			<h4>&#8364 <%=p.getPrezzo()%></h4>
+			<p>Genere: <%=p.getGenere()%><p>
+			<p>Categoria: <%=p.getCategoria()%></p>
+			<input type="submit" value="Aggiungi al carrello"/>
+		</div>
+		
+	</main>
+	
 </body>
 </html>
