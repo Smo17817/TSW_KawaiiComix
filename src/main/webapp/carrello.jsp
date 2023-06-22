@@ -46,7 +46,7 @@
 				<div class="cassa">
 					<h5>TOTALE</h5>
 					<div class="totale">
-						<h6>Totale: </h6>
+						<h6>Prodotti: </h6>
 						<p>&#8364 totale</p>
 					</div>
 					<div class="totale">
@@ -54,7 +54,13 @@
 						<p>&#8364 totale</p>
 					</div>
 					<hr>
-					<button>Paga</button>
+					<div class="totale">
+						<h6>Totale: </h6>
+						<p>&#8364 totale</p>
+					</div>
+					<button>Procedi al Pagamento</button>
+					
+					
 					
 				</div>
 			</div>

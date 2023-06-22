@@ -13,13 +13,14 @@ h2{
 
 #container{
 	padding: 5rem;
+	overflow-x: auto;
 }
 
 table{
 	width: 100%;
 	border-collapse: collapse;
 	table-layout: fixed;
-
+	white-space: nowrap;
 }
 
 thead{
@@ -56,6 +57,17 @@ td img{
 	display: flex;
 	justify-content: space-between;
 }
+
+.row h5{
+	margin-bottom: 1rem;
+}
+
+.promozione, .cassa{
+	border: 1px solid #b6b3b3;
+	padding: 1rem 3rem;
+	border-radius: 2rem;
+}
+
 
 .cassa {
 	width: 30rem;
