@@ -28,6 +28,7 @@ public class LoginServlet extends HttpServlet{
 		RequestDispatcher dispatcher = null;
 		Connection con = null;
 		
+		
 		String query = "SELECT * FROM site_user WHERE email_address = ? and password = ?";
 		
 		try {
@@ -46,7 +47,7 @@ public class LoginServlet extends HttpServlet{
 			}
 			
 			dispatcher.forward(request, response);
-		}catch(Exception e) {
+		}catch(Exception e) { 
 			e.printStackTrace();
 		}
 	}

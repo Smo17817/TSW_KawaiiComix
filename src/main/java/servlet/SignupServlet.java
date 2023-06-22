@@ -38,11 +38,13 @@ public class SignupServlet extends HttpServlet {
 			ps.setString(3, email);
 			ps.setString(4, password);
 			
+			
 			int rowCount = 0;
-			if(!((nome.isEmpty()) || (cognome.isEmpty()) || (email.isEmpty()) || (password.isEmpty()))) {
+			
+			if(!((nome == null) || (cognome == null) || (email == null) || (password == null))) {
 				rowCount = ps.executeUpdate();
 			}
-			dispatcher = request.getRequestDispatcher("./signup.jsp");
+			dispatcher = request.getRequestDispatcher("signup.jsp");
 			
 			
 			if(rowCount > 0) {
@@ -51,7 +53,7 @@ public class SignupServlet extends HttpServlet {
 			}else {
 				request.setAttribute("status", "failed");
 			}
-			
+			  
 			dispatcher.forward(request, response);
 			
 		} catch (SQLException e) {
