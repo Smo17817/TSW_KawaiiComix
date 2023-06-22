@@ -5,29 +5,44 @@
 		response.sendRedirect("login.jsp");
  %>
  
+ 
 <jsp:include page="./header.jsp" flush="true"/>
 <body>
 	<jsp:include page="./Nav.jsp" flush="true"/>
+
 	<script>
-		<% Carrello carrello = (Carrello) session.getAttribute("carrello"); 
-		ArrayList<Prodotto> list = carrello.getCarrello(); 
+		<% 
+			Carrello carrello = (Carrello) session.getAttribute("carrello");
+			ArrayList<Prodotto> list = carrello.getCarrello();
+			int index = 1;
 		%>
-		let contenutoHtml;
-		for(let i = 0; i < <%=list.size()%>; i++){
-			<% int j = 1; %>
-			contenutoHtml += "<tr>";
-			contenutoHtml += "<td><a href=""> <img src=./icons/trash.ico></a></td>"
-			contenutoHtml += "<td>" + <%=list.get(j).getImg()%> + "</td>";
-			contenutoHtml += "<td>" + <%=list.get(j).getNome()%> + "</td>";
-			contenutoHtml += "<td>" + <%=list.get(j).getPrezzo()%> + "</td>";
-			contenutoHtml += "<td><h5><input type=number min=1></h5></td>"
-			contenutoHtml += "<td><h5>&#8364 totale</h5></h5></td>"
-			contenutoHtml += "</tr>";	
-			<%j++;%>
-		}
+		let n = <%=list.size()%>
+		let prodotti = [];
 		
+		for(let j=0; j < n; j++){
+			prodotti.push({
+				img: "\"" + <%=list.get(index).getImg()%> + "\"",
+				nome: "\"" + <%=list.get(index).getNome()%> + "\"",
+				prezzo: "\"" + <%=list.get(index).getPrezzo()%> + "\"",
+			});
+		}
+		console.log(prodotti);
+		
+		let contenutoHtml = '';
+		for (let i = 0; i < 2; i++) {	
+			contenutoHtml += '<tr>';
+			contenutoHtml += '<td><a href="#"><img src="./icons/trash.ico"></a></td>';
+			contenutoHtml += '<td><img src="' + prodotti[i].img + '"></td>';
+			contenutoHtml += '<td>' + prodotti[i].nome + '</td>';
+			contenutoHtml += '<td>' + prodotti[i].prezzo + '</td>';
+			contenutoHtml += '<td><h5><input type="number" min="1"></h5></td>';
+			contenutoHtml += '<td><h5>&#8364 totale</h5></h5></td>';
+			contenutoHtml += '</tr>';
+		}
+
 		document.getElementById("dinamico").innerHTML = contenutoHtml;
 	</script>
+
 	<main>
 		<section id="container">
 			<h2>Carrello</h2>
@@ -43,6 +58,7 @@
 					</tr>
 				</thead>
 				<tbody id="dinamico">
+				
 					
 				</tbody>
 			</table>
@@ -80,5 +96,6 @@
 			</div>
 		</section>
 	</main>
+	
 </body>
 </html>

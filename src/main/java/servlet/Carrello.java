@@ -21,4 +21,19 @@ public class Carrello {
 		carrello.clear();
 	}
 	
+	public static String toJavascriptArray(ArrayList<Prodotto> list){
+	    StringBuffer sb = new StringBuffer();
+	   
+	    for(int i=0; i<list.size(); i++){
+	        sb.append("{img: \"").append(list.get(i).getImg()).append("\"");
+	        sb.append("nome: \"").append(list.get(i).getNome()).append("\"");
+	        sb.append("prezzo: \"").append(list.get(i).getPrezzo()).append("\"}");
+	        if(i+1 < list.size()){
+	            sb.append(",");
+	        }
+	    }
+	    sb.append("]");
+	    return sb.toString();
+ 	}
+	
 }

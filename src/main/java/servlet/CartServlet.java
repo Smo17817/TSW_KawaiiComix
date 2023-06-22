@@ -27,7 +27,9 @@ public class CartServlet extends HttpServlet {
 		else {
 			Prodotto prodotto = (Prodotto) session.getAttribute("prodotto");
 			Carrello carrello = (Carrello) session.getAttribute("carrello");
-			carrello.add(prodotto);
+			
+			if(!carrello.getCarrello().contains(prodotto)) // la quantità si modifica solo nel carello.jsp
+				carrello.add(prodotto);
 		
 			session.setAttribute("carrello", carrello);
 		
