@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,7 +29,6 @@ public class LoginServlet extends HttpServlet{
 		RequestDispatcher dispatcher = null;
 		Connection con = null;
 		
-		
 		String query = "SELECT * FROM site_user WHERE email_address = ? and password = ?";
 		
 		try {
@@ -39,7 +39,16 @@ public class LoginServlet extends HttpServlet{
 			
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
-				session.setAttribute("name", rs.getString("nome"));
+				int id = rs.getInt("id");
+				String nome = rs.getString("nome");
+				String cognome = rs.getString("cognome");
+				User user = new User(id, email, nome, cognome);
+				/* quando logga crea anche un carrello vuoto*/
+				Carrello carrello = new Carrello();
+				carrello.add(new Prodotto("0", "0", "0", "0", "0", "0", 0, 0)); //per sicurezza, meglio non averlo vuoto
+				session.setAttribute("carrello", carrello);
+				
+				session.setAttribute("user", user);
 				dispatcher = request.getRequestDispatcher("index.jsp");
 			}else {
 				request.setAttribute("status", "failed");
@@ -47,6 +56,7 @@ public class LoginServlet extends HttpServlet{
 			}
 			
 			dispatcher.forward(request, response);
+			rs.close();
 		}catch(Exception e) { 
 			e.printStackTrace();
 		}

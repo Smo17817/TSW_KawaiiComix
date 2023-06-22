@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/ProductServlet")
 public class ProductServlet extends HttpServlet {
@@ -22,6 +23,7 @@ public class ProductServlet extends HttpServlet {
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String isbn = request.getParameter("isbn");
+		HttpSession session = request.getSession();
 		Connection c = null;
 		
 		try {
@@ -42,6 +44,7 @@ public class ProductServlet extends HttpServlet {
 				Prodotto p = new Prodotto(isbn, nome, descrizione, img, genere, categoria, quantita, prezzo);
 				
 				request.setAttribute("prodotto", p);
+				session.setAttribute("prodotto", p); // velocizza le cose in caso di acquisto
 				RequestDispatcher dispatcher = request.getRequestDispatcher("prodotto.jsp");
 				dispatcher.forward(request, response);
 			}

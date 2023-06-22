@@ -1,10 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
- <% 
+ <%@ page import="java.util.*, servlet.Prodotto, servlet.Carrello"%>
+ <% if(session.getAttribute("user")==null)
+		response.sendRedirect("login.jsp");
  %>
+ 
 <jsp:include page="./header.jsp" flush="true"/>
 <body>
 	<jsp:include page="./Nav.jsp" flush="true"/>
+	<script>
+		<% Carrello carrello = (Carrello) session.getAttribute("carrello"); 
+		ArrayList<Prodotto> list = carrello.getCarrello(); 
+		%>
+		let contenutoHtml;
+		for(let i = 0; i < <%=list.size()%>; i++){
+			<% int j = 1; %>
+			contenutoHtml += "<tr>";
+			contenutoHtml += "<td><a href=""> <img src=./icons/trash.ico></a></td>"
+			contenutoHtml += "<td>" + <%=list.get(j).getImg()%> + "</td>";
+			contenutoHtml += "<td>" + <%=list.get(j).getNome()%> + "</td>";
+			contenutoHtml += "<td>" + <%=list.get(j).getPrezzo()%> + "</td>";
+			contenutoHtml += "<td><h5><input type=number min=1></h5></td>"
+			contenutoHtml += "<td><h5>&#8364 totale</h5></h5></td>"
+			contenutoHtml += "</tr>";	
+			<%j++;%>
+		}
+		
+		document.getElementById("dinamico").innerHTML = contenutoHtml;
+	</script>
 	<main>
 		<section id="container">
 			<h2>Carrello</h2>
@@ -19,15 +42,8 @@
 					<td>Totale</td>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-					<td><a href="#"><img src="./icons/trash.ico" class="trash"></a></td>
-					<td><img src=""></td>
-					<td><h5>nome</h5></td>
-					<td><h5>&#8364 prezzo</h5></td>
-					<td><h5><input type="number" min="1"></h5></td>
-					<td><h5>&#8364 totale</h5></td>
-					</tr>
+				<tbody id="dinamico">
+					
 				</tbody>
 			</table>
 		</section>
@@ -59,9 +75,7 @@
 						<p>&#8364 totale</p>
 					</div>
 					<button>Procedi al Pagamento</button>
-					
-					
-					
+						
 				</div>
 			</div>
 		</section>

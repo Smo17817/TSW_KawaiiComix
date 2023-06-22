@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
- <% if(session.getAttribute("name")==null)
+<%@ page import="java.util.*, servlet.User" %>    
+ <% if(session.getAttribute("user")==null)
 		response.sendRedirect("login.jsp");
  %>
 <jsp:include page="./header.jsp" flush="true"/>
 <body>
 	<div class="justaimg">
 	<jsp:include page="./Nav.jsp" flush="true"/>
+	<% User user = (User) session.getAttribute("user");%>
 	<main>
       <section id="personal-info">
       		<div class="form-wrapper">
@@ -15,15 +16,15 @@
       			<h2>Informazioni personali</h2>
 	   			<div class="form-row">
 		      		<label for="nome">Nome:</label>
-		      		<input type="text" id="nome" required/>
+		      		<input type="text" id="nome" required placeholder="<%=user.getNome()%>"/>
 	      		</div>
 	      		<div class="form-row">
 		      		<label for="cognome">Cognome:</label>
-		      		<input type="text" id="cognome" required/>
+		      		<input type="text" id="cognome" required placeholder="<%=user.getCognome()%>"/>
 	      		</div>
 	      		<div class="form-row">
 		      		<label for="email">Email:</label>
-		      		<input type="email" id="email" required/>
+		      		<input type="email" id="email" required placeholder="<%=user.getEmail()%>"/>
 	      		</div>
 	      		<div class="form-row">
 		      		<label for="password">Password:</label>

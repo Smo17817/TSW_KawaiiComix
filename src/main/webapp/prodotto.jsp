@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" import="java.util.*"%>
-    <%@ page import="java.util.*, servlet.Prodotto" %>
+<%@ page import="java.util.*, servlet.Prodotto" %>
 <jsp:include page="./header.jsp" flush="true"/>
 <body>
 	<jsp:include page="./Nav.jsp" flush="true"/>
@@ -15,7 +15,7 @@
 			<h4>&#8364 <%=p.getPrezzo()%></h4>
 			<p>Genere: <%=p.getGenere()%><p>
 			<p>Categoria: <%=p.getCategoria()%></p>
-			<input type="submit" value="Aggiungi al carrello"/>
+			<a href="CartServlet"> Aggiungi al Carrello</a>
 		</div>
 		
 	</main>
