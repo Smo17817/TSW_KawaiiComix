@@ -30,6 +30,7 @@
    }  else if(currentPage.equals("/indirizzo.jsp")){
 	   AdditionalCss = true;
    }  else if(currentPage.equals("/carrello.jsp")){
+	   cssFile = "carrello.css";
 	   AdditionalCss = true;
    }  else if(currentPage.equals("/news.jsp")){
 	   AdditionalCss = true;

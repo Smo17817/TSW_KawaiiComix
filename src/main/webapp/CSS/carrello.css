@@ -1,0 +1,46 @@
+@charset "ISO-8859-1";
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+}
+
+h2{
+	padding-bottom: 2rem;
+}
+
+#container{
+	padding: 5rem;
+}
+
+table{
+	width: 100%;
+	border-collapse: collapse;
+	table-layout: fixed;
+
+}
+
+thead{
+	border-bottom: 1px solid black;
+	font-weight: 700;
+}
+
+td{
+	padding: 6px 0;
+	text-align: center;
+}
+
+td img{
+	object-fit: cover;
+}
+
+.trash{
+	height: 30px;
+	opacity: 60%;
+}
+
+.trash :hover{
+	opacity: 1;
+}
