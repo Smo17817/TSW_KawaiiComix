@@ -25,11 +25,39 @@
 					<td><img src=""></td>
 					<td><h5>nome</h5></td>
 					<td><h5>&#8364 prezzo</h5></td>
-					<td><h5><input type="number"></h5></td>
+					<td><h5><input type="number" min="1"></h5></td>
 					<td><h5>&#8364 totale</h5></td>
 					</tr>
 				</tbody>
 			</table>
+		</section>
+		
+		<section id="bottom">
+			<div class="row">
+				<div class="promozione">
+					<div>
+						<h5>CODICE PROMOZIONALE</h5>
+						<p>Inserisci il codice</p>
+						<input type="text" placeholder="codice">
+						<button>Applica</button>
+					</div>
+				</div>	
+				
+				<div class="cassa">
+					<h5>TOTALE</h5>
+					<div class="totale">
+						<h6>Totale: </h6>
+						<p>&#8364 totale</p>
+					</div>
+					<div class="totale">
+						<h6>Spedizione: </h6>
+						<p>&#8364 totale</p>
+					</div>
+					<hr>
+					<button>Paga</button>
+					
+				</div>
+			</div>
 		</section>
 	</main>
 </body>

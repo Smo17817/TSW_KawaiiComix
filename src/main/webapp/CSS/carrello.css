@@ -30,6 +30,7 @@ thead{
 td{
 	padding: 6px 0;
 	text-align: center;
+	border-bottom: 1px solid grey;
 }
 
 td img{
@@ -43,4 +44,24 @@ td img{
 
 .trash :hover{
 	opacity: 1;
+}
+
+/* PROMO E TOTALE */
+
+#bottom{
+	margin: 5rem;
+}
+
+.row {
+	display: flex;
+	justify-content: space-between;
+}
+
+.cassa {
+	width: 30rem;
+}
+
+.totale {
+	display: flex;
+	justify-content: space-between;
 }
