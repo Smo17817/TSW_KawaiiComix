@@ -43,13 +43,40 @@
 		<a href="#slide2"></a>
 		<a href="#slide3"></a>
 	</div>
+	</section>
+	
+	<section id="prodotti">
+		<h2> Ultime Uscite </h2>
+		<div class="schedeProdotto">
+			<div class="scheda">
+				<a href="ProductServlet?isbn=12345678901234567"><img src="./images/db1.jpg"> </a>
+				<div class="info">
+					<h4> Dragon Ball </h4>
+					<p> 5.45 </p>
+					<a href="#"> Carrello</a>
+				</div>
+			</div>
+			
+			<div class="scheda">
+				<a href="ProductServlet?isbn=12345678901234567"><img src="./images/db1.jpg"> </a> 
+				<div class="info">	
+					<h4> Dragon Ball </h4>
+					<p> 5.45 </p>
+					<a href="#"> Carrello</a>
+				</div>	
+			</div>
+			
+			<div class="scheda">
+				<a href="ProductServlet?isbn=12345678901234567"><img src="./images/db1.jpg"> </a>
+				<div class="info">
+					<h4> Dragon Ball </h4>
+					<p> 5.45 </p>
+					<a href="#"> Carrello</a>
+				</div>
+			</div>
+	
+		</div>
 		
 	</section>
-	<script type="text/javascript">
-		function: imgSlider(anything){
-			document.querySelector()
-		}
-	</script>
-	</main>
 </body>
 </html>
