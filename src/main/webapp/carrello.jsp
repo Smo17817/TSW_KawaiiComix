@@ -4,7 +4,7 @@
  <% if(session.getAttribute("user")==null)
 		response.sendRedirect("login.jsp");
  %>
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+ 
 <jsp:include page="./header.jsp" flush="true"/>
 <body>
 	<jsp:include page="./Nav.jsp" flush="true"/>
@@ -26,6 +26,7 @@
 			};
 			if(!prodotti.includes(elem)) //se il prodotto è già presente non viene nuovamente aggiunto
 				prodotti.push(elem);
+			<%index++;%>
 		}
 		
 		let contenutoHtml = '';

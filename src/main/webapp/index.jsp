@@ -19,12 +19,12 @@
 		</div>
 		<div class="content" id="slide2">
 			<div class="textbox">
-				<h2>Dragon Ball 2</h2>
+				<h2>One Piece</h2>
 				<p> placeholder placeholder<p>
-				<a href="ProductServlet?isbn=12345678901234567"> Acquista ora</a>
+				<a href="ProductServlet?isbn=97889252856410000"> Acquista ora</a>
 			</div>
 			<div class="imgbox">
-				<img src="./images/db2.jpg" class="db">
+				<img src="./images/op1.jpg" class="db">
 			</div>
 		</div>
 		<div class="content" id="slide3">

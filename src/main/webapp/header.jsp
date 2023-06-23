@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name=" description" content="Vendita Manga al Dettaglio" />
 <meta name="robots" content="index,follow" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
  <% 
    String currentPage = request.getServletPath(); // Ottieni il percorso della tua pagina JSP corrente
    String cssFile = "";
@@ -38,6 +39,7 @@
 	   cssFile = "signup.css";
 	   AdditionalCss = true;
    }  else if(currentPage.equals("/catalogo.jsp")){
+	   cssFile = "catalogo.css";
 	   AdditionalCss = true;
    }  else if(currentPage.equals("/prodotto.jsp")){
 	   cssFile = "prodotto.css";

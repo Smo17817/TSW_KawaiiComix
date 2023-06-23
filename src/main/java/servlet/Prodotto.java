@@ -22,7 +22,7 @@ public class Prodotto {
 		this.quantita = quantita;
 		this.prezzo = prezzo;
 	}
-
+	
 	public String getIsbn() {
 		return isbn;
 	}
