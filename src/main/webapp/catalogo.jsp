@@ -24,7 +24,6 @@
 				prezzo: <%=list.get(index).getPrezzo()%>
 			};
 				prodotti.push(elem);
-			console.log(elem);
 		}	
 		
 		let contenutoHtml = '';

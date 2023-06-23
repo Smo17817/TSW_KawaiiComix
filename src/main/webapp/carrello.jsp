@@ -20,6 +20,7 @@
 		
 		for(let j=0; j < n; j++){
 			const elem = {
+					isbn: "<%=list.get(index).getIsbn()%>",
 					img: "<%=list.get(index).getImg()%>",
 					nome: "<%=list.get(index).getNome()%>",
 					prezzo: <%=list.get(index).getPrezzo()%>

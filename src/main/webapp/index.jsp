@@ -53,7 +53,7 @@
 				<div class="info">
 					<h4> Dragon Ball </h4>
 					<p> 5.45 </p>
-					<a href="#"> Carrello</a>
+					<a href="CartServlet?isbn=12345678901234567"> Carrello</a>
 				</div>
 			</div>
 			
@@ -62,7 +62,7 @@
 				<div class="info">	
 					<h4> Dragon Ball </h4>
 					<p> 5.45 </p>
-					<a href="#"> Carrello</a>
+					<a href="CartServlet?isbn=12345678901234567"> Carrello</a>
 				</div>	
 			</div>
 			
