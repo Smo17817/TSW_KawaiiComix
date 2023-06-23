@@ -4,8 +4,7 @@
  <% if(session.getAttribute("user")==null)
 		response.sendRedirect("login.jsp");
  %>
- 
- 
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <jsp:include page="./header.jsp" flush="true"/>
 <body>
 	<jsp:include page="./Nav.jsp" flush="true"/>
@@ -14,19 +13,18 @@
 		<% 
 			Carrello carrello = (Carrello) session.getAttribute("carrello");
 			ArrayList<Prodotto> list = carrello.getCarrello();
-			int index = 1;
+			int index = 1; 
 		%>
 		let n = <%=list.size()%>
 		let prodotti = [];
 		
 		for(let j=0; j < n; j++){
 			prodotti.push({
-				img: "\"" + <%=list.get(index).getImg()%> + "\"",
-				nome: "\"" + <%=list.get(index).getNome()%> + "\"",
-				prezzo: "\"" + <%=list.get(index).getPrezzo()%> + "\"",
+				img: "<%=list.get(index).getImg()%>",
+				nome: "<%=list.get(index).getNome()%>",
+				prezzo: <%=list.get(index).getPrezzo()%>
 			});
 		}
-		console.log(prodotti);
 		
 		let contenutoHtml = '';
 		for (let i = 0; i < 2; i++) {	
@@ -39,8 +37,10 @@
 			contenutoHtml += '<td><h5>&#8364 totale</h5></h5></td>';
 			contenutoHtml += '</tr>';
 		}
-
-		document.getElementById("dinamico").innerHTML = contenutoHtml;
+		$(document).ready(function(){
+			document.getElementById("dinamico").innerHTML = contenutoHtml;
+		});
+		
 	</script>
 
 	<main>

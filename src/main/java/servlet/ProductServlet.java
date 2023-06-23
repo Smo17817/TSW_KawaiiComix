@@ -27,8 +27,7 @@ public class ProductServlet extends HttpServlet {
 		Connection c = null;
 		
 		try {
-			DbManager manager = new DbManager();
-			c = manager.getConnection();
+			c = DbManager.getConnection();
 			PreparedStatement ps = c.prepareStatement("SELECT * FROM prodotti WHERE isbn = ?");
 			ps.setString(1, isbn);
 			ResultSet rs = ps.executeQuery();
