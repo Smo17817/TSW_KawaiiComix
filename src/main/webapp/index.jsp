@@ -67,11 +67,11 @@
 			</div>
 			
 			<div class="scheda">
-				<a href="ProductServlet?isbn=12345678901234567"><img src="./images/db1.jpg"> </a>
+				<a href="ProductServlet?isbn=97889252856410000"><img src="./images/op1.jpg"> </a>
 				<div class="info">
-					<h4> Dragon Ball </h4>
+					<h4> One Piece </h4>
 					<p> 5.45 </p>
-					<a href="#"> Carrello</a>
+					<a href="CartServlet?isbn=97889252856410000"> Carrello</a>
 				</div>
 			</div>
 	

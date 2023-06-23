@@ -44,9 +44,7 @@ public class LoginServlet extends HttpServlet{
 				String cognome = rs.getString("cognome");
 				User user = new User(id, email, nome, cognome);
 				/* quando logga crea anche un carrello vuoto*/
-				Carrello carrello = new Carrello();
-				carrello.add(new Prodotto("0", "0", "0", "0", "0", "0", 0, 0)); //per sicurezza, meglio non averlo vuoto
-				session.setAttribute("carrello", carrello);
+				session.setAttribute("carrello", new Carrello());
 				
 				session.setAttribute("user", user);
 				dispatcher = request.getRequestDispatcher("index.jsp");

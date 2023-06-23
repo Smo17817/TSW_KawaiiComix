@@ -13,7 +13,7 @@
 		<% 
 			Carrello carrello = (Carrello) session.getAttribute("carrello");
 			ArrayList<Prodotto> list = carrello.getCarrello();
-			int index = 1; 
+			int index = 0; 
 		%>
 		let n = <%=list.size()%>
 		let prodotti = [];
@@ -30,7 +30,7 @@
 		}
 		
 		let contenutoHtml = '';
-		for (let i = 1; i < n; i++) {	
+		for (let i = 0; i < n; i++) {	
 			contenutoHtml += '<tr>';
 			contenutoHtml += '<td><button onclick="message()"><img src="./icons/trash.ico" class="trash"></button></td>';
 			contenutoHtml += '<td><img src="' + prodotti[i].img + '"></td>';

@@ -23,7 +23,6 @@
 				nome: "<%=list.get(index).getNome()%>",
 				prezzo: <%=list.get(index).getPrezzo()%>
 			};
-			if(!prodotti.includes(elem)) //se il prodotto è già presente non viene nuovamente aggiunto
 				prodotti.push(elem);
 			console.log(elem);
 		}	
@@ -35,7 +34,7 @@
 			contenutoHtml += '<div class="info">' 
 			contenutoHtml += '<h4>' + prodotti[i].nome + '</h4>';
 			contenutoHtml += '<p> &#8364 ' + prodotti[i].prezzo + '</p>';
-			contenutoHtml += '<a href="#">Carrello</a>';
+			contenutoHtml += '<a href="CartServlet?isbn=' + prodotti[i].isbn + '">Carrello</a>';
 			contenutoHtml += '</div>';
 			contenutoHtml += '</div>';
 		}

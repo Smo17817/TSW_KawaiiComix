@@ -15,7 +15,7 @@
 			<h4>&#8364 <%=p.getPrezzo()%></h4>
 			<p>Genere: <%=p.getGenere()%><p>
 			<p>Categoria: <%=p.getCategoria()%></p>
-			<a href="CartServlet"> Aggiungi al Carrello</a>
+			<a href="CartServlet?isbn=<%=p.getIsbn()%>"> Aggiungi al Carrello</a>
 		</div>
 		
 	</main>
