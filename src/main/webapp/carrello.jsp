@@ -19,17 +19,19 @@
 		let prodotti = [];
 		
 		for(let j=0; j < n; j++){
-			prodotti.push({
-				img: "<%=list.get(index).getImg()%>",
-				nome: "<%=list.get(index).getNome()%>",
-				prezzo: <%=list.get(index).getPrezzo()%>
-			});
+			const elem = {
+					img: "<%=list.get(index).getImg()%>",
+					nome: "<%=list.get(index).getNome()%>",
+					prezzo: <%=list.get(index).getPrezzo()%>
+			};
+			if(!prodotti.includes(elem)) //se il prodotto è già presente non viene nuovamente aggiunto
+				prodotti.push(elem);
 		}
 		
 		let contenutoHtml = '';
-		for (let i = 0; i < 2; i++) {	
+		for (let i = 1; i < n; i++) {	
 			contenutoHtml += '<tr>';
-			contenutoHtml += '<td><a href="#"><img src="./icons/trash.ico"></a></td>';
+			contenutoHtml += '<td><button onclick="message()"><img src="./icons/trash.ico" class="trash"></button></td>';
 			contenutoHtml += '<td><img src="' + prodotti[i].img + '"></td>';
 			contenutoHtml += '<td>' + prodotti[i].nome + '</td>';
 			contenutoHtml += '<td>' + prodotti[i].prezzo + '</td>';
@@ -37,10 +39,16 @@
 			contenutoHtml += '<td><h5>&#8364 totale</h5></h5></td>';
 			contenutoHtml += '</tr>';
 		}
+		
+		
+			
 		$(document).ready(function(){
 			document.getElementById("dinamico").innerHTML = contenutoHtml;
 		});
 		
+		function message(){
+			<%System.out.println("ciao");%>
+		}
 	</script>
 
 	<main>

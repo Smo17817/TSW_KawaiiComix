@@ -20,6 +20,8 @@ public class ExitServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		if (session != null) {
+			
+			
             session.invalidate(); // Invalida la sessione, rimuovendo tutti gli attributi ad essa associati
         }
         
