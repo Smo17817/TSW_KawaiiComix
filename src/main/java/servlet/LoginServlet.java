@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.servlet.RequestDispatcher;
@@ -77,7 +78,13 @@ public class LoginServlet extends HttpServlet{
 			dispatcher.forward(request, response);
 		}catch(Exception e) { 
 			e.printStackTrace();
+		}finally {
+			if (con != null)
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 		}
 	}
-
 }

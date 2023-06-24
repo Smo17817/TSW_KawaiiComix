@@ -36,13 +36,7 @@ public class AddressServlet extends HttpServlet {
 		
 		try {
 			DbManager manager = new DbManager();
-			connection = manager.getConnection();	
-			
-			if(user == null) {
-				dispatcher = request.getRequestDispatcher("login.jsp");
-				dispatcher.forward(request, response);
-			}
-			
+			connection = manager.getConnection();		
 			Statement s = connection.createStatement();
 			String query = "SELECT * FROM address WHERE user_id=" + user.getId();
 			ResultSet rs = s.executeQuery(query);

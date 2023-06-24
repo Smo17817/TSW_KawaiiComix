@@ -12,27 +12,27 @@
 	<main>
       <section id="personal-info">
       		<div class="form-wrapper">
-      			<form>
+      			<form action="DatiPersonaliServlet" method="POST">
       			<h2>Informazioni personali</h2>
 	   			<div class="form-row">
 		      		<label for="nome">Nome:</label>
-		      		<input type="text" id="nome" required placeholder="<%=user.getNome()%>"/>
+		      		<input type="text" id="nome" name="nome" required placeholder="<%=user.getNome()%>"/>
 	      		</div>
 	      		<div class="form-row">
 		      		<label for="cognome">Cognome:</label>
-		      		<input type="text" id="cognome" required placeholder="<%=user.getCognome()%>"/>
+		      		<input type="text" id="cognome" name="cognome" required placeholder="<%=user.getCognome()%>"/>
 	      		</div>
 	      		<div class="form-row">
 		      		<label for="email">Email:</label>
-		      		<input type="email" id="email" required placeholder="<%=user.getEmail()%>"/>
+		      		<input type="email" id="email"name="email" required placeholder="<%=user.getEmail()%>"/>
 	      		</div>
 	      		<div class="form-row">
 		      		<label for="password">Password:</label>
-		      		<input type="password" id="password" required/>
+		      		<input type="password" id="password" name="password1" required/>
 	      		</div>
 	      		<div class="form-row">
 		      		<label for="conferma-pass">Conferma Password:</label>
-		      		<input type="password" id="conferma-pass" required/>
+		      		<input type="password" id="conferma-pass" name="password2" required/>
 	      		</div>
 	      		<div class= "sub-class">
 	      			<button type="submit">Invia</button>

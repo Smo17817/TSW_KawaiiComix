@@ -1,3 +1,4 @@
-ridurre opacità backround img (vedi come viene con un po' di blur);
-sistemarla in un altro foglio css generalke per ogni pagina;
-aggiustare la posizione delle icone vicino ai link nel profilo (metterle centrali possibilmente)
+POSTI DOVE AGGIUNGERE GLI ALERT
+	1. Indirizzo se l'aggiornamento è andato a termine;
+	2. Dati Personali se l'aggiornamento è andato a termine;
+	3. Dati Personali se le due password non corrispondono
