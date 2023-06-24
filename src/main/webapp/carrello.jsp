@@ -13,12 +13,12 @@
 		<% 
 			Carrello carrello = (Carrello) session.getAttribute("carrello");
 			ArrayList<Prodotto> list = carrello.getCarrello();
-			int index = 0; 
+			int index = 1; 
 		%>
 		let n = <%=list.size()%>
 		let prodotti = [];
 		
-		for(let j=0; j < n; j++){
+		for(let j=1; j < n; j++){
 			const elem = {
 					isbn: "<%=list.get(index).getIsbn()%>",
 					img: "<%=list.get(index).getImg()%>",
