@@ -7,33 +7,84 @@
 	font-family: "Poppins", sans-serif;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 .banner {
 	box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6);
 	background-size: cover;
 	background-position: center;
-	height: 60rem;
-	margin-top: 10rem;
+	min-height: 50vh;
+	margin-top: 5rem;
 	position: relative;
-	width: 100%;
-	padding: 100px;
+	min-width: 100vw;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
 
 .slider{
-	display: flex; 
-	aspect-ratio: 16 / 9;
+	display: flex;
+	width: 100%;
+	overflow-x: auto;
 	overflow: hidden;
 	scroll-snap-type: x mandatory;
 	scroll-behavior:smooth;
 	scroll-snap-align: start;
-}
-
-.slider img{
-	flex: 1 0 100%;
 	
 }
+
+.content{
+	width: 90%;
+	display: flex;
+	padding: 3rem;
+	justify-content: space-around;
+	align-items: center;
+	margin : auto;
+	flex : 1 0 100%;
+	scroll-snap-align: start;
+	
+}
+
+.textbox{
+	padding: 2rem;
+	max-width:600px;
+}
+
+.textbox h2{
+	color: #333;
+	font-size: 8rem;
+	line-height: 11.2rem;
+	font-weight: 900;
+}
+
+.textbox p{
+	color: #333;
+}
+
+.textbox a{
+	display: inline-block;
+	margin-top: 20px;
+	padding: 8px 20px;
+	background: #ff6f88;
+	color: #fff;
+	border-radius: 40px;
+	font-weight: 500;
+	letter-spacing: 1px;
+	text-decoration: none;
+}
+
+.imgbox {
+	margin-top: 5rem;
+	justify-content: end;
+}
+
+.imgbox img{
+	max-width: 34rem;
+
+}
+
 
 .sliderNav{
 	display: flex;
@@ -58,58 +109,6 @@
 	opacity: 0.5;
 }
 
-.content{
-	position: relative;
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	
-}
-
-.textbox{
-	position: relative;
-	max-width:600px;
-}
-
-.textbox h2{
-	color: #333;
-	font-size: 4em;
-	line-height: 1.4em;
-	font-weight: 900;
-}
-
-.textbox p{
-	color: #333;
-}
-
-.textbox a{
-	display: inline-block;
-	margin-top: 20px;
-	padding: 8px 20px;
-	background: #ff6f88;
-	color: #fff;
-	border-radius: 40px;
-	font-weight: 500;
-	letter-spacing: 1px;
-	text-decoration: none;
-}
-
-.imgbox {
-	width: 400px;
-	display: flex;
-	justify-content: flex-end;
-	padding-right: 50px;
-	margin-top: 50px;
-}
-
-.imgbox img{
-	max-width: 340px;
-}
-.textbox,
-.imgbox{
-	margin: 10rem;
-}
 
 /* SCHEDE PRODOTTO */
 

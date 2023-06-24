@@ -25,6 +25,7 @@
 					nome: "<%=list.get(index).getNome()%>",
 					prezzo: <%=list.get(index).getPrezzo()%>
 			};
+			
 			if(!prodotti.includes(elem)) //se il prodotto è già presente non viene nuovamente aggiunto
 				prodotti.push(elem);
 			<%index++;%>
