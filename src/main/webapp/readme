@@ -2,7 +2,8 @@ PER DAVID
 1) POSTI DOVE AGGIUNGERE GLI ALERT
 	1. Indirizzo se l'aggiornamento è andato a termine;
 	2. Dati Personali se l'aggiornamento è andato a termine;
-	3. Dati Personali se le due password non corrispondono
+	3. Dati Personali se le due password non corrispondono;
+	4. Una volta che l'admin ha aggiunto un prodotto.
 	
 2) BOTTONE TRASH DEL CARRELLO -> DEVE ELIMINARE LA RIGA:
 	poichè la costruzione della pagina html si basa sugli oggetti Prodotto nell'oggetto 
@@ -15,4 +16,21 @@ PER DAVID
 4) AGGIUSTARE CLASSE THUMBNAIL
 	ho temporaneamente messo le impostazioni per le dimensioni delle thumbnail dei 
 	prodotti nel carrello come attributi inline; 
+
+5) AGGIUNGIPRODOTTO.JSP
+	1. la nav bar non ha la background img;
+	2. trovare un modo per importare le immagini esterne nella cartella images usando
+		solo il form (adesso funziona solo se l'immagine è già nella cartella); 
+	3. categoria e genere non possono essere di tipo text ma checkbox, quindi bisogna
+		caricare dinamicamente i dati dal db;
+	4. per la descrizione è meglio un text field che il text, altrimenti è troppo
+		piccolo.
+		
+5) CATALOGO
+	disposizione orizzontale dei prodotti, migliorare estetica generale.
+
+6) INDIRIZZO
+	migliorare estetica
 	
+7) ESCI
+	va salvato il carrello nel db (priorità bassa).
