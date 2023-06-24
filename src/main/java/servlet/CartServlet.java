@@ -21,21 +21,23 @@ public class CartServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		RequestDispatcher dispatcher = null;
 		Carrello carrello = (Carrello) session.getAttribute("carrello");
+		String isbn = request.getParameter("isbn");
+		User user = (User) session.getAttribute("user");
+		Connection connection = null;
 		
-		if(session.getAttribute("user")==null)
+		
+		if( user == null)
 			response.sendRedirect("login.jsp");
-	
-		else {
-			/* se il prodotto non si trova in sessione, ce lo mette */
-			String isbn = (String) request.getParameter("isbn");
-			System.out.println(isbn);
-			Connection c = null;
+		else {	
 			try {
-				c = DbManager.getConnection();
-				PreparedStatement ps = c.prepareStatement("SELECT * FROM prodotti WHERE isbn = ?");
+				connection = DbManager.getConnection();
+				String query = "SELECT * FROM prodotti WHERE isbn = ?";
+				PreparedStatement ps = connection.prepareStatement(query);
 				ps.setString(1, isbn);
 				ResultSet rs = ps.executeQuery();
+				
 
 				if (rs.next()) {
 					String nome = rs.getString("nome");
@@ -46,33 +48,34 @@ public class CartServlet extends HttpServlet {
 					int quantita = rs.getInt("quantita");
 					double prezzo = rs.getDouble("prezzo");
 					Prodotto prodotto = new Prodotto(isbn, nome, descrizione, img, genere, categoria, quantita, prezzo);
-
-					session.setAttribute("prodotto", prodotto);
 					
-					if (!carrello.getCarrello().contains(prodotto)) // la quantità si modifica solo nel carello.jsp
+					/* controlla che ci sia solo una ripetizione per ogni prodotto */
+					int flag = 0;
+					for(Prodotto p : carrello.getCarrello()) {
+						if(prodotto.getIsbn().equals(p.getIsbn()))
+							flag = 1;
+					}
+				
+					if(flag == 0) {
 						carrello.add(prodotto);
-
-					session.setAttribute("carrello", carrello);
-
-					RequestDispatcher dispatcher = request.getRequestDispatcher("carrello.jsp");
-					dispatcher.forward(request, response);
+						session.setAttribute("carrello", carrello);
+					}
 				}
-				rs.close();
+		
+				dispatcher = request.getRequestDispatcher("carrello.jsp");
+				dispatcher.forward(request, response);
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
-				if (c != null)
+				if (connection != null)
 					try {
-						c.close();
+						connection.close();
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
 			}
 		}
 	}
-
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
-;
 }

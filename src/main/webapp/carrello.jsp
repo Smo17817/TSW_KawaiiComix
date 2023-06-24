@@ -13,45 +13,26 @@
 		<% 
 			Carrello carrello = (Carrello) session.getAttribute("carrello");
 			ArrayList<Prodotto> list = carrello.getCarrello();
-			int index = 1; 
+			
+			String contenutoHtml = "";
+			for(Prodotto p : list){
+				contenutoHtml += "<tr>" + "\n";
+				contenutoHtml += "<td> <button><img src=\"./icons/trash.ico\" class=\"trash\"></button>" + "\n";
+				contenutoHtml += "<td> <img src=\"" + p.getImg() + "\" class=\"thumbnail\" height=\"250px\"></td>" + "\n";
+				contenutoHtml += "<td>" + p.getNome() + "</td>" + "\n";
+				contenutoHtml += "<td> &#8364 " + p.getPrezzo() + "</td>" + "\n";
+				contenutoHtml += "<td> <h5> <input type=\"number\" min=\"1\"> </h5> </td>" + "\n";
+				contenutoHtml += "<td> <h5> &#8364 totale </h5> </td>" + "\n";
+				contenutoHtml += "</tr>" + "\n";
+			}
 		%>
-		let n = <%=list.size()%>
-		let prodotti = [];
 		
-		for(let j=1; j < n; j++){
-			const elem = {
-					isbn: "<%=list.get(index).getIsbn()%>",
-					img: "<%=list.get(index).getImg()%>",
-					nome: "<%=list.get(index).getNome()%>",
-					prezzo: <%=list.get(index).getPrezzo()%>
-			};
-			
-			if(!prodotti.includes(elem)) //se il prodotto è già presente non viene nuovamente aggiunto
-				prodotti.push(elem);
-			<%index++;%>
-		}
+		const content = '<%=contenutoHtml.replace("'", "\\'").replace("\n", "\\n")%>';
+
 		
-		let contenutoHtml = '';
-		for (let i = 0; i < n; i++) {	
-			contenutoHtml += '<tr>';
-			contenutoHtml += '<td><button onclick="message()"><img src="./icons/trash.ico" class="trash"></button></td>';
-			contenutoHtml += '<td><img src="' + prodotti[i].img + '"></td>';
-			contenutoHtml += '<td>' + prodotti[i].nome + '</td>';
-			contenutoHtml += '<td>' + prodotti[i].prezzo + '</td>';
-			contenutoHtml += '<td><h5><input type="number" min="1"></h5></td>';
-			contenutoHtml += '<td><h5>&#8364 totale</h5></h5></td>';
-			contenutoHtml += '</tr>';
-		}
-		
-		
-			
 		$(document).ready(function(){
-			document.getElementById("dinamico").innerHTML = contenutoHtml;
+			document.getElementById("dinamico").innerHTML = content;
 		});
-		
-		function message(){
-			<%System.out.println("ciao");%>
-		}
 	</script>
 
 	<main>

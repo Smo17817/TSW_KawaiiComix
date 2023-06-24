@@ -23,6 +23,17 @@ public class Prodotto {
 		this.prezzo = prezzo;
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return "Prodotto [isbn=" + isbn + ", nome=" + nome + ", descrizione=" + descrizione + ", img=" + img
+				+ ", genere=" + genere + ", categoria=" + categoria + ", quantita=" + quantita + ", prezzo=" + prezzo
+				+ "]";
+	}
+
+
+
 	public String getIsbn() {
 		return isbn;
 	}

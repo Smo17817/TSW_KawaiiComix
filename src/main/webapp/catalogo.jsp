@@ -9,37 +9,25 @@
 		<%
 			Catalogo catalogo = (Catalogo) session.getAttribute("catalogo");
 			ArrayList<Prodotto> list = catalogo.getCatalogo();
-	
-			int index = 0;
-		%>
-		let n = <%=list.size()%>
-		console.log(n);
-		let prodotti = [];
-		
-		for(let j=0; j < n; j++){
-			const elem = {
-				isbn: "<%=list.get(index).getIsbn()%>",
-				img: "<%=list.get(index).getImg()%>",
-				nome: "<%=list.get(index).getNome()%>",
-				prezzo: <%=list.get(index).getPrezzo()%>
-			};
-				prodotti.push(elem);
-		}	
-		
-		let contenutoHtml = '';
-		for (let i = 0; i < n; i++) {	
-			contenutoHtml += '<div class="scheda">';
-			contenutoHtml += '<a href="ProductServlet?isbn=' + prodotti[i].isbn + '"><img src="' + prodotti[i].img +'" class="trash"></a>';
-			contenutoHtml += '<div class="info">' 
-			contenutoHtml += '<h4>' + prodotti[i].nome + '</h4>';
-			contenutoHtml += '<p> &#8364 ' + prodotti[i].prezzo + '</p>';
-			contenutoHtml += '<a href="CartServlet?isbn=' + prodotti[i].isbn + '">Carrello</a>';
-			contenutoHtml += '</div>';
-			contenutoHtml += '</div>';
-		}
 			
+			String contenutoHtml = "";
+			for(Prodotto p : list){
+				contenutoHtml += "<div class=\"scheda\">" + "\n";
+				contenutoHtml += "<a href=\"ProductServlet?isbn=" + p.getIsbn() + "\"><img src=\"" + p.getImg()+ "\" class=\"trash\"></a>" + "\n";
+				contenutoHtml += "<div class=\"info\">" + "\n"; 
+				contenutoHtml += "<h4>" + p.getNome() + "</h4>" + "\n";
+				contenutoHtml += "<p> &#8364 " + p.getPrezzo() + "</p>" + "\n";
+				contenutoHtml += "<a href=\"CartServlet?isbn=" + p.getIsbn() + "\">Carrello</a>" + "\n";
+				contenutoHtml += "</div>" + "\n";
+				contenutoHtml += "</div>" + "\n";
+			}
+		%>
+		
+		const content = '<%=contenutoHtml.replace("'", "\\'").replace("\n", "\\n")%>';
+
+		
 		$(document).ready(function(){
-			document.getElementById("schedeProdotto").innerHTML = contenutoHtml;
+			document.getElementById("schedeProdotto").innerHTML = content;
 		});
 	</script>
 	

@@ -47,7 +47,6 @@ public class LoginServlet extends HttpServlet{
 				User user = new User(id, email, nome, cognome);
 				/* quando logga crea anche un carrello vuoto*/
 				Carrello carrello = new Carrello();
-				carrello.add(new Prodotto("", "", "", "", "", "", 0, 0));
 				session.setAttribute("carrello", carrello);
 				
 				query = "SELECT * FROM address WHERE user_id = " + id;

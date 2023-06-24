@@ -45,7 +45,7 @@ public class CatalogServlet extends HttpServlet {
 				int quantita = rs.getInt("quantita");
 				double prezzo = rs.getDouble("prezzo");
 				Prodotto p = new Prodotto(isbn, nome, descrizione, img, genere, categoria, quantita, prezzo);
-					
+	
 				catalogo.add(p);
 			}
 			Collections.sort(catalogo.getCatalogo(), new ProdottoComparator());

@@ -34,10 +34,6 @@ td{
 	border-bottom: 1px solid grey;
 }
 
-td img{
-	object-fit: cover;
-}
-
 .trash{
 	height: 30px;
 	opacity: 60%;
