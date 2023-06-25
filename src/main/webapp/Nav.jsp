@@ -8,7 +8,7 @@
 			<ul class="links">
 				<li><a href="./index.jsp">Home</a></li>
 				<li><a href="CatalogServlet">Catalogo</a></li>
-				<li><a href="./news.jsp">News</a></li>
+				<li><a href="NewsServlet">News</a></li>
 			</ul>
 			<ul class="utilities">
 				<li><a href=""> <img

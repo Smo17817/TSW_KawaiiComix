@@ -47,8 +47,9 @@
    }  else if(currentPage.equals("/aggiungiProdotto.jsp")){
 	   cssFile = "aggiungiProdotto.css";
 	   AdditionalCss = true;
+   }  else if(currentPage.equals("/novita.jsp")){
+	   AdditionalCss = true;
    }
-   
 %>
 <% if(AdditionalCss){%>
 	<link rel="stylesheet" href="<%= request.getContextPath() %>/CSS/style.css">
