@@ -29,6 +29,7 @@
 	   cssFile = "index.css";
 	   AdditionalCss = true;
    }  else if(currentPage.equals("/indirizzo.jsp")){
+	   cssFile = "indirizzo.css";
 	   AdditionalCss = true;
    }  else if(currentPage.equals("/carrello.jsp")){
 	   cssFile = "carrello.css";

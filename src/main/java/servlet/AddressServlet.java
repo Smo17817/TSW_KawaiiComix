@@ -34,12 +34,43 @@ public class AddressServlet extends HttpServlet {
 		String provincia = request.getParameter("provincia");
 		String nazione = request.getParameter("nazione");
 		
+		if(indirizzo == null || indirizzo.equals("")) {
+			request.setAttribute("status", "Invalid_address");
+			dispatcher = request.getRequestDispatcher("indirizzo.jsp");
+			dispatcher.forward(request, response);
+			return;
+		}
+		if(citta == null || citta.equals("")) {
+			request.setAttribute("status", "Invalid_citta");
+			dispatcher = request.getRequestDispatcher("indirizzo.jsp");
+			dispatcher.forward(request, response);
+			return;
+		}
+		if(provincia == null || provincia.equals("")) {
+			request.setAttribute("status", "Invalid_provincia");
+			dispatcher = request.getRequestDispatcher("indirizzo.jsp");
+			dispatcher.forward(request, response);
+			return;
+		}
+		if(cap == null || cap.equals("") || (cap.length() != 5)) {
+			request.setAttribute("status", "Invalid_cap");
+			dispatcher = request.getRequestDispatcher("indirizzo.jsp");
+			dispatcher.forward(request, response);
+			return;
+		}
+		if(nazione == null || nazione.equals("") || nazione.equals("-effettua una scelta-")) {
+			request.setAttribute("status", "Invalid_nazione");
+			dispatcher = request.getRequestDispatcher("indirizzo.jsp");
+			dispatcher.forward(request, response);
+			return;
+		}
+		
 		try {
-			DbManager manager = new DbManager();
-			connection = manager.getConnection();		
+			connection = DbManager.getConnection();		
 			Statement s = connection.createStatement();
 			String query = "SELECT * FROM address WHERE user_id=" + user.getId();
 			ResultSet rs = s.executeQuery(query);
+			int rowCount = 0;
 			
 			if(!rs.next()) {
 				query = "INSERT INTO address (indirizzo, codice_postale, citta, provincia, nazione, user_id) values(?, ?, ?, ?, ?, ?)";
@@ -50,30 +81,36 @@ public class AddressServlet extends HttpServlet {
 				ps.setString(4, provincia);
 				ps.setString(5, nazione);
 				ps.setInt(6, user.getId());
-				ps.executeUpdate();
+				rowCount = ps.executeUpdate();	
 				ps.close();	
 			}else {
 				query = "UPDATE address SET indirizzo = ?, codice_postale = ?, citta = ?, provincia = ?, nazione = ? WHERE user_id = ?";
 				PreparedStatement ps =connection.prepareStatement(query);
-				ps.setString(1, indirizzo);
-				ps.setString(2, cap);
-				ps.setString(3, citta);
-				ps.setString(4, provincia);
-				ps.setString(5, nazione);
+					ps.setString(1, indirizzo);
+					ps.setString(2, cap);
+					ps.setString(3, citta);
+					ps.setString(4, provincia);
+					ps.setString(5, nazione);
+				
 				ps.setInt(6, user.getId());
-				ps.executeUpdate();
+				rowCount = ps.executeUpdate();
 				ps.close();	
 			}
 			
 			rs.close();
 			
-			/*sia se si crea, sia se si modifica, le informazioni in sessione vanno aggiornate*/
-			Indirizzo i = new Indirizzo(indirizzo, cap, citta, provincia, nazione);	
-			session.setAttribute("indirizzo", i);
+			if(rowCount > 0) {
+				request.setAttribute("status", "success");
+				/*sia se si crea, sia se si modifica, le informazioni in sessione vanno aggiornate*/
+				Indirizzo i = new Indirizzo(indirizzo, cap, citta, provincia, nazione);	
+				session.setAttribute("indirizzo", i);
+				 
+			}else {
+				request.setAttribute("status", "failed");
+			}
 			
 			dispatcher = request.getRequestDispatcher("indirizzo.jsp");
 			dispatcher.forward(request, response);
-			
 			
 		} catch (SQLException e) {
 

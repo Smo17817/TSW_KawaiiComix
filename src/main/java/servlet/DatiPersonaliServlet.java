@@ -29,11 +29,42 @@ public class DatiPersonaliServlet extends HttpServlet {
 		String password2 = request.getParameter("password2");
 		String nome = request.getParameter("nome");
 		String cognome = request.getParameter("cognome");
+		int rowCount = 0;
+		
+		
+		if(nome == null || nome.equals("")) {
+			request.setAttribute("status", "Invalid_nome");
+			dispatcher = request.getRequestDispatcher("datipersonali.jsp");
+			dispatcher.forward(request, response);
+			return;
+		}
+		if(cognome == null || cognome.equals("")) {
+			request.setAttribute("status", "Invalid_cognome");
+			dispatcher = request.getRequestDispatcher("datipersonali.jsp");
+			dispatcher.forward(request, response);
+			return;
+		}
+		if(email == null || email.equals("")) {
+			request.setAttribute("status", "Invalid_email");
+			dispatcher = request.getRequestDispatcher("datipersonali.jsp");
+			dispatcher.forward(request, response);
+			return;
+		}
+		if(password1 == null || password1.equals("")){
+			request.setAttribute("status", "Invalid_password");
+			dispatcher = request.getRequestDispatcher("datipersonali.jsp");
+			dispatcher.forward(request, response);
+			return;
+		}
+		if(!(password1.equals(password2))) {
+			request.setAttribute("status", "Invalid_password2");
+			dispatcher = request.getRequestDispatcher("datipersonali.jsp");
+			dispatcher.forward(request, response);
+			return;
+		}
 		
 		try {
-			connection = DbManager.getConnection();
-			if (password1.equals(password2)) {
-				
+				connection = DbManager.getConnection();
 				String query = "UPDATE site_user SET email_address = ?, password = ?, nome = ?, cognome = ? WHERE id = ?";
 				PreparedStatement ps = connection.prepareStatement(query);
 				ps.setString(1, email);
@@ -41,7 +72,7 @@ public class DatiPersonaliServlet extends HttpServlet {
 				ps.setString(3, nome);
 				ps.setString(4, cognome);
 				ps.setInt(5, user.getId());
-				ps.executeUpdate();
+				rowCount = ps.executeUpdate();
 				ps.close();
 				
 				user.setEmail(email);
@@ -49,9 +80,12 @@ public class DatiPersonaliServlet extends HttpServlet {
 				user.setCognome(cognome);
 				
 				session.setAttribute("user", user);
-			}else {
-				/* ALERT*/
-			}
+			
+				if(rowCount > 0)
+					request.setAttribute("status", "success");
+				else
+					request.setAttribute("status", "failed");
+			
 			
 			dispatcher = request.getRequestDispatcher("datipersonali.jsp");
 			dispatcher.forward(request, response);
