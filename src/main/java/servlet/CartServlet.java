@@ -30,7 +30,7 @@ public class CartServlet extends HttpServlet {
 		
 		if( user == null)
 			response.sendRedirect("login.jsp");
-		else {	
+		else {
 			try {
 				connection = DbManager.getConnection();
 				String query = "SELECT * FROM prodotti WHERE isbn = ?";

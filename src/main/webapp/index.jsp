@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.*, servlet.Prodotto, servlet.Carrello"%>
  
 
  <jsp:include page="./header.jsp" flush="true"/>
@@ -12,7 +11,7 @@
 				 <div class="content" id="slide1">
 				<div class="textbox">
 					<h2>Dragon Ball</h2>
-					<p>  placeholder placeholder<p>
+					<p><p>
 					<a href="ProductServlet?isbn=12345678901234567"> Acquista ora</a>
 				</div>
 				<div class="imgbox">
