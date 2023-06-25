@@ -18,7 +18,7 @@
 		
 		let contenutoHtml = '';
 		  contenutoHtml += '<li> <img src="./icons/upload.ico"> <a href="aggiungiProdotto.jsp"> Aggiungi Prodotto (ADMIN)</a> </li>';
-		  contenutoHtml += '<li> <img src="./icons/news.ico"> <a href="#"> Aggiungi Notizie (ADMIN)</a> </li>';
+		  contenutoHtml += '<li> <img src="./icons/news.ico"> <a href="aggiungiNovita.jsp"> Aggiungi Notizie (ADMIN)</a> </li>';
 
 		  if (id == 1) {
 			  $(document).ready(function(){
