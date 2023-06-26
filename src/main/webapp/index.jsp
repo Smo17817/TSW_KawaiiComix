@@ -8,7 +8,7 @@
 
 	<section class="banner">
 	<div class="slider">
-				 <div class="content" id="slide1">
+			<div class="content" id="slide1">
 				<div class="textbox">
 					<h2>Dragon Ball</h2>
 					<p>Con la sua fusione unica di azione, umorismo e avventura, Dragon Ball è una serie senza tempo che ha conquistato il cuore di milioni di fan in tutto il mondo.<p>

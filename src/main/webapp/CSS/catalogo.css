@@ -7,43 +7,6 @@
 	font-family: "Poppins", sans-serif;
 }
 
-/* SEACRHBAR */
-
-.wrapper {
-	width: 95%;
-	margin: 0 auto;
-}
-
-#search-container {
-	margin: 1em 0;
-}
-
-#search-container input{
-	border: none;
-	background-color: transparent;
-	width: 40%;
-	border-bottom: 1px solid black;
-	padding: 1em 0.3em;
-}
-
-#search-container input :focus{
-	border-bottom-color: #ff6f88;
-}
-
-#search {
-	border: none;
-	padding: 1em 2em;
-	margin-left: 1em;
-	background-color: #ff6f88;
-	color: #fff;
-	border-radius: 5px;
-	margin-top: 0.5em;
-	transition: background 0.5s ease-in-out;
-}
-
-
-
-
 /* SCHEDE PRODOTTO */
 
 #schedeProdotto {

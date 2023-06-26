@@ -50,12 +50,7 @@
 	
 	<section>
 		<h2>Catalogo</h2>
-		<div class="wrapper">
-			<div id="search-container">
-				<input type="search" id="search-input" onkeyup="myFunction()" placeholder="Inserisci il nome del prodotto...">
-				<button id="search">Cerca</button>
-			</div>
-		</div>
+		
 		<div id="schedeProdotto">
 		
 		</div>

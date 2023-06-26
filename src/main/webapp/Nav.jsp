@@ -11,10 +11,23 @@
 				<li><a href="NewsServlet">News</a></li>
 			</ul>
 			<ul class="utilities">
-				<li class="search">
-					<div class="icon"></div>
-					<div class="input"></div>
-				</a></li>
+				<li class="searchbar">
+					<div class="navsearch">
+						<button class="icon"></button>
+						<div class="input">
+							<input type="text" id="search-input" onkeyup="myFunction()"
+								placeholder="Inserisci il nome del prodotto">
+						</div>
+						<span class="clear" onclick="document.getElementById('search-input').value = '' "></span>
+					</div> 
+					<script>
+						const icon = document.querySelector(".icon");
+						const search = document.querySelector(".navsearch");
+						icon.onclick = function(){
+							search.classList.toggle("active");
+						}
+					</script>
+				</li>
 				<li><a href="./profilo.jsp"><img
 						src="./icons/user_person_profile_avatar_icon_190943.ico"
 						alt="avatar utente" /></a></li>

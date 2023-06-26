@@ -36,7 +36,13 @@ PER DAVID
 7) NOVITA', AGGIUNGI UN ARTICOLO
 	migliorare estetica
 	
-8) INSERIRE LO SCRIPT DI SEARCH NEL DOCUMENTO A PARTE
+8) INSERIRE LO SCRIPT DI SEARCH E DI NAVSEARCH NEL DOCUMENTO A PARTE
+
+9) REGOLARE DIMENSIONI DI SEARCH NELLA NAVBAR
+
+10) RIDIREZIONARE L'INPUT DELLA RICERCA
+	Se la ricerca viene effettuata in una pagina diversa dal catalogo, deve portare lì e
+	conservarer l'input;
 	
-9) ESCI
+Ultima) ESCI
 	va salvato il carrello nel db (priorità bassa).

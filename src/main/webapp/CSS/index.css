@@ -124,7 +124,6 @@ html {
 .schedeProdotto {
 	display: flex;
 	align-items: center;
-	flex-wrap: wrap;
 	margin-bottom: 10rem;
 }
 
@@ -140,6 +139,7 @@ html {
 	flex-direction: column;
 	align-items: center;
 	justify-content:center;
+	box-shadow: 1em 2em 2.5em rgba(1, 2, 68, 0.08);
 }
 
 .scheda img{
