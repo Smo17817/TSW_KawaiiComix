@@ -11,9 +11,9 @@
 				<li><a href="NewsServlet">News</a></li>
 			</ul>
 			<ul class="utilities">
-				<li><a href=""> <img
-						src="./icons/search_magnifyng_glass_search_locate_icon_124190.ico"
-						alt="" />
+				<li class="search">
+					<div class="icon"></div>
+					<div class="input"></div>
 				</a></li>
 				<li><a href="./profilo.jsp"><img
 						src="./icons/user_person_profile_avatar_icon_190943.ico"
