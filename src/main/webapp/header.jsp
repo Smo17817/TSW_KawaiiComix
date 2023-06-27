@@ -53,6 +53,8 @@
 	   AdditionalCss = true;
    }  else if(currentPage.equals("/novita.jsp")){
 	   AdditionalCss = true;
+   }  else if(currentPage.equals("/ordine.jsp")){
+	   AdditionalCss = true;
    }
 %>
 <% if(AdditionalCss){%>

@@ -19,6 +19,7 @@
 		let contenutoHtml = '';
 		  contenutoHtml += '<li> <img src="./icons/upload.ico"> <a href="aggiungiProdotto.jsp"> Aggiungi Prodotto (ADMIN)</a> </li>';
 		  contenutoHtml += '<li> <img src="./icons/news.ico"> <a href="aggiungiNovita.jsp"> Aggiungi Notizie (ADMIN)</a> </li>';
+		  contenutoHtml += '<li> <img src="./icons/logistic.ico"> <a href=""> Controlla Ordini (ADMIN)</a> </li>';
 
 		  if (id == 1) {
 			  $(document).ready(function(){
@@ -44,7 +45,7 @@
 				<li><img src="./icons/cart.ico"><a href="carrello.jsp"> 
 						Carrello
 				</a></li>
-				<li><img src="./icons/calendar.ico"> <a href="">
+				<li><img src="./icons/calendar.ico"> <a href="ordine.jsp">
 						miei Ordini
 				</a></li>
 				<li><img src="./icons/exit.ico"><a href="ExitServlet"> Esci
