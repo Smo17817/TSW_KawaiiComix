@@ -17,18 +17,18 @@
 			String contenutoHtml = "";
 			for(Prodotto p : list){
 				contenutoHtml += "<tr>";
-				contenutoHtml += "<td> <button><img src=\"./icons/trash.ico\" class=\"trash\"></button>";
+				contenutoHtml += "<td> <button onclick=\"eliminaRiga(this)\"><img src=\"./icons/trash.ico\" class=\"trash\"></button>";
 				contenutoHtml += "<td> <img src=\"" + p.getImg() + "\" class=\"thumbnail\" height=\"250px\"></td>";
 				contenutoHtml += "<td>" + p.getNome() + "</td>";
-				contenutoHtml += "<td> <p class=\"costo\">" + p.getPrezzo() + "</p> </td>";
+				contenutoHtml += "<td> <p class=\"costo\">&#8364 " + p.getPrezzo() + "</p> </td>";
 				contenutoHtml += "<td> <h5> <input type=\"number\" min=\"1\" class=\"quantita\" onchange=\"totaleParziale()\" value=\"1\"> </h5> </td>";
 				contenutoHtml += "<td> <h5 class=\"totProd\"> totale </h5> </td>";
 				contenutoHtml += "</tr>";
-			}
+			}			
 		%>
 		
 		const content = '<%=contenutoHtml.replace("'", "\\'").replace("\n", "\\n")%>';
-
+		
 		$(document).ready(function(){
 			document.getElementById("dinamico").innerHTML = content;
 		});
@@ -40,13 +40,13 @@
 	<main>
 		<section id="container">
 			<h2>Carrello</h2>
-			<table>
+			<table id="table">
 				<thead>
 					<tr>
 					<td>Elimina</td>
 					<td>Immagine</td>
 					<td>Prodotto</td>
-					<td>Prezzo &#8364</td>
+					<td>Prezzo</td>
 					<td>Quantità</td>
 					<td>Totale</td>
 					</tr>
@@ -84,8 +84,7 @@
 						<h6>Totale: </h6>
 						<p class="totCumul">&#8364 totale</p>
 					</div>
-					<button>Procedi al Pagamento</button>
-						
+					<button onclick="checkout()"> Procedi al Pagamento</button>
 				</div>
 			</div>
 		</section>

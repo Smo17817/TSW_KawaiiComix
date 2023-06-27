@@ -6,10 +6,11 @@ PER DAVID
 	4. Una volta che l'admin ha aggiunto un prodotto;
 	5. Una volta che l'admin ha aggiunto un articolo.
 	
-2) BOTTONE TRASH DEL CARRELLO -> DEVE ELIMINARE LA RIGA:
-	poichè la costruzione della pagina html si basa sugli oggetti Prodotto nell'oggetto 
-	Carrello contenuto in sessione, penso che la strada giusta sia sovrascrivere il 
-	carrello eliminando il Prodotto. Poichè è una roba asincrona forse va usato ajax;
+2) BOTTONE TRASH DEL CARRELLO -> DEVE ELIMINARE LA RIGA (FATTO, PERO'...):
+	poichè il carrello prende gli elementi salvati in sessione, se si ricarica la 
+	pagina allora gli elementi eliminati ricompaiono. L'attributo carrello in sessione
+	andrebbe aggiornato rimuovendo l'elemento eliminato col bottone. Le funzioni
+	stanno in carrello.js	
 
 3) INPUT QUANTITA' DEVE SOVRASCRIVERE IL TOTALE PARZIALE.
 	se si riesce a fare quello calcolare il totale finale sarà facile;

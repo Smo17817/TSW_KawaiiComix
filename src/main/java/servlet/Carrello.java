@@ -17,7 +17,7 @@ public class Carrello {
 		carrello.add(p);
 	}
 	
-	public void empty(Prodotto p) {
+	public void empty() {
 		carrello.clear();
 	}
 }
