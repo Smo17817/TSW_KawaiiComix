@@ -8,7 +8,7 @@
 <body>
 <jsp:include page="./Nav.jsp" flush="true"/>
 	<h2>Ordini</h2>
-	
+		
 
 </body>
 </html>

@@ -45,7 +45,7 @@
 				<li><img src="./icons/cart.ico"><a href="carrello.jsp"> 
 						Carrello
 				</a></li>
-				<li><img src="./icons/calendar.ico"> <a href="ordine.jsp">
+				<li><img src="./icons/calendar.ico"> <a href="OrdineServlet">
 						miei Ordini
 				</a></li>
 				<li><img src="./icons/exit.ico"><a href="ExitServlet"> Esci
