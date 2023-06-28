@@ -1,0 +1,13 @@
+@charset "ISO-8859-1";
+
+#container{
+	padding: 3rem 5rem;	
+}
+
+.product{
+	display: flex;
+}
+
+.orderImg{
+	max-height: 7rem;
+}

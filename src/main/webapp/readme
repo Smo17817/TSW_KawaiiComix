@@ -5,6 +5,7 @@ PER DAVID
 	3. Dati Personali se le due password non corrispondono;
 	4. Una volta che l'admin ha aggiunto un prodotto;
 	5. Una volta che l'admin ha aggiunto un articolo.
+	!!!NUOVO -> completamento acquisto; 
 	
 2) BOTTONE TRASH DEL CARRELLO -> DEVE ELIMINARE LA RIGA (FATTO, PERO'...):
 	poichè il carrello prende gli elementi salvati in sessione, se si ricarica la 
@@ -44,6 +45,9 @@ PER DAVID
 10) RIDIREZIONARE L'INPUT DELLA RICERCA
 	Se la ricerca viene effettuata in una pagina diversa dal catalogo, deve portare lì e
 	conservarer l'input;
+	
+11) ORDINI
+	migliorare estetica;
 	
 Ultima) ESCI
 	va salvato il carrello nel db (priorità bassa).

@@ -16,4 +16,8 @@ public class OrdiniList {
 	public void empty() {
 		ordiniList.clear();
 	}
+
+	public void setOrdiniList(ArrayList<Ordine> ordiniList) {
+		this.ordiniList = ordiniList;
+	}
 }
