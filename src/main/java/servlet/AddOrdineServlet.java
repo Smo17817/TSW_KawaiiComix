@@ -7,7 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,6 +31,7 @@ public class AddOrdineServlet extends HttpServlet {
 		Connection connection = null;
 		RequestDispatcher dispatcher = null;
 		User user = (User) session.getAttribute("user");
+		Carrello carrello = (Carrello) session.getAttribute("carrello");
 		int address_id = -1;
 		
 		try {
@@ -46,16 +49,39 @@ public class AddOrdineServlet extends HttpServlet {
             java.sql.Date sqlDate = new Date(javaDate.getTime());	
             
             double totale = Double.parseDouble(request.getParameter("totale"));
-			
-			query = "INSERT INTO ordini (data, totale, site_user_id, stato_ordine_id, metodo_spedizione_id, address_id) values(?, ?, ?, ?, ?, ?)";
+            Random random = new Random();
+            int ordine_id = 10000 + random.nextInt(90000);
+            
+			query = "INSERT INTO ordini (id, data, totale, site_user_id, stato_ordine_id, metodo_spedizione_id, address_id) values(?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement ps = connection.prepareStatement(query);
-			ps.setDate(1, sqlDate);
-			ps.setDouble(2, totale);
-			ps.setInt(3, user.getId());
-			ps.setInt(4, 1); //completato
-			ps.setInt(5, 1); //posteItaliane
-			ps.setInt(6, address_id);
+			ps.setInt(1, ordine_id);
+			ps.setDate(2, sqlDate);
+			ps.setDouble(3, totale);
+			ps.setInt(4, user.getId());
+			ps.setInt(5, 1); //completato
+			ps.setInt(6, 1); //posteItaliane
+			ps.setInt(7, address_id);
 			ps.executeUpdate();
+			
+			
+			String values[] = request.getParameter("quantita").split(",");
+			int i = 0;
+			
+			for(Prodotto p : carrello.getCarrello()) {
+				p.setQuantita(Integer.parseInt(values[i]));
+				i++;
+			}
+			
+			for(Prodotto p : carrello.getCarrello()) {
+				System.out.println(p.toString());
+				query = "INSERT INTO ordine_singolo (quantità, totale_parziale, ordini_id, prodotti_isbn) "
+						+ "values(" + p.getQuantita() + ", " 
+						+ (p.getPrezzo() * p.getQuantita()) + ", " 
+						+ ordine_id + ", " 
+						+ p.getIsbn() + ")";
+				
+				s.executeUpdate(query);
+			}
 			
 			session.setAttribute("carrello", new Carrello());
 		
