@@ -1,5 +1,5 @@
 function totaleParziale(){
-	let product, elem1, elem2, costo, quantita, tot = 0;
+	let product, elem1, elem2, costo, quantita, totParz, tot = 0;
 		
 	product = document.getElementById("dinamico");
 	elem1 = product.getElementsByClassName("costo");

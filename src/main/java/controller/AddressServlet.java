@@ -107,7 +107,7 @@ public class AddressServlet extends HttpServlet {
 			rs.close();
 
 			if (rowCount > 0) {
-				request.setAttribute("status", "success");
+				request.setAttribute(status, "success");
 				/*
 				 * sia se si crea, sia se si modifica, le informazioni in sessione vanno
 				 * aggiornate
@@ -116,7 +116,7 @@ public class AddressServlet extends HttpServlet {
 				session.setAttribute("indirizzo", i);
 
 			} else {
-				request.setAttribute("status", "failed");
+				request.setAttribute(status, "failed");
 			}
 
 			dispatcher = request.getRequestDispatcher("indirizzo.jsp");
