@@ -34,7 +34,7 @@ body{
 	display:flex;
 	flex-direction:column;
 	padding: 2rem;
-	width: 50%;
+	min-width: 50%;
 	justify-content : center;
 	align-items: center;
 	flex-wrap: wrap;
@@ -45,13 +45,13 @@ body{
 	padding:2rem 0rem;
 }
 
-.form-wrapper label{
+.form-row label{
 	flex: 1 1 40rem;
 	margin : 0rem 1rem;
 
 }
 
-.form-wrapper input{
+.form-row input{
 	flex: 1 1 40rem;
 	padding: 0.5rem 4rem;
 }
@@ -79,8 +79,36 @@ body{
 	
 }
 
-.form-row{
+.form-row, .file-row{
 	display: flex;
 	align-items: center;
     padding: 3rem;
+}
+
+.file-row label{
+	flex: 1 1 1rem;
+	text-align: center;
+}
+.file-row input{
+	flex: 1 1 1rem;
+}
+
+.input_container {
+  border: 1px solid #e5e5e5;
+}
+
+input[type=file]::file-selector-button {
+  background-color: #fff;
+  color: #000;
+  border: 0px;
+  border-right: 1px solid #e5e5e5;
+  padding: 10px 15px;
+  margin-right: 20px;
+  transition: .5s;
+}
+
+input[type=file]::file-selector-button:hover {
+  background-color: #eee;
+  border: 0px;
+  border-right: 1px solid #e5e5e5;
 }
