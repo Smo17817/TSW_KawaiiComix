@@ -73,15 +73,6 @@ public class AddProductServlet extends HttpServlet {
             response.getWriter().println("La richiesta non contiene un file caricato.");
         }
 		
-		String isbn = (String) request.getParameter("isbn");
-		String nome = (String) request.getParameter("nome");
-		String descrizione = (String) request.getParameter("descrizione");
-		String immagine = (String) request.getParameter("immagine");
-		double prezzo = Double.parseDouble(request.getParameter("prezzo"));
-		int quantita = Integer.parseInt(request.getParameter("quantita"));
-		String genere = (String) request.getParameter("genere");
-		String categoria = (String) request.getParameter("categoria");
-		System.out.println(genere);
 		
 		try {
 			String isbn = request.getParameter("isbn");
