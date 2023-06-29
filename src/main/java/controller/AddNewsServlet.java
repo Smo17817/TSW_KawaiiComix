@@ -18,17 +18,18 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/AddNewsServlet")
 public class AddNewsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-     
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		Connection connection = null;
 		RequestDispatcher dispatcher = null;
-		
+
 		String titolo = request.getParameter("titolo");
 		String corpo = request.getParameter("corpo");
 		String immagine = request.getParameter("immagine");
 		String video = request.getParameter("video");
-			
+
 		try {
 			String query = "INSERT INTO novita (titolo, corpo, immagine, video) values(?, ?, ?, ?)";
 			connection = DbManager.getConnection();
@@ -37,21 +38,20 @@ public class AddNewsServlet extends HttpServlet {
 			ps.setString(2, corpo);
 			ps.setString(3, immagine);
 			ps.setString(4, video);
-		
+
 			ps.executeUpdate();
-				
+
 			dispatcher = request.getRequestDispatcher("aggiungiNovita.jsp");
 			dispatcher.forward(request, response);
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-		}catch (ServletException e) {
+		} catch (ServletException e) {
 			e.printStackTrace();
-		}catch (IOException e){
+		} catch (IOException e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			try {
-				if(!connection.equals(null))
-					connection.close();
+				connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

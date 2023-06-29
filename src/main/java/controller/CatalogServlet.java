@@ -85,8 +85,7 @@ public class CatalogServlet extends HttpServlet {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (!connection.equals(null))
-					connection.close();
+				connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

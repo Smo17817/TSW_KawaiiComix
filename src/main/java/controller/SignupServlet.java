@@ -58,9 +58,8 @@ public class SignupServlet extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			try {
-				if(!connection.equals(null))
-					connection.close();
+			try {	
+				connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
