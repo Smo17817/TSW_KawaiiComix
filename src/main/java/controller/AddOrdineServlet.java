@@ -96,9 +96,7 @@ public class AddOrdineServlet extends HttpServlet {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (connection == null)
-					return;
-				else
+				if(!connection.equals(null))
 					connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();

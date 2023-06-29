@@ -64,7 +64,7 @@ public class DatiPersonaliServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 				return;
 			}
-			
+
 			connection = DbManager.getConnection();
 			String query = "UPDATE site_user SET email_address = ?, password = ?, nome = ?, cognome = ? WHERE id = ?";
 			PreparedStatement ps = connection.prepareStatement(query);
@@ -96,12 +96,12 @@ public class DatiPersonaliServlet extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			if (connection != null)
-				try {
+			try {
+				if (!connection.equals(null))
 					connection.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

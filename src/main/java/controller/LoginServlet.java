@@ -32,13 +32,13 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		HttpSession session = request.getSession();
 		RequestDispatcher dispatcher = null;
-		Connection con = null;
+		Connection connection = null;
 
 		String query = "SELECT * FROM site_user WHERE email_address = ? and password = ?";
 
 		try {
-			con = DbManager.getConnection();
-			PreparedStatement ps = con.prepareStatement(query);
+			connection = DbManager.getConnection();
+			PreparedStatement ps = connection.prepareStatement(query);
 			ps.setString(1, email);
 			ps.setString(2, password);
 
@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("carrello", carrello);
 
 				query = "SELECT * FROM address WHERE user_id = " + id;
-				Statement s = con.createStatement();
+				Statement s = connection.createStatement();
 				rs = s.executeQuery(query);
 
 				/* quando si fa il log in, vengono caricate anche le info sull'indirizzo */
@@ -84,12 +84,12 @@ public class LoginServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			if (con != null)
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			try {
+				if (!connection.equals(null))
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

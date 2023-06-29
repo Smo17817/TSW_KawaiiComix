@@ -24,11 +24,10 @@ public class AddNewsServlet extends HttpServlet {
 		Connection connection = null;
 		RequestDispatcher dispatcher = null;
 		
-		String titolo = (String) request.getParameter("titolo");
-		String corpo = (String) request.getParameter("corpo");
-		String immagine = (String) request.getParameter("immagine");
-		String video = (String) request.getParameter("video");
-		System.out.println(titolo + " ciao");
+		String titolo = request.getParameter("titolo");
+		String corpo = request.getParameter("corpo");
+		String immagine = request.getParameter("immagine");
+		String video = request.getParameter("video");
 			
 		try {
 			String query = "INSERT INTO novita (titolo, corpo, immagine, video) values(?, ?, ?, ?)";
@@ -51,9 +50,7 @@ public class AddNewsServlet extends HttpServlet {
 			e.printStackTrace();
 		}finally {
 			try {
-				if(connection == null)
-					return;
-				else
+				if(!connection.equals(null))
 					connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();

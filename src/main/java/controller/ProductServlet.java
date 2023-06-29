@@ -25,11 +25,11 @@ public class ProductServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String isbn = request.getParameter("isbn");
 		HttpSession session = request.getSession();
-		Connection c = null;
+		Connection connection = null;
 
 		try {
-			c = DbManager.getConnection();
-			PreparedStatement ps = c.prepareStatement("SELECT * FROM prodotti WHERE isbn = ?");
+			connection = DbManager.getConnection();
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM prodotti WHERE isbn = ?");
 			ps.setString(1, isbn);
 			ResultSet rs = ps.executeQuery();
 
@@ -57,12 +57,12 @@ public class ProductServlet extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			if (c != null)
-				try {
-					c.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			try {
+				if (!connection.equals(null))
+					connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 

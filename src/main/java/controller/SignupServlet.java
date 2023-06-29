@@ -23,13 +23,13 @@ public class SignupServlet extends HttpServlet {
 		String cognome = request.getParameter("cognome");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		Connection con = null;
+		Connection connection = null;
 		RequestDispatcher dispatcher = null;
 
 		String query = "INSERT INTO site_user(nome,cognome,email_address,password) values(?,?,?,?)";
 		try {
-			con = DbManager.getConnection();
-			PreparedStatement ps = con.prepareStatement(query);
+			connection = DbManager.getConnection();
+			PreparedStatement ps = connection.prepareStatement(query);
 			ps.setString(1, nome);
 			ps.setString(2, cognome);
 			ps.setString(3, email);
@@ -59,10 +59,8 @@ public class SignupServlet extends HttpServlet {
 			e.printStackTrace();
 		} finally {
 			try {
-				if (con == null)
-					return;
-				else
-					con.close();
+				if(!connection.equals(null))
+					connection.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

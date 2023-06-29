@@ -76,12 +76,12 @@ public class CartServlet extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
-			if (connection != null)
-				try {
+			try {
+				if (!connection.equals(null))
 					connection.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }
