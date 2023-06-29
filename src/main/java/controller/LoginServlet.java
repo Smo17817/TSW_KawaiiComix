@@ -27,7 +27,6 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		HttpSession session = request.getSession();
@@ -66,10 +65,7 @@ public class LoginServlet extends HttpServlet {
 					Indirizzo i = new Indirizzo(indirizzo, cap, citta, provincia, nazione);
 					session.setAttribute("indirizzo", i);
 				} else {
-					/*
-					 * se l'indirizzo è inesistente, ne viene creato uno di default (serve per i
-					 * placeholder
-					 */
+					/* se l'indirizzo è inesistente, ne viene creato uno di default (serve per i placeholder */
 					session.setAttribute("indirizzo", new Indirizzo("Inserisci i tuoi dati", "", "", "", ""));
 				}
 

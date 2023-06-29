@@ -65,7 +65,7 @@ public class AddOrdineServlet extends HttpServlet {
 			ps.setInt(7, address_id);
 			ps.executeUpdate();
 
-			String values[] = request.getParameter("quantita").split(",");
+			String[] values = request.getParameter("quantita").split(",");
 			int i = 0;
 
 			for (Prodotto p : carrello.getCarrello()) {
@@ -74,7 +74,6 @@ public class AddOrdineServlet extends HttpServlet {
 			}
 
 			for (Prodotto p : carrello.getCarrello()) {
-				System.out.println(p.toString());
 				query = "INSERT INTO ordine_singolo (quantità, totale_parziale, ordini_id, prodotti_isbn) " + "values("
 						+ p.getQuantita() + ", " + (p.getPrezzo() * p.getQuantita()) + ", " + ordine_id + ", "
 						+ p.getIsbn() + ")";

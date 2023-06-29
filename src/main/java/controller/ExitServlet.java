@@ -17,9 +17,8 @@ public class ExitServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		if (!session.equals(null)) {
-			session.invalidate(); // Invalida la sessione, rimuovendo tutti gli attributi ad essa associati
-		}
+		session.invalidate(); // Invalida la sessione, rimuovendo tutti gli attributi ad essa associati
+	
 		try {
 			response.sendRedirect("login.jsp"); // Reindirizza all'URL specificato (pagina di login nel nostro esempio)
 		} catch (IOException e) {

@@ -37,35 +37,36 @@ public class AddressServlet extends HttpServlet {
 		String citta = request.getParameter("citta");
 		String provincia = request.getParameter("provincia");
 		String nazione = request.getParameter("nazione");
+		String url = "indirizzo.jsp";
 
 		try {
-			if (indirizzo.equals(null) || indirizzo.equals("")) {
+			if (indirizzo.equals("")) {
 				request.setAttribute("status", "Invalid_address");
-				dispatcher = request.getRequestDispatcher("indirizzo.jsp");
+				dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
 				return;
 			}
-			if (citta.equals(null) || citta.equals("")) {
+			if (citta.equals("")) {
 				request.setAttribute("status", "Invalid_citta");
-				dispatcher = request.getRequestDispatcher("indirizzo.jsp");
+				dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
 				return;
 			}
-			if (provincia.equals(null) || provincia.equals("")) {
+			if (provincia.equals("")) {
 				request.setAttribute("status", "Invalid_provincia");
-				dispatcher = request.getRequestDispatcher("indirizzo.jsp");
+				dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
 				return;
 			}
-			if (cap.equals(null) || cap.equals("") || (cap.length() != 5)) {
+			if (cap.equals("") || (cap.length() != 5)) {
 				request.setAttribute("status", "Invalid_cap");
-				dispatcher = request.getRequestDispatcher("indirizzo.jsp");
+				dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
 				return;
 			}
-			if (nazione.equals(null) || nazione.equals("") || nazione.equals("-effettua una scelta-")) {
+			if (nazione.equals("") || nazione.equals("-effettua una scelta-")) {
 				request.setAttribute("status", "Invalid_nazione");
-				dispatcher = request.getRequestDispatcher("indirizzo.jsp");
+				dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
 				return;
 			}

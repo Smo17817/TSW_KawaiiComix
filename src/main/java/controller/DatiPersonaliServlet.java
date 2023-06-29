@@ -32,35 +32,39 @@ public class DatiPersonaliServlet extends HttpServlet {
 		String nome = request.getParameter("nome");
 		String cognome = request.getParameter("cognome");
 		int rowCount = 0;
+		/* SonarCloud Issues */
+		String status = "status";
+		String url = "datipersonali.jsp";
+		
 
 		try {
-			if (nome.equals(null) || nome.equals("")) {
-				request.setAttribute("status", "Invalid_nome");
-				dispatcher = request.getRequestDispatcher("datipersonali.jsp");
+			if (nome.equals("")) {
+				request.setAttribute(status, "Invalid_nome");
+				dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
 				return;
 			}
-			if (cognome.equals(null) || cognome.equals("")) {
-				request.setAttribute("status", "Invalid_cognome");
-				dispatcher = request.getRequestDispatcher("datipersonali.jsp");
+			if (cognome.equals("")) {
+				request.setAttribute(status, "Invalid_cognome");
+				dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
 				return;
 			}
-			if (email.equals(null) || email.equals("")) {
-				request.setAttribute("status", "Invalid_email");
-				dispatcher = request.getRequestDispatcher("datipersonali.jsp");
+			if (email.equals("")) {
+				request.setAttribute(status, "Invalid_email");
+				dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
 				return;
 			}
-			if (password1.equals(null) || password1.equals("")) {
-				request.setAttribute("status", "Invalid_password");
-				dispatcher = request.getRequestDispatcher("datipersonali.jsp");
+			if (password1.equals("")) {
+				request.setAttribute(status, "Invalid_password");
+				dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
 				return;
 			}
 			if (!(password1.equals(password2))) {
-				request.setAttribute("status", "Invalid_password2");
-				dispatcher = request.getRequestDispatcher("datipersonali.jsp");
+				request.setAttribute(status, "Invalid_password2");
+				dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
 				return;
 			}
