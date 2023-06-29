@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <jsp:include page="./header.jsp" flush="true"/>
-<%@ page import="java.util.*, servlet.Indirizzo"%>
+<%@ page import="java.util.*,model.Indirizzo"%>
 <% if(session.getAttribute("user")==null)
 		response.sendRedirect("login.jsp");
  %>

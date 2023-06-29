@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Ordine {
 	private int id;
@@ -80,12 +81,8 @@ public class Ordine {
 		this.idIndirizzo = idIndirizzo;
 	}
 
-	public ArrayList<OrdineSingolo> getSingoli() {
+	public List<OrdineSingolo> getSingoli() {
 		return singoli;
-	}
-
-	public void setSingoli(ArrayList<OrdineSingolo> singoli) {
-		this.singoli = singoli;
 	}
 	
 	public void add(OrdineSingolo o) {

@@ -1,8 +1,8 @@
-package servlet;
+package model;
 
 public class User {
 	private int id;
-	private String email, phone, nome, cognome;
+	private String email, nome, cognome;
 	
 	public User(int id, String email, String nome, String cognome) {
 		super();

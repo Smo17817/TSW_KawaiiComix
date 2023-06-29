@@ -1,4 +1,4 @@
-package servlet;
+package controller;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,42 +12,41 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/AddProductServlet")
-public class AddProductServlet extends HttpServlet {
+/**
+ * Servlet implementation class AddNewsServlet
+ */
+@WebServlet("/AddNewsServlet")
+public class AddNewsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Connection connection = null;
 		RequestDispatcher dispatcher = null;
 		
-		String isbn = (String) request.getParameter("isbn");
-		String nome = (String) request.getParameter("nome");
-		String descrizione = (String) request.getParameter("descrizione");
+		String titolo = (String) request.getParameter("titolo");
+		String corpo = (String) request.getParameter("corpo");
 		String immagine = (String) request.getParameter("immagine");
-		double prezzo = Double.parseDouble(request.getParameter("prezzo"));
-		int quantita = Integer.parseInt(request.getParameter("quantita"));
-		String genere = (String) request.getParameter("genere");
-		String categoria = (String) request.getParameter("categoria");
-		System.out.println(genere);
-		
+		String video = (String) request.getParameter("video");
+		System.out.println(titolo + " ciao");
+			
 		try {
-			String query = "INSERT INTO prodotti(isbn, nome, descrizione, immagine_prod, prezzo, quantita, genere_nome, categoria_nome) values(?,?,?,?, ?, ?, ?, ?)";
+			String query = "INSERT INTO novita (titolo, corpo, immagine, video) values(?, ?, ?, ?)";
 			connection = DbManager.getConnection();
 			PreparedStatement ps = connection.prepareStatement(query);
-			ps.setString(1, isbn);
-			ps.setString(2, nome);
-			ps.setString(3, descrizione);
-			ps.setString(4, immagine);
-			ps.setDouble(5, prezzo);
-			ps.setInt(6, quantita);
-			ps.setString(7, genere);
-			ps.setString(8, categoria);
+			ps.setString(1, titolo);
+			ps.setString(2, corpo);
+			ps.setString(3, immagine);
+			ps.setString(4, video);
+		
 			ps.executeUpdate();
-			
-			dispatcher = request.getRequestDispatcher("profilo.jsp");
+				
+			dispatcher = request.getRequestDispatcher("aggiungiNovita.jsp");
 			dispatcher.forward(request, response);
 		}catch (SQLException e) {
+			e.printStackTrace();
+		}catch (ServletException e) {
+			e.printStackTrace();
+		}catch (IOException e){
 			e.printStackTrace();
 		}finally {
 			try {
@@ -60,5 +59,4 @@ public class AddProductServlet extends HttpServlet {
 			}
 		}
 	}
-
 }

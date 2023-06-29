@@ -1,7 +1,5 @@
 package model;
 
-import servlet.Prodotto;
-
 public class OrdineSingolo {
 	private int id;
 	private int quantita;

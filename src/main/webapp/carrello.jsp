@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
- <%@ page import="java.util.*, servlet.Prodotto, servlet.Carrello"%>
+ <%@ page import="java.util.*,model.Prodotto,model.Carrello"%>
  <% if(session.getAttribute("user")==null)
 		response.sendRedirect("login.jsp");
  %>

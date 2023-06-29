@@ -1,4 +1,4 @@
-package servlet;
+package model;
 
 public class Articolo {
 	private int id;

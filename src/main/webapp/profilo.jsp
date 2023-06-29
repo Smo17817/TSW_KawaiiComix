@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*, servlet.User"%> 
+<%@ page import="java.util.*,model.User"%> 
 <%		
 	int flag = 0;
 	User user = (User) session.getAttribute("user");

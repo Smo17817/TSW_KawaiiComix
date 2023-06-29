@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*, java.text.SimpleDateFormat, servlet.User, model.OrdiniList, model.Ordine, model.OrdineSingolo" %>    
+<%@ page import="java.util.*, java.text.SimpleDateFormat,model.User,model.OrdiniList,model.Ordine,model.OrdineSingolo" %>    
 <% 
  	User user = (User) session.getAttribute("user");
  	if(user == null)

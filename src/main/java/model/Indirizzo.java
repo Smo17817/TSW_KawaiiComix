@@ -1,4 +1,4 @@
-package servlet;
+package model;
 
 public class Indirizzo {
 	private String indirizzo;
