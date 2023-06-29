@@ -37,7 +37,7 @@ public class SignupServlet extends HttpServlet {
 
 			int rowCount = 0;
 
-			if (!((nome.equals(null)) || (cognome.equals(null)) || (email.equals(null)) || (password.equals(null)))) {
+			if (!((nome.equals("")) || (cognome.equals("")) || (email.equals("")) || (password.equals("")))) {
 				rowCount = ps.executeUpdate();
 			}
 			dispatcher = request.getRequestDispatcher("signup.jsp");

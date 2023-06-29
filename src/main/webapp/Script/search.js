@@ -1,5 +1,5 @@
 function myFunction() {
-	let input, filter, schede, single, a, nome;
+	let input, filter, schede, a, product, textValue;
 	input = document.getElementById("search-input");
 	filter = input.value.toUpperCase();
 	schede = document.getElementById("schedeProdotto");

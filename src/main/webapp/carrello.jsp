@@ -12,7 +12,7 @@
 	<script>
 		<% 
 			Carrello carrello = (Carrello) session.getAttribute("carrello");
-			ArrayList<Prodotto> list = carrello.getCarrello();
+			ArrayList<Prodotto> list = (ArrayList<Prodotto>) carrello.getCarrello();
 			
 			String contenutoHtml = "";
 			for(Prodotto p : list){

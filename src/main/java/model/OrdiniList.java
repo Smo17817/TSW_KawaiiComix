@@ -1,11 +1,12 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class OrdiniList {
 	private ArrayList<Ordine>list = new ArrayList<>();
 	
-	public ArrayList<Ordine> getOrdiniList() {
+	public List<Ordine> getOrdiniList() {
 		return list;
 	}
 

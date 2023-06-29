@@ -1,25 +1,26 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Novita {
-	private ArrayList<Articolo> novita = new ArrayList<>();
+	private ArrayList<Articolo> list = new ArrayList<>();
 
 	
-	public ArrayList<Articolo> getNovita() {
-		return novita;
+	public List<Articolo> getNovita() {
+		return list;
 	}
 
-	public void setNovita(ArrayList<Articolo> novita) {
-		this.novita = novita;
+	public void setNovita(List<Articolo> novita) {
+		this.list = (ArrayList<Articolo>) novita;
 	}
 	
 	public void add(Articolo p) {
-		novita.add(p);
+		list.add(p);
 	}
 	
-	public void empty(Articolo p) {
-		novita.clear();
+	public void empty() {
+		list.clear();
 	}
 	
 	

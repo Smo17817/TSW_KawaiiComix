@@ -1,18 +1,18 @@
 function totaleParziale(){
-	let product, elem1, elem2, elem3, costo, quantita, totParz = 0, tot = 0;
+	let product, elem1, elem2, costo, quantita, tot = 0;
 		
 	product = document.getElementById("dinamico");
 	elem1 = product.getElementsByClassName("costo");
 	elem2 = document.querySelectorAll('.quantita');
 	
 	for(let i = 0; i < elem1.length; i++){
+		totParz = 0;
 		costo = parseFloat(elem1[i].textContent.split(' ')[1]);
 		quantita = parseInt(elem2[i].value)
 		totParz += costo * quantita;
 		tot += totParz;
 		
 		product.getElementsByClassName("totProd")[i].innerHTML = "&#8364 " + totParz;
-		totParz = 0;
 	}
 	
 	let cassa, spedizione = 10;
@@ -25,7 +25,7 @@ function totaleParziale(){
 }
 
 function eliminaRiga(button) {
-	var row = button.parentNode.parentNode;
+	let row = button.parentNode.parentNode;
 	row.parentNode.removeChild(row);
 	totaleParziale();
 }

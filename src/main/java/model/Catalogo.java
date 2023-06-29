@@ -1,23 +1,20 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Catalogo {
-	private ArrayList<Prodotto> catalogo = new ArrayList<>();
+	private ArrayList<Prodotto> list = new ArrayList<>();
 	
-	public ArrayList<Prodotto> getCatalogo() {
-		return catalogo;
+	public List<Prodotto> getCatalogo() {
+		return list;
 	}
-
-	public void setCarrello(ArrayList<Prodotto> carrello) {
-		this.catalogo = carrello;
-	}
-
+	
 	public void add(Prodotto p) {
-		catalogo.add(p);
+		list.add(p);
 	}
 	
-	public void empty(Prodotto p) {
-		catalogo.clear();
+	public void empty() {
+		list.clear();
 	}
 }

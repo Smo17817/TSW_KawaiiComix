@@ -2,8 +2,10 @@ package model;
 
 public class Articolo {
 	private int id;
-	private String titolo, corpo;
-	private String video, immagine;
+	private String titolo;
+	private String corpo;
+	private String video;
+	private String immagine;
 	
 	
 

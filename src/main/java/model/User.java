@@ -2,7 +2,9 @@ package model;
 
 public class User {
 	private int id;
-	private String email, nome, cognome;
+	private String email;
+	private String nome;
+	private String cognome;
 	
 	public User(int id, String email, String nome, String cognome) {
 		super();

@@ -1,7 +1,7 @@
 package model;
 
 public class Indirizzo {
-	private String indirizzo;
+	private String address;
 	private String cap;
 	private String citta;
 	private String provincia;
@@ -9,7 +9,7 @@ public class Indirizzo {
 	
 	public Indirizzo(String indirizzo, String cap, String citta, String provincia, String nazione) {
 		super();
-		this.indirizzo = indirizzo;
+		this.address = indirizzo;
 		this.cap = cap;
 		this.citta = citta;
 		this.provincia = provincia;
@@ -17,11 +17,11 @@ public class Indirizzo {
 	}
 
 	public String getIndirizzo() {
-		return indirizzo;
+		return address;
 	}
 
 	public void setIndirizzo(String indirizzo) {
-		this.indirizzo = indirizzo;
+		this.address = indirizzo;
 	}
 
 	public String getCap() {

@@ -4,7 +4,6 @@ s<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 <jsp:include page="./header.jsp" flush="true"/>
 
 <body>
-	<!-- <div class ="aside"></div>-->
 	<jsp:include page="./Nav.jsp" flush="true"/>
 
 	<% Prodotto p = (Prodotto) request.getAttribute("prodotto");%>

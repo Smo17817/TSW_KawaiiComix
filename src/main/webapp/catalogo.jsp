@@ -9,7 +9,7 @@
 	<script>
 		<%
 			Catalogo catalogo = (Catalogo) session.getAttribute("catalogo");
-			ArrayList<Prodotto> list = catalogo.getCatalogo();
+			ArrayList<Prodotto> list = (ArrayList<Prodotto>) catalogo.getCatalogo();
 			
 			String contenutoHtml = "";
 			for(Prodotto p : list){

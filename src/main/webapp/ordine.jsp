@@ -10,7 +10,7 @@
 <script>
 	<% 
  		OrdiniList ordiniList = (OrdiniList) session.getAttribute("ordini");
- 		ArrayList<Ordine> ordini = ordiniList.getOrdiniList();
+ 		ArrayList<Ordine> ordini = (ArrayList<Ordine>) ordiniList.getOrdiniList();
  		Collections.reverse(ordini);
  			
  		String contenutoHtml = "";

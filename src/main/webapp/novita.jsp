@@ -6,7 +6,7 @@
 	<script>
 		<% 
 			Novita novita = (Novita) session.getAttribute("novita");
-			ArrayList<Articolo> list = novita.getNovita();
+			ArrayList<Articolo> list = (ArrayList<Articolo>) novita.getNovita();
 			
 			String contenutoHtml = "";
 			for(Articolo a : list){

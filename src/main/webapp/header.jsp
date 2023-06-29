@@ -68,5 +68,3 @@
 	rel="stylesheet" />
 <title>Kawaii Comix</title>
 </head>
-
-<!--  <%= request.getAttribute("title") %>  da ricordare per fare cambio del titolo "dinamico"-->

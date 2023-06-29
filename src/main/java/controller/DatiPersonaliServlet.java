@@ -87,9 +87,9 @@ public class DatiPersonaliServlet extends HttpServlet {
 			session.setAttribute("user", user);
 
 			if (rowCount > 0)
-				request.setAttribute("status", "success");
+				request.setAttribute(status, "success");
 			else
-				request.setAttribute("status", "failed");
+				request.setAttribute(status, "failed");
 
 			dispatcher = request.getRequestDispatcher("datipersonali.jsp");
 			dispatcher.forward(request, response);

@@ -9,7 +9,7 @@ public class DbManager {
 	private static String password = "vittismo13";
 	private static String dbURL = "jdbc:mysql://localhost:3306/KawaiiComix";
 
-	public DbManager() {
+	protected DbManager() {
 		super();
 	}
 

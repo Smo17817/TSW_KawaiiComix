@@ -37,35 +37,37 @@ public class AddressServlet extends HttpServlet {
 		String citta = request.getParameter("citta");
 		String provincia = request.getParameter("provincia");
 		String nazione = request.getParameter("nazione");
+		/* SonarCloud issues */
 		String url = "indirizzo.jsp";
+		String status = "status";
 
 		try {
 			if (indirizzo.equals("")) {
-				request.setAttribute("status", "Invalid_address");
+				request.setAttribute(status, "Invalid_address");
 				dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
 				return;
 			}
 			if (citta.equals("")) {
-				request.setAttribute("status", "Invalid_citta");
+				request.setAttribute(status, "Invalid_citta");
 				dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
 				return;
 			}
 			if (provincia.equals("")) {
-				request.setAttribute("status", "Invalid_provincia");
+				request.setAttribute(status, "Invalid_provincia");
 				dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
 				return;
 			}
 			if (cap.equals("") || (cap.length() != 5)) {
-				request.setAttribute("status", "Invalid_cap");
+				request.setAttribute(status, "Invalid_cap");
 				dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
 				return;
 			}
 			if (nazione.equals("") || nazione.equals("-effettua una scelta-")) {
-				request.setAttribute("status", "Invalid_nazione");
+				request.setAttribute(status, "Invalid_nazione");
 				dispatcher = request.getRequestDispatcher(url);
 				dispatcher.forward(request, response);
 				return;
