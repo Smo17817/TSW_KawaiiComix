@@ -1,10 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- 
+<%@ page import="java.util.*, model.User, model.Prodotto"%> 
 
- <jsp:include page="./header.jsp" flush="true"/>
+<jsp:include page="./header.jsp" flush="true"/>
 <body>
-	<jsp:include page="./Nav.jsp" flush="true"/>
+<jsp:include page="./Nav.jsp" flush="true"/>
+<script>
+		<%
+			ArrayList<Prodotto> list = (ArrayList<Prodotto>) session.getAttribute("prodotti");
+			
+			String contenutoHtml = "";
+			int i = 0;
+			for(Prodotto p : list){
+				contenutoHtml += "<div class=\"scheda\">";
+				contenutoHtml += "<a href=\"ProductServlet?isbn=" + p.getIsbn() + "\"><img src=\"" + p.getImg() + "\"> </a>";
+				contenutoHtml += "<div class=\"info\">";
+				contenutoHtml += "<h4>" + p.getNome() + "</h4>";
+				contenutoHtml += "<p>" + p.getPrezzo() + "</p>";
+				contenutoHtml += "<a href=\"CartServlet?isbn=" + p.getIsbn() + "\"> Carrello</a>";
+				contenutoHtml += "</div> </div>";
+				if(i == 4)
+					break;
+				i++;
+			}
+		%>
+		let content = '<%=contenutoHtml.replace("'", "\\'").replace("\n", "\\n")%>';
+		
+		$(document).ready(function(){
+			document.getElementById("schedeProdotto").innerHTML = content;
+		});
+	</script>
 
 	<section class="banner">
 	<div class="slider">
@@ -48,33 +73,10 @@
 	
 	<section id="prodotti">
 		<h2> Ultime Uscite </h2>
-		<div class="schedeProdotto">
-			<div class="scheda">
-				<a href="ProductServlet?isbn=12345678901234567"><img src="./images/db1.jpg"> </a>
-				<div class="info">
-					<h4> Dragon Ball </h4>
-					<p> 5.45 </p>
-					<a href="CartServlet?isbn=12345678901234567"> Carrello</a>
-				</div>
-			</div>
+		<div id="schedeProdotto">
 			
-			<div class="scheda">
-				<a href="ProductServlet?isbn=12345678901234567"><img src="./images/db1.jpg"> </a> 
-				<div class="info">	
-					<h4> Dragon Ball </h4>
-					<p> 5.45 </p>
-					<a href="CartServlet?isbn=12345678901234567"> Carrello</a>
-				</div>	
-			</div>
 			
-			<div class="scheda">
-				<a href="ProductServlet?isbn=97889252856410000"><img src="./images/op1.jpg"> </a>
-				<div class="info">
-					<h4> One Piece </h4>
-					<p> 5.45 </p>
-					<a href="CartServlet?isbn=97889252856410000"> Carrello</a>
-				</div>
-			</div>
+			
 	
 		</div>
 		

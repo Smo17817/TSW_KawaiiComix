@@ -121,7 +121,7 @@ html {
 	margin-top: 10rem;
 }
 
-.schedeProdotto {
+#schedeProdotto {
 	display: flex;
 	align-items: center;
 	margin-bottom: 10rem;
