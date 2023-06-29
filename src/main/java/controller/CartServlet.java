@@ -21,7 +21,7 @@ import model.User;
 @WebServlet("/CartServlet")
 public class CartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -32,10 +32,10 @@ public class CartServlet extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 		Connection connection = null;
 
-		if (user == null)
-			response.sendRedirect("login.jsp");
-		else {
-			try {
+		try {
+			if (user.equals(null))
+				response.sendRedirect("login.jsp");
+			else {
 				connection = DbManager.getConnection();
 				String query = "SELECT * FROM prodotti WHERE isbn = ?";
 				PreparedStatement ps = connection.prepareStatement(query);
@@ -67,22 +67,21 @@ public class CartServlet extends HttpServlet {
 
 				dispatcher = request.getRequestDispatcher("carrello.jsp");
 				dispatcher.forward(request, response);
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} catch (ServletException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} finally {
-				if (connection != null)
-					try {
-						connection.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
 			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null)
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 		}
 	}
-
 }

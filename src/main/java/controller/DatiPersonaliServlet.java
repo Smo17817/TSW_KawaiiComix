@@ -33,38 +33,38 @@ public class DatiPersonaliServlet extends HttpServlet {
 		String cognome = request.getParameter("cognome");
 		int rowCount = 0;
 
-		if (nome.equals(null) || nome.equals("")) {
-			request.setAttribute("status", "Invalid_nome");
-			dispatcher = request.getRequestDispatcher("datipersonali.jsp");
-			dispatcher.forward(request, response);
-			return;
-		}
-		if (cognome.equals(null) || cognome.equals("")) {
-			request.setAttribute("status", "Invalid_cognome");
-			dispatcher = request.getRequestDispatcher("datipersonali.jsp");
-			dispatcher.forward(request, response);
-			return;
-		}
-		if (email.equals(null) || email.equals("")) {
-			request.setAttribute("status", "Invalid_email");
-			dispatcher = request.getRequestDispatcher("datipersonali.jsp");
-			dispatcher.forward(request, response);
-			return;
-		}
-		if (password1.equals(null) || password1.equals("")) {
-			request.setAttribute("status", "Invalid_password");
-			dispatcher = request.getRequestDispatcher("datipersonali.jsp");
-			dispatcher.forward(request, response);
-			return;
-		}
-		if (!(password1.equals(password2))) {
-			request.setAttribute("status", "Invalid_password2");
-			dispatcher = request.getRequestDispatcher("datipersonali.jsp");
-			dispatcher.forward(request, response);
-			return;
-		}
-
 		try {
+			if (nome.equals(null) || nome.equals("")) {
+				request.setAttribute("status", "Invalid_nome");
+				dispatcher = request.getRequestDispatcher("datipersonali.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
+			if (cognome.equals(null) || cognome.equals("")) {
+				request.setAttribute("status", "Invalid_cognome");
+				dispatcher = request.getRequestDispatcher("datipersonali.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
+			if (email.equals(null) || email.equals("")) {
+				request.setAttribute("status", "Invalid_email");
+				dispatcher = request.getRequestDispatcher("datipersonali.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
+			if (password1.equals(null) || password1.equals("")) {
+				request.setAttribute("status", "Invalid_password");
+				dispatcher = request.getRequestDispatcher("datipersonali.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
+			if (!(password1.equals(password2))) {
+				request.setAttribute("status", "Invalid_password2");
+				dispatcher = request.getRequestDispatcher("datipersonali.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
+			
 			connection = DbManager.getConnection();
 			String query = "UPDATE site_user SET email_address = ?, password = ?, nome = ?, cognome = ? WHERE id = ?";
 			PreparedStatement ps = connection.prepareStatement(query);

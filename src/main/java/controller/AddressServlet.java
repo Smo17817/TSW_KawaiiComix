@@ -24,7 +24,7 @@ import model.User;
 @WebServlet("/AddressServlet")
 public class AddressServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -38,38 +38,38 @@ public class AddressServlet extends HttpServlet {
 		String provincia = request.getParameter("provincia");
 		String nazione = request.getParameter("nazione");
 
-		if (indirizzo.equals(null) || indirizzo.equals("")) {
-			request.setAttribute("status", "Invalid_address");
-			dispatcher = request.getRequestDispatcher("indirizzo.jsp");
-			dispatcher.forward(request, response);
-			return;
-		}
-		if (citta.equals(null) || citta.equals("")) {
-			request.setAttribute("status", "Invalid_citta");
-			dispatcher = request.getRequestDispatcher("indirizzo.jsp");
-			dispatcher.forward(request, response);
-			return;
-		}
-		if (provincia.equals(null) || provincia.equals("")) {
-			request.setAttribute("status", "Invalid_provincia");
-			dispatcher = request.getRequestDispatcher("indirizzo.jsp");
-			dispatcher.forward(request, response);
-			return;
-		}
-		if (cap.equals(null) || cap.equals("") || (cap.length() != 5)) {
-			request.setAttribute("status", "Invalid_cap");
-			dispatcher = request.getRequestDispatcher("indirizzo.jsp");
-			dispatcher.forward(request, response);
-			return;
-		}
-		if (nazione.equals(null) || nazione.equals("") || nazione.equals("-effettua una scelta-")) {
-			request.setAttribute("status", "Invalid_nazione");
-			dispatcher = request.getRequestDispatcher("indirizzo.jsp");
-			dispatcher.forward(request, response);
-			return;
-		}
-
 		try {
+			if (indirizzo.equals(null) || indirizzo.equals("")) {
+				request.setAttribute("status", "Invalid_address");
+				dispatcher = request.getRequestDispatcher("indirizzo.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
+			if (citta.equals(null) || citta.equals("")) {
+				request.setAttribute("status", "Invalid_citta");
+				dispatcher = request.getRequestDispatcher("indirizzo.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
+			if (provincia.equals(null) || provincia.equals("")) {
+				request.setAttribute("status", "Invalid_provincia");
+				dispatcher = request.getRequestDispatcher("indirizzo.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
+			if (cap.equals(null) || cap.equals("") || (cap.length() != 5)) {
+				request.setAttribute("status", "Invalid_cap");
+				dispatcher = request.getRequestDispatcher("indirizzo.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
+			if (nazione.equals(null) || nazione.equals("") || nazione.equals("-effettua una scelta-")) {
+				request.setAttribute("status", "Invalid_nazione");
+				dispatcher = request.getRequestDispatcher("indirizzo.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
+
 			connection = DbManager.getConnection();
 			Statement s = connection.createStatement();
 			String query = "SELECT * FROM address WHERE user_id=" + user.getId();
