@@ -5,6 +5,7 @@
 <jsp:include page="./header.jsp" flush="true"/>
 <body>
 	<jsp:include page="./Nav.jsp" flush="true"/>
+	<script src="./Script/search.js"></script>
 	<script>
 		<%
 			Catalogo catalogo = (Catalogo) session.getAttribute("catalogo");
@@ -21,35 +22,53 @@
 				contenutoHtml += "</div>" + "\n";
 				contenutoHtml += "</div>" + "\n";
 			}
+			
+			String filtriGenere = "<tr> <td> <h4> Genere </h4> </td> </tr>";
+			for(String genere : (ArrayList<String>) session.getAttribute("generi")){
+				filtriGenere +=  "<tr> <td>";
+				filtriGenere += "<input type=\"checkbox\" class=\"gen\" name=\"genere\" onchange=\"filteredSearch(\"gen\", \"firstset\")\">"; 
+				filtriGenere += "<label class=\"firstset\">" + genere + "</label>";
+				filtriGenere += "</td> </tr>";
+			}
+			String filtriCategoria = "<tr> <td> <h4> Categoria </h4> </td> </tr>";
+			for(String categoria : (ArrayList<String>) session.getAttribute("categorie")){
+				filtriCategoria +=  "<tr> <td>";
+				filtriCategoria += "<input type=\"checkbox\" class=\"cat\" name=\"categoria\">"; 
+				filtriCategoria += "<label class=\"secondset\">" + categoria + "</label>";
+				filtriCategoria += "</td> </tr>";
+			}
 		%>
 		
 		const content = '<%=contenutoHtml.replace("'", "\\'").replace("\n", "\\n")%>';
-		
-		function myFunction(){
-			let input, filter, schede, single, a, nome;
-			input = document.getElementById("search-input");
-			filter = input.value.toUpperCase();
-			schede = document.getElementById("schedeProdotto");
-			product = schede.getElementsByClassName("scheda");
-			
-			for(let i = 0; i < product.length; i++){
-				a = product[i].getElementsByClassName("pname")[0];
-				textValue = a.textContent || a.innerText;
-				if(textValue.toUpperCase().indexOf(filter) > -1){
-					product[i].style.display = "";
-				}else{
-					product[i].style.display = "none";
-				}
-			}
-		}
+		const generi = '<%=filtriGenere.replace("'", "\\'").replace("\n", "\\n")%>';
+		const categorie = '<%=filtriCategoria.replace("'", "\\'").replace("\n", "\\n")%>';	
 		
 		$(document).ready(function(){
 			document.getElementById("schedeProdotto").innerHTML = content;
+			document.getElementsByTagName("tbody")[0].innerHTML = categorie + generi;
+			
+		});
+	
+		document.addEventListener("DOMContentLoaded", function() {
+		    filteredSearch("gen", "firstset");
 		});
 	</script>
 	
-	<section>
-		<h2>Catalogo</h2>
+	<h2>Catalogo</h2>
+	<section id="container">
+		<div id="filtri">
+			<table>
+				<thead>
+					<tr> <td> <h3> Filtri </h3> </td> </tr>
+				</thead>
+				<tbody>
+					
+				</tbody>
+			</table>
+		
+		
+		</div>
+		
 		
 		<div id="schedeProdotto">
 		

@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -34,7 +35,6 @@ public class CatalogServlet extends HttpServlet {
 			ResultSet rs = ps.executeQuery();
 			Catalogo catalogo = new Catalogo();
 			
-
 			while(rs.next()) {
 				String isbn = rs.getString("isbn");
 				String nome = rs.getString("nome");
@@ -50,6 +50,26 @@ public class CatalogServlet extends HttpServlet {
 			}
 			Collections.sort(catalogo.getCatalogo(), new ProdottoComparator());
 			session.setAttribute("catalogo", catalogo);
+			
+			Statement s = connection.createStatement();
+			String query = "SELECT nome FROM genere";
+			rs = s.executeQuery(query);
+			ArrayList<String> generi = new ArrayList<>();
+			/* Aggiunta generi all'arraylist */
+			while(rs.next()) 
+				generi.add(rs.getString("nome"));
+			Collections.sort(generi);	
+			session.setAttribute("generi", generi);
+			
+			query = "SELECT nome FROM categoria";
+			rs = s.executeQuery(query);
+			ArrayList<String> categorie = new ArrayList<>();
+			/* Aggiunta categorie all'arraylist */
+			while(rs.next()) 
+				categorie.add(rs.getString("nome"));
+			Collections.sort(categorie);
+			session.setAttribute("categorie", categorie);
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("catalogo.jsp");
 			dispatcher.forward(request, response);
 			

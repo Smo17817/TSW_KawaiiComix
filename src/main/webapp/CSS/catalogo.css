@@ -7,6 +7,18 @@
 	font-family: "Poppins", sans-serif;
 }
 
+#container{
+	display: flex;
+}
+
+/* FILTRI */
+
+#filtri{
+	padding: 2rem;
+	margin-right: 7rem;
+	width: 20rem;
+}
+
 /* SCHEDE PRODOTTO */
 
 #schedeProdotto {
