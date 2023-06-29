@@ -16,9 +16,6 @@ PER DAVID
 3) INPUT QUANTITA' DEVE SOVRASCRIVERE IL TOTALE PARZIALE.
 	se si riesce a fare quello calcolare il totale finale sarà facile;
 	
-4) AGGIUSTARE CLASSE THUMBNAIL
-	ho temporaneamente messo le impostazioni per le dimensioni delle thumbnail dei 
-	prodotti nel carrello come attributi inline; 
 
 5) AGGIUNGIPRODOTTO.JSP
 	1. la nav bar non ha la background img;

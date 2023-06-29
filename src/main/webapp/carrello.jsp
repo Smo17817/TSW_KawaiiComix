@@ -17,12 +17,12 @@
 			String contenutoHtml = "";
 			for(Prodotto p : list){
 				contenutoHtml += "<tr>";
-				contenutoHtml += "<td> <button onclick=\"eliminaRiga(this)\"><img src=\"./icons/trash.ico\" class=\"trash\"></button>";
-				contenutoHtml += "<td> <img src=\"" + p.getImg() + "\" class=\"thumbnail\" height=\"250px\"></td>";
+				contenutoHtml += "<td> <button onclick=eliminaRiga(this)><img src=\"./icons/trash.ico\" class=trash></button>";
+				contenutoHtml += "<td> <img class=thumbnail src=\"" + p.getImg() + "\"></td>";
 				contenutoHtml += "<td>" + p.getNome() + "</td>";
-				contenutoHtml += "<td> <p class=\"costo\">&#8364 " + p.getPrezzo() + "</p> </td>";
-				contenutoHtml += "<td> <h5> <input type=\"number\" min=\"1\" class=\"quantita\" onchange=\"totaleParziale()\" value=\"1\"> </h5> </td>";
-				contenutoHtml += "<td> <h5 class=\"totProd\"> totale </h5> </td>";
+				contenutoHtml += "<td> <p class=costo>&#8364 " + p.getPrezzo() + "</p> </td>";
+				contenutoHtml += "<td> <h5> <input type=number min=1 class=quantita onchange=totaleParziale() value=\"1\"> </h5> </td>";
+				contenutoHtml += "<td> <h5 class=totProd> totale </h5> </td>";
 				contenutoHtml += "</tr>";
 			}			
 		%>

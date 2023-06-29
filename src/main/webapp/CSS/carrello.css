@@ -39,8 +39,12 @@ td{
 	opacity: 60%;
 }
 
-.trash :hover{
+.trash:hover{
 	opacity: 1;
+}
+
+.thumbnail{
+	height: 25rem;
 }
 
 /* PROMO E TOTALE */
@@ -73,3 +77,4 @@ td{
 	display: flex;
 	justify-content: space-between;
 }
+
