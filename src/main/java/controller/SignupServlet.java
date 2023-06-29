@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/SignupServlet")
 public class SignupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String nome = request.getParameter("nome");
@@ -36,7 +37,7 @@ public class SignupServlet extends HttpServlet {
 
 			int rowCount = 0;
 
-			if (!((nome == null) || (cognome == null) || (email == null) || (password == null))) {
+			if (!((nome.equals(null)) || (cognome.equals(null)) || (email.equals(null)) || (password.equals(null)))) {
 				rowCount = ps.executeUpdate();
 			}
 			dispatcher = request.getRequestDispatcher("signup.jsp");

@@ -24,7 +24,8 @@ import model.User;
 @WebServlet("/AddressServlet")
 public class AddressServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -37,31 +38,31 @@ public class AddressServlet extends HttpServlet {
 		String provincia = request.getParameter("provincia");
 		String nazione = request.getParameter("nazione");
 
-		if (indirizzo == null || indirizzo.equals("")) {
+		if (indirizzo.equals(null) || indirizzo.equals("")) {
 			request.setAttribute("status", "Invalid_address");
 			dispatcher = request.getRequestDispatcher("indirizzo.jsp");
 			dispatcher.forward(request, response);
 			return;
 		}
-		if (citta == null || citta.equals("")) {
+		if (citta.equals(null) || citta.equals("")) {
 			request.setAttribute("status", "Invalid_citta");
 			dispatcher = request.getRequestDispatcher("indirizzo.jsp");
 			dispatcher.forward(request, response);
 			return;
 		}
-		if (provincia == null || provincia.equals("")) {
+		if (provincia.equals(null) || provincia.equals("")) {
 			request.setAttribute("status", "Invalid_provincia");
 			dispatcher = request.getRequestDispatcher("indirizzo.jsp");
 			dispatcher.forward(request, response);
 			return;
 		}
-		if (cap == null || cap.equals("") || (cap.length() != 5)) {
+		if (cap.equals(null) || cap.equals("") || (cap.length() != 5)) {
 			request.setAttribute("status", "Invalid_cap");
 			dispatcher = request.getRequestDispatcher("indirizzo.jsp");
 			dispatcher.forward(request, response);
 			return;
 		}
-		if (nazione == null || nazione.equals("") || nazione.equals("-effettua una scelta-")) {
+		if (nazione.equals(null) || nazione.equals("") || nazione.equals("-effettua una scelta-")) {
 			request.setAttribute("status", "Invalid_nazione");
 			dispatcher = request.getRequestDispatcher("indirizzo.jsp");
 			dispatcher.forward(request, response);

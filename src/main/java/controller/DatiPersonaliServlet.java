@@ -19,6 +19,7 @@ import model.User;
 public class DatiPersonaliServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -32,25 +33,25 @@ public class DatiPersonaliServlet extends HttpServlet {
 		String cognome = request.getParameter("cognome");
 		int rowCount = 0;
 
-		if (nome == null || nome.equals("")) {
+		if (nome.equals(null) || nome.equals("")) {
 			request.setAttribute("status", "Invalid_nome");
 			dispatcher = request.getRequestDispatcher("datipersonali.jsp");
 			dispatcher.forward(request, response);
 			return;
 		}
-		if (cognome == null || cognome.equals("")) {
+		if (cognome.equals(null) || cognome.equals("")) {
 			request.setAttribute("status", "Invalid_cognome");
 			dispatcher = request.getRequestDispatcher("datipersonali.jsp");
 			dispatcher.forward(request, response);
 			return;
 		}
-		if (email == null || email.equals("")) {
+		if (email.equals(null) || email.equals("")) {
 			request.setAttribute("status", "Invalid_email");
 			dispatcher = request.getRequestDispatcher("datipersonali.jsp");
 			dispatcher.forward(request, response);
 			return;
 		}
-		if (password1 == null || password1.equals("")) {
+		if (password1.equals(null) || password1.equals("")) {
 			request.setAttribute("status", "Invalid_password");
 			dispatcher = request.getRequestDispatcher("datipersonali.jsp");
 			dispatcher.forward(request, response);
