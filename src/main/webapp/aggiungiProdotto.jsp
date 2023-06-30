@@ -88,7 +88,6 @@
 						<option>Musicale</option>
 						<option>Poliziesco</option>
 						<option>Psicologico</option>
-						<option>Sci-Fi</option>
 						<option>Scolastico</option>
 						<option>Sentimentale</option>
 						<option>Sportivo</option>
@@ -103,7 +102,6 @@
 							<option>-scegliere categoria-</option>
 							<option>Art Book</option>
 							<option>Character Book</option>
-							<option>Fan Book</option>
 							<option>Josei</option>
 							<option>Kodomo</option>
 							<option>Manga</option>
@@ -111,8 +109,7 @@
 							<option>Manhwa</option>
 							<option>Novel</option>
 							<option>Seinen</option>
-							<option>Shoujo</option>
-							<option>Shoujo-Ai</option>
+							<option>Shojo</option>
 							<option>Shonen</option>
 							<option>Web Comic</option>				
 					</select>
