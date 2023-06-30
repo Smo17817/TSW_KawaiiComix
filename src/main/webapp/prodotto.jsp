@@ -49,5 +49,6 @@
 			</div>
 		</section>
 	</main>
+<jsp:include page="./footer.jsp" flush="true"/>
 </body>
 </html>

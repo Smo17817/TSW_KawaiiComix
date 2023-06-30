@@ -125,6 +125,7 @@ html {
 	display: flex;
 	align-items: center;
 	margin-bottom: 10rem;
+	justify-content: space-between;
 }
 
 .scheda{
@@ -159,3 +160,4 @@ html {
 	letter-spacing: 1px;
 	text-decoration: none;
 }
+

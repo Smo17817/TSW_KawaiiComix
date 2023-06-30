@@ -37,6 +37,5 @@ if (user == null)
 			</form>
 		</section>
 	</div>
-
 </body>
 </html>
