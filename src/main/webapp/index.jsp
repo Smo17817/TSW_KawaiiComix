@@ -75,11 +75,8 @@
 		<h2> Ultime Uscite </h2>
 		<div id="schedeProdotto">
 			
-			
-			
-	
 		</div>
-		
 	</section>
+
 </body>
 </html>
