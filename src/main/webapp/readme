@@ -18,13 +18,9 @@ PER DAVID
 	
 
 5) AGGIUNGIPRODOTTO.JSP
-	1. la nav bar non ha la background img;
 	2. trovare un modo per importare le immagini esterne nella cartella images usando
 		solo il form (adesso funziona solo se l'immagine è già nella cartella); 
-	3. categoria e genere non possono essere di tipo text ma checkbox, quindi bisogna
-		caricare dinamicamente i dati dal db;
-	4. per la descrizione è meglio un text field che il text, altrimenti è troppo
-		piccolo.
+
 		
 5) CATALOGO
 	disposizione orizzontale dei prodotti, migliorare estetica generale.

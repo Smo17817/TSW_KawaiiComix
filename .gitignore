@@ -9,3 +9,5 @@
 /classes/
 .DS_Store
 /.DS_Store/
+sonar-project.properties
+.github/workflows

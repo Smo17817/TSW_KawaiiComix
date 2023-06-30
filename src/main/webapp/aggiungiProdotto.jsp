@@ -35,7 +35,7 @@
 	<jsp:include page="./Nav.jsp" flush="true"/>
 	<section id="new_product">
 		<div class="form-wrapper">
-			<form action="AddProductServlet" method="POST" enctype="multipart/form-data">
+			<form action="AddProductServlet" method="POST">
 				<h2>Aggiungi un Prodotto</h2>
 				<div class="form-row">
 					<label for="isbn">ISBN: </label>
@@ -47,7 +47,7 @@
 				</div>
 				<div class="form-row">
 					<label for="descrizione">Descrizione: </label>
-					<input type="text" name="descrizione" required>
+					<textarea></textarea>
 				</div>
 				<div class="form-row">
 					<label for="immagine">Immagine: </label>
@@ -55,7 +55,7 @@
 				</div>
 				<div class="file-row">
 					<label for="file">File: </label>
-					<input type="file" class = "input_container" name="file">
+					<input type="file" class = "input_container" name="file" id="file">
 				</div>
 				<div class="form-row">
 					<label for="prezzo">Prezzo: </label>
@@ -67,11 +67,55 @@
 				</div>
 				<div class="form-row">
 					<label for="genere">Genere: </label>
-					<input type="text" name="genere" required>
+					<select name="genere" required>
+						<option>-scegliere genere-</option>
+						<option>Avventura</option>
+						<option>Azione</option>
+						<option>Combattimento</option>
+						<option>Commedia</option>
+						<option>Crimine</option>
+						<option>Drammatico</option>
+						<option>Fantascienza</option>
+						<option>Fantastico</option>
+						<option>Fantasy</option>
+						<option>Gang Giovanili</option>
+						<option>Giallo</option>
+						<option>Guerra</option>
+						<option>Horror</option>
+						<option>Magia</option>
+						<option>Mecha</option>
+						<option>Mistero</option>
+						<option>Musicale</option>
+						<option>Poliziesco</option>
+						<option>Psicologico</option>
+						<option>Sci-Fi</option>
+						<option>Scolastico</option>
+						<option>Sentimentale</option>
+						<option>Sportivo</option>
+						<option>Storico</option>
+						<option>Supereroi</option>
+						<option>Thriller</option>					
+					</select>
 				</div>
 				<div class="form-row">
 					<label for="categoria">Categoria: </label>
-					<input type="text" name="categoria" required>
+						<select name="categoria" required>
+							<option>-scegliere categoria-</option>
+							<option>Art Book</option>
+							<option>Character Book</option>
+							<option>Fan Book</option>
+							<option>Josei</option>
+							<option>Kodomo</option>
+							<option>Manga</option>
+							<option>Manga Italiani</option>
+							<option>Manhwa</option>
+							<option>Novel</option>
+							<option>Seinen</option>
+							<option>Shoujo</option>
+							<option>Shoujo-Ai</option>
+							<option>Shonen</option>
+							<option>Web Comic</option>				
+					</select>
 				</div>
 				<div class= "sub-class">
 	      			<button type="submit">Aggiungi</button>
