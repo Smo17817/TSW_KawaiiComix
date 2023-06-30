@@ -37,7 +37,7 @@
 				<div class="textbox">
 					<h2>Dragon Ball</h2>
 					<p>Con la sua fusione unica di azione, umorismo e avventura, Dragon Ball è una serie senza tempo che ha conquistato il cuore di milioni di fan in tutto il mondo.<p>
-					<a href="ProductServlet?isbn=12345678901234567"> Acquista ora</a>
+					<a href="ProductServlet?isbn=00000000000000001"> Acquista ora</a>
 				</div>
 				<div class="imgbox">
 					<img src="./images/db1.jpg" class="db">
@@ -47,7 +47,7 @@
 				<div class="textbox">
 					<h2>One Piece</h2>
 					<p> Imbarcati nell'incredibile mondo di One Piece e diventa parte dell'equipaggio di Monkey D. Luffy, un giovane pirata determinato a trovare il leggendario tesoro chiamato "One Piece".<p>
-					<a href="ProductServlet?isbn=97889252856410000"> Acquista ora</a>
+					<a href="ProductServlet?isbn=00000000000000006"> Acquista ora</a>
 				</div>
 				<div class="imgbox">
 					<img src="./images/op1.jpg" class="db">
@@ -57,7 +57,7 @@
 				<div class="textbox">
 					<h2>Naruto</h2>
 					<p> Entra nel mondo ninja di Naruto, un giovane combattente con un sogno ardente: diventare il miglior ninja del suo villaggio e guadagnarsi il rispetto di tutti.<p>
-					<a href="ProductServlet?isbn=97835517625110000"> Acquista ora</a>
+					<a href="ProductServlet?isbn=00000000000000004"> Acquista ora</a>
 				</div>
 				<div class="imgbox">
 					<img src="./images/naruto1.jpg" class="db">
