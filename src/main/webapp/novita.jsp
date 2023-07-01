@@ -24,13 +24,14 @@
 		%>
 		const content = '<%=contenutoHtml.replace("'", "\\'").replace("\n", "\\n")%>';
 		$(document).ready(function(){
-			document.getElementById("articles").innerHTML = content;
+			document.getElementById("scheda-news").innerHTML = content;
 		});	
 	</script>
 	<jsp:include page="./Nav.jsp" flush="true"/>
-	<h2>Novità</h2>
 	<section id="articles">
-	
+		<h2>Novità</h2>
+		<div id="scheda-news">
+		</div>
 	</section>
 <jsp:include page="./footer.jsp" flush="true"/>	
 </body>

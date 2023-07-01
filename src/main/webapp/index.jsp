@@ -6,31 +6,32 @@
 <body>
 <jsp:include page="./Nav.jsp" flush="true"/>
 <script>
-		<%
-			ArrayList<Prodotto> list = (ArrayList<Prodotto>) session.getAttribute("prodotti");
-			
-			String contenutoHtml = "";
-			int i = 0;
-			for(Prodotto p : list){
-				contenutoHtml += "<div class=\"scheda\">";
-				contenutoHtml += "<a href=\"ProductServlet?isbn=" + p.getIsbn() + "\"><img src=\"" + p.getImg() + "\"> </a>";
-				contenutoHtml += "<div class=\"info\">";
-				contenutoHtml += "<h4>" + p.getNome() + "</h4>";
-				contenutoHtml += "<p>" + p.getPrezzo() + "</p>";
-				contenutoHtml += "<a href=\"CartServlet?isbn=" + p.getIsbn() + "\"> Carrello</a>";
-				contenutoHtml += "</div> </div>";
-				if(i == 4)
-					break;
-				i++;
-			}
-		%>
-		let content = '<%=contenutoHtml.replace("'", "\\'").replace("\n", "\\n")%>';
-		
-		$(document).ready(function(){
-			document.getElementById("schedeProdotto").innerHTML = content;
+		document.addEventListener("DOMContentLoaded", function() {
+			$.ajax({
+				url: '<%=request.getContextPath()%>/IndexServlet',
+				type: 'GET'
+			}).done((response) => {
+				response = JSON.parse(response);
+				let contenutoHtml = "";
+				
+				for (const p of response) {
+					contenutoHtml += "<div class=\"scheda\">";
+					contenutoHtml += "<a href=\"ProductServlet?isbn=" + p.isbn + "\"><img src=\"" + p.img + "\"> </a>";
+					contenutoHtml += "<div class=\"info\">";
+					contenutoHtml += "<h4>" + p.nome + "</h4>";
+					contenutoHtml += "<p>" + p.prezzo + "</p>";
+					contenutoHtml += "<a href=\"CartServlet?isbn=" + p.isbn + "\"> Carrello</a>";
+					contenutoHtml += "</div> </div>";
+				}
+				
+				$("#schedeProdotto").append(contenutoHtml);
+			});
 		});
-	</script>
 
+
+</script>
+<main>
+	<p id="errorContainer"></p>
 	<section class="banner">
 	<div class="slider">
 			<div class="content" id="slide1">
@@ -78,7 +79,7 @@
 			
 		</div>
 	</section>
-	
+</main>	
 	
 <jsp:include page="./footer.jsp" flush="true"/>
 </body>

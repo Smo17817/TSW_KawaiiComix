@@ -35,11 +35,11 @@
 	<jsp:include page="./Nav.jsp" flush="true"/>
 	<section id="new_product">
 		<div class="form-wrapper">
-			<form action="AddProductServlet" method="POST">
+			<form enctype ="multipart/form-data" action="AddProductServlet" method="POST">
 				<h2>Aggiungi un Prodotto</h2>
 				<div class="form-row">
 					<label for="isbn">ISBN: </label>
-					<input type="text" name="isbn" maxlength="17" placeholder="00000000000000000" required>
+					<input type="text" name="isbn" maxlength="17" pattern="^[0-9]{17}$" placeholder="00000000000000000" required>
 				</div>
 				<div class="form-row">
 					<label for="nome">Nome: </label>
@@ -47,7 +47,7 @@
 				</div>
 				<div class="form-row">
 					<label for="descrizione">Descrizione: </label>
-					<textarea></textarea>
+					<textarea id ="descrizione" name="descrizione"></textarea>
 				</div>
 				<div class="form-row">
 					<label for="immagine">Immagine: </label>
@@ -111,7 +111,8 @@
 							<option>Seinen</option>
 							<option>Shojo</option>
 							<option>Shonen</option>
-							<option>Web Comic</option>				
+							<option>Web Comic</option>	
+							<option>Manga Magazine</option>			
 					</select>
 				</div>
 				<div class= "sub-class">

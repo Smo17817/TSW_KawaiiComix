@@ -70,7 +70,7 @@ public class LoginServlet extends HttpServlet {
 				}
 
 				session.setAttribute("user", user);
-				dispatcher = request.getRequestDispatcher("IndexServlet");
+				dispatcher = request.getRequestDispatcher("index.jsp");
 			} else {
 				request.setAttribute("status", "failed");
 				dispatcher = request.getRequestDispatcher("login.jsp");

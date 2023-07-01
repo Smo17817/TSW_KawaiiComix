@@ -52,6 +52,7 @@
 	   cssFile = "aggiungiNovita.css";
 	   AdditionalCss = true;
    }  else if(currentPage.equals("/novita.jsp")){
+	   cssFile = "novita.css";
 	   AdditionalCss = true;
    }  else if(currentPage.equals("/ordine.jsp")){
 	   cssFile ="ordine.css";

@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
 
 import model.Carrello;
 import model.Prodotto;
@@ -31,6 +34,8 @@ public class CartServlet extends HttpServlet {
 		String isbn = request.getParameter("isbn");
 		User user = (User) session.getAttribute("user");
 		Connection connection = null;
+		PrintWriter out = response.getWriter();
+		Gson json = new Gson();
 
 		try {
 			if (user.equals(null))

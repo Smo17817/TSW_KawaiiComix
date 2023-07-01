@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -14,72 +15,41 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+@MultipartConfig
 @WebServlet("/AddProductServlet")
 public class AddProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private String getFileName(Part part) {
+		String contentDisposition = part.getHeader("content-disposition");
+		String[] tokens = contentDisposition.split(";");
+		
+		for(String token : tokens) {
+			if(token.trim().startsWith("filename")) {
+				return token.substring(token.indexOf('=') + 1).trim().replace("\"","");
+			}
+		}
+		return null;
+	}
+	
+	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Connection connection = null;
 		RequestDispatcher dispatcher = null;
 		
-		/*if (ServletFileUpload.isMultipartContent(request)) {
-	    try {
-	        // Creazione di un oggetto FileItemFactory
-	        DiskFileItemFactory factory = new DiskFileItemFactory();
-
-	        // Impostazione della directory temporanea in cui verranno memorizzati i file
-	        File tempDir = (File) getServletContext().getAttribute("javax.servlet.context.tempdir");
-	        factory.setRepository(tempDir);
-
-	        // Creazione di un oggetto ServletFileUpload
-	        ServletFileUpload fileUpload = new ServletFileUpload(factory);
-
-	        // Parsing della richiesta per ottenere una lista di oggetti FileItem
-	        List<FileItem> items = fileUpload.parseRequest(request);
-
-	        // Iterazione sugli oggetti FileItem
-	        for (FileItem item : items) {
-	            // Controllo se l'oggetto FileItem rappresenta un campo di input di tipo file
-	            if (!item.isFormField()) {
-	                // Ottenimento del nome dell'immagine
-	                String fileName = item.getName();
-
-	                // Spostamento dell'immagine nella cartella del tuo progetto
-	                File uploadDir = new File("ProgettoTsw/src/main/webapp/images");
-	                if (!uploadDir.exists()) {
-	                    uploadDir.mkdirs();
-	                }
-	                System.out.print(uploadDir);
-	                File uploadedFile = new File(uploadDir, fileName);
-	                System.out.print(uploadedFile);
-	                item.write(uploadedFile);
-
-	                // Esegui altre azioni necessarie con l'immagine
-	                // ...
-
-	                // Invio di una risposta al client
-	                response.getWriter().println("Upload completato: " + fileName);
-	            }
-	        }
-	    } catch (Exception e) {
-	        response.getWriter().println("Upload fallito: " + e.getMessage());
-	    }
-	} else {
-	    response.getWriter().println("La richiesta non contiene un file caricato.");
-	} */
 		String query = "INSERT INTO prodotti(isbn, nome, descrizione, immagine_prod, prezzo, quantita, genere_nome, categoria_nome) values(?,?,?,?, ?, ?, ?, ?)";
 		
 		
 		try {
 			String isbn = request.getParameter("isbn");
-			System.out.print(isbn);
 			String nome = request.getParameter("nome");
 			String descrizione = request.getParameter("descrizione");
 			String immagine = request.getParameter("immagine");
@@ -98,6 +68,15 @@ public class AddProductServlet extends HttpServlet {
 			ps.setString(7, genere);
 			ps.setString(8, categoria);
 			ps.executeUpdate();
+			
+			
+			Part imagePart = request.getPart("file");
+			if(imagePart.getSize() != 0 ) {
+				String file = getFileName(imagePart);
+				String saveDirectory = "/Users/davidedelfranconatale/Desktop/Eclipse/ProgettoTsw/src/main/webapp/images";
+	            String imagePath = saveDirectory+ File.separator + file; // Percorso per salvare l'immagine
+	            imagePart.write(imagePath);
+			}
 
 			dispatcher = request.getRequestDispatcher("profilo.jsp");
 			dispatcher.forward(request, response);
