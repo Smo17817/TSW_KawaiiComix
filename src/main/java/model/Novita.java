@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Novita {
 	ArrayList<Articolo> list = new ArrayList<>();
@@ -9,7 +10,7 @@ public class Novita {
 		super();
 	}
 
-	public ArrayList<Articolo> getNovita() {
+	public List<Articolo> getNovita() {
 		return list;
 	}
 	

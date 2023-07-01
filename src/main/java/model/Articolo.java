@@ -1,8 +1,5 @@
 package model;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class Articolo {
 	private int id;
 	private String titolo;
@@ -11,8 +8,6 @@ public class Articolo {
 	private String corpo;
 	private String video;
 	private String immagine;
-	
-	
 
 	public Articolo(int id, String titolo, String sottotitolo, String data, String corpo, String video, String immagine) {
 		super();
