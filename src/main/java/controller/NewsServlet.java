@@ -39,11 +39,14 @@ public class NewsServlet extends HttpServlet {
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				String titolo = rs.getString("titolo");
+				String sottotitolo = rs.getString("sottotitolo");
 				String corpo = rs.getString("corpo");
 				String video = rs.getString("video");
 				String immagine = rs.getString("immagine");
-
-				Articolo a = new Articolo(id, titolo, corpo, video, immagine);
+				java.sql.Date dataSql = rs.getDate("data");
+				java.util.Date dataJava = new java.util.Date(dataSql.getTime());
+				
+				Articolo a = new Articolo(id, titolo, sottotitolo, dataJava, corpo, video, immagine);
 				novita.add(a);
 			}
 			/* Così vengono mostrate prima le notizie più recenti e poi le più datate */

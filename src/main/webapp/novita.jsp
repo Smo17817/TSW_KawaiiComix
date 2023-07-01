@@ -1,22 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,model.Articolo,model.Novita"%>
+<%@ page import="java.util.*,model.Articolo,model.Novita, java.text.SimpleDateFormat"%>
 <jsp:include page="./header.jsp" flush="true"/>
 <body>
 	<script>
 		<% 
 			Novita novita = (Novita) session.getAttribute("novita");
 			ArrayList<Articolo> list = (ArrayList<Articolo>) novita.getNovita();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			
 			String contenutoHtml = "";
 			for(Articolo a : list){
 				contenutoHtml += "<div class=\"scheda\"> <article>";
-				contenutoHtml += "<h1>" + a.getTitolo() + "</h1>";
+				contenutoHtml += "<h2>" + a.getTitolo() + "</h2>";
+				contenutoHtml += "<h1>" + a.getSottotitolo() + "</h1>";
+				contenutoHtml += "<p> Data Pubblicazione: " + sdf.format(a.getData()) + "</p>";
 				if(a.getImmagine() != null){
 					contenutoHtml += "<img src=\"" + a.getImmagine() + "\">";	
 				}
-				if(a.getVideo() != null)
-					contenutoHtml += "<video> <source src = \"" + a.getVideo() + "\"> </video>";
+				if(a.getVideo() != null){
+					contenutoHtml += "<div class=\"video-container\">";
+					contenutoHtml += "<iframe width=560 height=315 src = \"" + a.getVideo() + "\" frameborder=0 allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen> </iframe>";
+					contenutoHtml += "</div>";
+				}
 				
 				contenutoHtml += "<p>" + a.getCorpo() + "</p>";
 				contenutoHtml += "</article> </div>";	

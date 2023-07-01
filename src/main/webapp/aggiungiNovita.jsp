@@ -19,6 +19,10 @@ if (user == null)
 							name="titolo" placeholder="Titolo" required>
 					</div>
 					<div class="form-row">
+						<label for="sottotitolo">Sottotitolo: </label> <input type="text"
+							name="sottotitolo" placeholder="Sottotitolo" required>
+					</div>
+					<div class="form-row">
 						<label for="immagine">Immagine: </label> <input type="text"
 							name="immagine" placeholder="./images/nome_img.formato">
 					</div>
