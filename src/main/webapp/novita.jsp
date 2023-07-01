@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.*,model.Articolo,model.Novita, java.text.SimpleDateFormat"%>
+<%@ page import="java.util.*,model.Articolo,model.Novita"%>
 <jsp:include page="./header.jsp" flush="true"/>
 <body>
 	<script>
 		<% 
 			Novita novita = (Novita) session.getAttribute("novita");
 			ArrayList<Articolo> list = (ArrayList<Articolo>) novita.getNovita();
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			
 			String contenutoHtml = "";
 			for(Articolo a : list){
