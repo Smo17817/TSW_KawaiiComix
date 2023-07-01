@@ -2,27 +2,19 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*,model.User"%> 
 <%		
-	int flag = 0;
 	User user = (User) session.getAttribute("user");
-  	
 	if(user == null)
 		response.sendRedirect("login.jsp");
-  	else{
-  		flag = user.getId();
-  	}
  %>
 <jsp:include page="./header.jsp" flush="true"/>
 <body>
 	<script>
-		let id = <%=flag%>
-		
-		let contenutoHtml = '';
-		  contenutoHtml += '<li> <img src="./icons/upload.ico"> <a href="aggiungiProdotto.jsp"> Aggiungi Prodotto (ADMIN)</a> </li>';
-		  contenutoHtml += '<li> <img src="./icons/news.ico"> <a href="aggiungiNovita.jsp"> Aggiungi Notizie (ADMIN)</a> </li>';
-		  contenutoHtml += '<li> <img src="./icons/logistic.ico"> <a href=""> Controlla Ordini (ADMIN)</a> </li>';
-
-		  if (id == 1) {
+		  if (<%=user.getId()%> == 1) {
 			  $(document).ready(function(){
+				let contenutoHtml = '';
+				contenutoHtml += '<li> <img src="./icons/upload.ico"> <a href="aggiungiProdotto.jsp"> Aggiungi Prodotto (ADMIN)</a> </li>';
+				contenutoHtml += '<li> <img src="./icons/news.ico"> <a href="aggiungiNovita.jsp"> Aggiungi Notizie (ADMIN)</a> </li>';
+				contenutoHtml += '<li> <img src="./icons/logistic.ico"> <a href=""> Controlla Ordini (ADMIN)</a> </li>';
 		  		document.getElementById("admin").innerHTML = contenutoHtml;
 			  });
 		  }

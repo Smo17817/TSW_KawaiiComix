@@ -7,15 +7,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
@@ -25,15 +22,17 @@ import model.Prodotto;
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		Connection connection = null;
-		PrintWriter out = response.getWriter();
 		Gson json = new Gson();
 
 		try {
 			connection = DbManager.getConnection();
-			PreparedStatement ps = connection.prepareStatement("SELECT * FROM prodotti LIMIT 5");
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM prodotti ORDER BY isbn DESC LIMIT 5;");
 			ResultSet rs = ps.executeQuery();
+			PrintWriter out = response.getWriter();
 			ArrayList<Prodotto> prodotti = new ArrayList<>();
 
 			while (rs.next()) {
@@ -45,16 +44,16 @@ public class IndexServlet extends HttpServlet {
 				String categoria = rs.getString("categoria_nome");
 				int quantita = rs.getInt("quantita");
 				double prezzo = rs.getDouble("prezzo");
-				Prodotto p = new Prodotto(isbn, nome, descrizione, img, genere, categoria, quantita, prezzo);
+				Prodotto prodotto = new Prodotto(isbn, nome, descrizione, img, genere, categoria, quantita, prezzo);
 
-				prodotti.add(p);
+				prodotti.add(prodotto);
 			}
 			rs.close();
-			Collections.reverse(prodotti);
 			out.write(json.toJson(prodotti));
 
-
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			try {
@@ -63,10 +62,17 @@ public class IndexServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		
 	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+			doGet(request, response);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

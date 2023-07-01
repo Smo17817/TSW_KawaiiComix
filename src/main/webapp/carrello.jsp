@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
  <%@ page import="java.util.*,model.Prodotto,model.Carrello"%>
  <% if(session.getAttribute("user")==null)
 		response.sendRedirect("login.jsp");
@@ -47,7 +47,7 @@
 					<td>Immagine</td>
 					<td>Prodotto</td>
 					<td>Prezzo</td>
-					<td>Quantit‡</td>
+					<td>Quantit√†</td>
 					<td>Totale</td>
 					</tr>
 				</thead>

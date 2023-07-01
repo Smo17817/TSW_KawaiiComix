@@ -5,30 +5,9 @@
 <jsp:include page="./header.jsp" flush="true"/>
 <body>
 <jsp:include page="./Nav.jsp" flush="true"/>
+<script src="./Script/dynamicCode.js"></script>
 <script>
-		document.addEventListener("DOMContentLoaded", function() {
-			$.ajax({
-				url: '<%=request.getContextPath()%>/IndexServlet',
-				type: 'GET'
-			}).done((response) => {
-				response = JSON.parse(response);
-				let contenutoHtml = "";
-				
-				for (const p of response) {
-					contenutoHtml += "<div class=\"scheda\">";
-					contenutoHtml += "<a href=\"ProductServlet?isbn=" + p.isbn + "\"><img src=\"" + p.img + "\"> </a>";
-					contenutoHtml += "<div class=\"info\">";
-					contenutoHtml += "<h4>" + p.nome + "</h4>";
-					contenutoHtml += "<p>" + p.prezzo + "</p>";
-					contenutoHtml += "<a href=\"CartServlet?isbn=" + p.isbn + "\"> Carrello</a>";
-					contenutoHtml += "</div> </div>";
-				}
-				
-				$("#schedeProdotto").append(contenutoHtml);
-			});
-		});
-
-
+		document.addEventListener("DOMContentLoaded", dynamicIndex("<%=request.getContextPath()%>/IndexServlet"));
 </script>
 <main>
 	<p id="errorContainer"></p>

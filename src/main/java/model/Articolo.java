@@ -1,19 +1,20 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Articolo {
 	private int id;
 	private String titolo;
 	private String sottotitolo;
-	private Date data;
+	private String data;
 	private String corpo;
 	private String video;
 	private String immagine;
 	
 	
 
-	public Articolo(int id, String titolo, String sottotitolo, Date data, String corpo, String video, String immagine) {
+	public Articolo(int id, String titolo, String sottotitolo, String data, String corpo, String video, String immagine) {
 		super();
 		this.id = id;
 		this.titolo = titolo;
@@ -44,11 +45,11 @@ public class Articolo {
 		this.sottotitolo = sottotitolo;
 	}
 
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 

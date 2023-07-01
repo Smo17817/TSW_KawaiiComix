@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
 
 import javax.servlet.RequestDispatcher;
@@ -45,8 +46,9 @@ public class NewsServlet extends HttpServlet {
 				String immagine = rs.getString("immagine");
 				java.sql.Date dataSql = rs.getDate("data");
 				java.util.Date dataJava = new java.util.Date(dataSql.getTime());
+				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 				
-				Articolo a = new Articolo(id, titolo, sottotitolo, dataJava, corpo, video, immagine);
+				Articolo a = new Articolo(id, titolo, sottotitolo, sdf.format(dataJava), corpo, video, immagine);
 				novita.add(a);
 			}
 			/* Così vengono mostrate prima le notizie più recenti e poi le più datate */

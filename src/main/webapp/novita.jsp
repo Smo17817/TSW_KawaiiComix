@@ -14,7 +14,7 @@
 				contenutoHtml += "<div class=\"scheda\"> <article>";
 				contenutoHtml += "<h2>" + a.getTitolo() + "</h2>";
 				contenutoHtml += "<h1>" + a.getSottotitolo() + "</h1>";
-				contenutoHtml += "<p> Data Pubblicazione: " + sdf.format(a.getData()) + "</p>";
+				contenutoHtml += "<p> Data Pubblicazione: " + a.getData() + "</p>";
 				if(a.getImmagine() != null){
 					contenutoHtml += "<img src=\"" + a.getImmagine() + "\">";	
 				}
