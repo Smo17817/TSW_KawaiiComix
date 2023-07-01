@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
-
 import model.Carrello;
 import model.Prodotto;
 import model.User;
@@ -34,14 +32,12 @@ public class CartServlet extends HttpServlet {
 		String isbn = request.getParameter("isbn");
 		User user = (User) session.getAttribute("user");
 		Connection connection = null;
-		PrintWriter out = response.getWriter();
-		Gson json = new Gson();
 
 		try {
-			if (user.equals(null))
+			connection = DbManager.getConnection();
+			if (user == null) 
 				response.sendRedirect("login.jsp");
 			else {
-				connection = DbManager.getConnection();
 				String query = "SELECT * FROM prodotti WHERE isbn = ?";
 				PreparedStatement ps = connection.prepareStatement(query);
 				ps.setString(1, isbn);

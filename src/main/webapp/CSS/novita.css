@@ -20,8 +20,13 @@ body{
 	flex-direction:  column;
 }
 
-#scheda-news{
-	width: 50vw;
+#scheda-news h1{
+	text-align: center;
+}
+
+.scheda{
+	min-height: 40rem;
+	width: 80vw;
 	padding: 2rem 4rem;
 	border-radius: 4rem;
 	margin-top: 2rem;
@@ -32,6 +37,8 @@ body{
 	
 }
 
-#scheda-news h1{
-	text-align: center;
+.scheda img{
+	height: 30rem;
+	float: left;
+	margin-right: 10px;
 }

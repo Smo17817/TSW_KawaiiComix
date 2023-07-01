@@ -72,9 +72,9 @@ public class AddOrdineServlet extends HttpServlet {
 				p.setQuantita(Integer.parseInt(values[i]));
 				i++;
 			}
-
+			
 			for (Prodotto p : carrello.getCarrello()) {
-				query = "INSERT INTO ordine_singolo (quantità, totale_parziale, ordini_id, prodotti_isbn) " + "values("
+				query = "INSERT INTO ordine_singolo (quantità, totale_parziale, ordini_id, prodotti_isbn) values("
 						+ p.getQuantita() + ", " + (p.getPrezzo() * p.getQuantita()) + ", " + ordine_id + ", "
 						+ p.getIsbn() + ")";
 

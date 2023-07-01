@@ -10,7 +10,7 @@
 			
 			String contenutoHtml = "";
 			for(Articolo a : list){
-				contenutoHtml += "<article>";
+				contenutoHtml += "<div class=\"scheda\"> <article>";
 				contenutoHtml += "<h1>" + a.getTitolo() + "</h1>";
 				if(a.getImmagine() != null){
 					contenutoHtml += "<img src=\"" + a.getImmagine() + "\">";	
@@ -19,7 +19,7 @@
 					contenutoHtml += "<video> <source src = \"" + a.getVideo() + "\"> </video>";
 				
 				contenutoHtml += "<p>" + a.getCorpo() + "</p>";
-				contenutoHtml += "<article>";	
+				contenutoHtml += "</article> </div>";	
 			}
 		%>
 		const content = '<%=contenutoHtml.replace("'", "\\'").replace("\n", "\\n")%>';
