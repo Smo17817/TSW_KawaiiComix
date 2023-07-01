@@ -3,13 +3,18 @@
 <%@ page import="java.util.*,model.User"%> 
 <%		
 	User user = (User) session.getAttribute("user");
+	int flag = 0;
 	if(user == null)
 		response.sendRedirect("login.jsp");
+	else if(user.getId() == 1){
+		flag = 1;
+	}
  %>
 <jsp:include page="./header.jsp" flush="true"/>
 <body>
 	<script>
-		  if (<%=user.getId()%> == 1) {
+		  let id = <%=flag%>;
+		  if (id == 1) {
 			  $(document).ready(function(){
 				let contenutoHtml = '';
 				contenutoHtml += '<li> <img src="./icons/upload.ico"> <a href="aggiungiProdotto.jsp"> Aggiungi Prodotto (ADMIN)</a> </li>';
