@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*,model.Prodotto,model.Catalogo"%>
+<%@ page import="com.google.gson.Gson" %>
+
 
 <jsp:include page="./header.jsp" flush="true"/>
 <body>
@@ -13,7 +15,9 @@
 			
 			String contenutoHtml = "";
 			for(Prodotto p : list){
-				contenutoHtml += "<div class=\"scheda\">" + "\n";
+				Gson gson = new Gson();
+				String prodottoJson = gson.toJson(p);
+				contenutoHtml += "<div class=\"scheda\" data-prodotto='"+ prodottoJson +"'>" + "\n";
 				contenutoHtml += "<a href=\"ProductServlet?isbn=" + p.getIsbn() + "\"><img src=\"" + p.getImg()+ "\" class=\"trash\"></a>" + "\n";
 				contenutoHtml += "<div class=\"info\">" + "\n"; 
 				contenutoHtml += "<h4 class=\"pname\">" + p.getNome() + "</h4>" + "\n";
@@ -26,7 +30,7 @@
 			String filtriGenere = "<tr> <td> <h4> Genere </h4> </td> </tr>";
 			for(String genere : (ArrayList<String>) session.getAttribute("generi")){
 				filtriGenere +=  "<tr> <td>";
-				filtriGenere += "<input type=\"checkbox\" class=\"gen\" name=\"genere\" onchange=\"filteredSearch(\"gen\", \"firstset\")\">"; 
+				filtriGenere += "<input type=\"checkbox\" class=\"gen\" name=\"genere\" onchange=filteredSearch()>"; 
 				filtriGenere += "<label class=\"firstset\">" + genere + "</label>";
 				filtriGenere += "</td> </tr>";
 			}
@@ -45,7 +49,8 @@
 		
 		$(document).ready(function(){
 			document.getElementById("schedeProdotto").innerHTML = content;
-			document.getElementsByTagName("tbody")[0].innerHTML = categorie + generi;
+			document.getElementsByTagName("tbody")[0].innerHTML = categorie;
+			document.getElementsByTagName("tbody")[1].innerHTML = generi;
 			
 		});
 	
@@ -53,27 +58,31 @@
 		    filteredSearch("gen", "firstset");
 		});
 	</script>
-	
-	<h2>Catalogo</h2>
+	<main>
 	<section id="container">
 		<div id="filtri">
+			<h2>Filtra Per</h2>
 			<table>
-				<thead>
-					<tr> <td> <h3> Filtri </h3> </td> </tr>
-				</thead>
 				<tbody>
-					
+				
 				</tbody>
 			</table>
+			<table>
+				<tbody>
+				
+				</tbody>
+			</table>
+	
+			</div>
+		</section>
 		
-		
-		</div>
-		
-		
-		<div id="schedeProdotto">
-		
-		</div>
-	</section>
-<jsp:include page="./footer.jsp" flush="true"/>	
+		<section id="prodotti">	
+			<div id="schedeProdotto">
+	
+			</div>
+		</section>
+			
+	</main>
+	<jsp:include page="./footer.jsp" flush="true"/>	
 </body>
 </html>

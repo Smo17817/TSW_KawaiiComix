@@ -10,7 +10,6 @@
 		document.addEventListener("DOMContentLoaded", dynamicIndex("<%=request.getContextPath()%>/IndexServlet"));
 </script>
 <main>
-	<p id="errorContainer"></p>
 	<section class="banner">
 	<div class="slider">
 			<div class="content" id="slide1">

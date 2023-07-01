@@ -7,25 +7,38 @@
 	font-family: "Poppins", sans-serif;
 }
 
-#container{
+main{
 	display: flex;
+	min-height: 90vh;
+}
+#container td{
+	padding: 0.5rem;
+}
+
+label{
+	margin: 1rem;
 }
 
 /* FILTRI */
 
 #filtri{
 	padding: 2rem;
-	margin-right: 7rem;
-	width: 25rem;
+	margin: 2rem;
+	min-width: 25vw;
 }
 
 /* SCHEDE PRODOTTO */
 
+
+#prodotti{
+	width: 60vw;
+	flex-wrap:  wrap;
+}
 #schedeProdotto {
 	display: grid;
-	grid-template-columns: auto auto auto;
+	grid-template-columns: repeat(auto-fit ,minmax(20rem, 1fr));
 	justify-content: space-between;
-	grid-column-gap: 1.5em;
+	gap: 2rem 2rem;
 	padding: 2em 0;
 
 }
@@ -35,8 +48,9 @@
 	background: #fff;
 	color: #21201e;
 	text-align: center;
-	width: 240px;
-	height: 400px;
+	width: 24rem;
+	height: 40rem;
+	margin: 1rem;
 	padding: 2rem;
 	display: flex;
 	flex-direction: column;
@@ -46,7 +60,7 @@
 }
 
 .scheda img{
-	height: 200px;
+	height: 20rem;
 	margin: 1rem;
 	transition: all 0.3;
 }
