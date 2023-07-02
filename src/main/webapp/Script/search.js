@@ -17,53 +17,48 @@ function myFunction() {
 }
 
 
-/*function filteredSearch(nomeInput, nomeLabel){
-	const checkboxes = document.getElementsByClassName(nomeInput);
-	const labels = document.getElementsByClassName(nomeLabel);
-	for (let i = 0; i < checkboxes.length; i++)
-		console.log(labels[i].innerText);
-
-}*/
-
 function filteredSearch() {
   // Recupera tutti gli elementi con classe 'scheda'
   var items = document.getElementsByClassName('scheda');
 
-  // Recupera le checkbox dei generi
-  var generi = document.querySelectorAll('.gen:checked');
+  // Recupera i valori delle checkbox dei generi
+  var generi = Array.from(document.querySelectorAll('.gen:checked')).map(function (element) {
+    return element.getAttribute('value');
+  });
 
-  // Recupera le checkbox delle categorie
-  var categorie = document.querySelectorAll('.cat:checked');
+  // Recupera i valori delle checkbox delle categorie
+  var categorie = Array.from(document.querySelectorAll('.cat:checked')).map(function (element) {
+    return element.getAttribute('value');
+  });
 
-  // Mostra tutti gli elementi
+  // Nascondi tutti gli elementi
   for (var i = 0; i < items.length; i++) {
-    items[i].style.display = 'block';
+    items[i].style.display = 'none';
   }
 
-  // Filtra gli elementi in base ai generi selezionati
-  if (generi.length > 0) {
-    for (var i = 0; i < items.length; i++) {
-      var prodotto = JSON.parse(items[i].getAttribute('data-prodotto'));
-      console.log(items[i].getAttribute('data-prodotto'));
-      var genere = prodotto.genere;
-      if (!Array.from(generi).some(function (element) {
-        return element.value === genere;
-      })) {
-        items[i].style.display = 'none';
-      }
+  // Mostra gli elementi che corrispondono alle condizioni
+  for (var i = 0; i < items.length; i++) {
+    var prodotto = JSON.parse(items[i].getAttribute('data-prodotto'));
+    var genere = prodotto.genere;
+    var categoria = prodotto.categoria;
+
+    var showItem = false;
+
+    // Controlla se l'elemento corrisponde a uno dei generi selezionati
+    if (generi.length === 0 || generi.includes(genere)) {
+      showItem = true;
     }
-  }
 
-  // Filtra gli elementi in base alle categorie selezionate
-  if (categorie.length > 0) {
-    for (var i = 0; i < items.length; i++) {
-      var prodotto = JSON.parse(items[i].getAttribute('data-prodotto'));
-      var categoria = prodotto.categoria;
-      if (!Array.from(categorie).some(function (element) {
-        return element.value === categoria;
-      })) {
-        items[i].style.display = 'none';
-      }
+    // Controlla se l'elemento corrisponde a una delle categorie selezionate solo se l'elemento deve già essere mostrato
+    if (showItem && categorie.length > 0) {
+      showItem = categorie.includes(categoria);
+    }
+
+    // Mostra o nascondi l'elemento in base al risultato
+    if (showItem) {
+      items[i].style.display = 'block';
     }
   }
 }
+
+

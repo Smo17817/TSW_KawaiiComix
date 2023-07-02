@@ -1,9 +1,16 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Poppins", sans-serif;
+}
+
 html {
 	font-size: 62.5%;
 }
 .mid{
 	width: 100%;
-	min-height: 65.4vh;
+	min-height: 80vh;
 }
 
 .mid h2 {
@@ -23,7 +30,6 @@ html {
 	height: 31rem; 
 	max-width : 100%;
 	max-height: 100%;
-	max-width: 100%;
 }
 
 
@@ -31,8 +37,8 @@ html {
 	min-height: 10vh;
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
-	width: 90%;
+	justify-content: space-around;
+	width: 70%;
 	margin: auto;
 	padding: 2rem;
 	flex-wrap: wrap;
@@ -56,6 +62,7 @@ html {
 .proimg {
 	width: 7rem;
 	height: 7rem;
+	justify-self: center;
 }
 
 .account a {

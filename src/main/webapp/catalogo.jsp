@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ page import="org.apache.commons.text.StringEscapeUtils" %>
 <%@ page import="java.util.*,model.Prodotto,model.Catalogo"%>
 <%@ page import="com.google.gson.Gson" %>
+
 
 
 <jsp:include page="./header.jsp" flush="true"/>
@@ -17,7 +19,8 @@
 			for(Prodotto p : list){
 				Gson gson = new Gson();
 				String prodottoJson = gson.toJson(p);
-				contenutoHtml += "<div class=\"scheda\" data-prodotto='"+ prodottoJson +"'>" + "\n";
+				String prodottoJsonEscaped = StringEscapeUtils.escapeHtml4(prodottoJson);
+				contenutoHtml += "<div class=\"scheda\" data-prodotto=\""+ prodottoJsonEscaped +"\">";
 				contenutoHtml += "<a href=\"ProductServlet?isbn=" + p.getIsbn() + "\"><img src=\"" + p.getImg()+ "\" class=\"trash\"></a>" + "\n";
 				contenutoHtml += "<div class=\"info\">" + "\n"; 
 				contenutoHtml += "<h4 class=\"pname\">" + p.getNome() + "</h4>" + "\n";
@@ -30,14 +33,14 @@
 			String filtriGenere = "<tr> <td> <h4> Genere </h4> </td> </tr>";
 			for(String genere : (ArrayList<String>) session.getAttribute("generi")){
 				filtriGenere +=  "<tr> <td>";
-				filtriGenere += "<input type=\"checkbox\" class=\"gen\" name=\"genere\" onchange=filteredSearch()>"; 
+				filtriGenere += "<input type=\"checkbox\" class=\"gen\" name=\"genere\" value=\""+ genere +"\"onchange=filteredSearch()>"; 
 				filtriGenere += "<label class=\"firstset\">" + genere + "</label>";
 				filtriGenere += "</td> </tr>";
 			}
 			String filtriCategoria = "<tr> <td> <h4> Categoria </h4> </td> </tr>";
 			for(String categoria : (ArrayList<String>) session.getAttribute("categorie")){
 				filtriCategoria +=  "<tr> <td>";
-				filtriCategoria += "<input type=\"checkbox\" class=\"cat\" name=\"categoria\">"; 
+				filtriCategoria += "<input type=\"checkbox\" class=\"cat\"  value=\""+ categoria +"\"name=\"categoria\" onchange=filteredSearch()>"; 
 				filtriCategoria += "<label class=\"secondset\">" + categoria + "</label>";
 				filtriCategoria += "</td> </tr>";
 			}
