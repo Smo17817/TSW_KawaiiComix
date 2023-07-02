@@ -86,7 +86,7 @@ function dynamicCategorie(url) {
 		let filtriCategoria = "<tr> <td> <h4> Categoria </h4> </td> </tr>";
 		for (const categoria of response) {
 			filtriCategoria += "<tr> <td>";
-			filtriCategoria += "<input type=\"checkbox\" class=\"cat\"  value=\"" + categoria + "\"name=\"categoria\" onchange=\"filteredSearch()\">";
+			filtriCategoria += "<input type=\"checkbox\" class=\"cat\"  value=\"" + categoria + "\"name=\"categoria\" onchange=\"searchAndFilter()\">";
 			filtriCategoria += "<label class=\"secondset\">" + categoria + "</label>";
 			filtriCategoria += "</td> </tr>";
 		}
@@ -105,7 +105,7 @@ function dynamicGeneri(url) {
 		let filtriGenere = "<tr> <td> <h4> Genere </h4> </td> </tr>";
 		for (const genere of response) {
 			filtriGenere += "<tr> <td>";
-			filtriGenere += "<input type=\"checkbox\" class=\"gen\" name=\"genere\" value=\"" + genere + "\" onchange=\"filteredSearch()\">";
+			filtriGenere += "<input type=\"checkbox\" class=\"gen\" name=\"genere\" value=\"" + genere + "\" onchange=\"searchAndFilter()\">";
 			filtriGenere += "<label class=\"firstset\">" + genere + "</label>";
 			filtriGenere += "</td> </tr>";
 		}

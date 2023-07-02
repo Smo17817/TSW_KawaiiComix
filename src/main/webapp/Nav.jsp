@@ -15,7 +15,7 @@
 					<div class="navsearch">
 						<button class="icon"></button>
 						<div class="input">
-							<input type="text" id="search-input" onkeyup="myFunction()"
+							<input type="text" id="search-input" onkeyup="searchAndFilter()"
 								placeholder="Inserisci il nome del prodotto">
 						</div>
 						<span class="clear" onclick="document.getElementById('search-input').value = '' "></span>
