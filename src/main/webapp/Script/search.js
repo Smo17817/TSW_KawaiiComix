@@ -17,17 +17,14 @@ function myFunction() {
 }
 
 
+// Funzione di filtraggio dei prodotti
 function filteredSearch() {
   // Ottieni i valori dei filtri
   const selectedCategories = Array.from(document.querySelectorAll('input.cat:checked')).map(input => input.value);
   const selectedGenres = Array.from(document.querySelectorAll('input.gen:checked')).map(input => input.value);
 
-  // Rimuovi le schede dei prodotti esistenti
-  const schedeProdotto = document.getElementById('schedeProdotto');
-  schedeProdotto.innerHTML = '';
-
   // Filtra i prodotti in base alle categorie e ai generi selezionati
-  const prodotti = document.querySelectorAll('.scheda');
+  const prodotti = Array.from(document.querySelectorAll('.scheda'));
   prodotti.forEach(prodotto => {
     const prodottoCategoria = prodotto.dataset.categoria;
     const prodottoGenere = prodotto.dataset.genere;
@@ -36,10 +33,17 @@ function filteredSearch() {
       (selectedCategories.length === 0 || selectedCategories.includes(prodottoCategoria)) &&
       (selectedGenres.length === 0 || selectedGenres.includes(prodottoGenere))
     ) {
-      schedeProdotto.appendChild(prodotto.cloneNode(true));
+      prodotto.style.display = ""; // Mostra il prodotto se corrisponde ai filtri
+    } else {
+      prodotto.style.display = "none"; // Nascondi il prodotto se non corrisponde ai filtri
     }
   });
 }
+
+
+
+
+
 
 
 
