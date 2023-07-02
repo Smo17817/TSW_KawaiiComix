@@ -10,22 +10,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 
-import model.Catalogo;
-import model.Prodotto;
-import model.ProdottoComparator;
-
-@WebServlet("/CatalogServlet")
-public class CatalogServlet extends HttpServlet {
+@WebServlet("/GenereServlet")
+public class GenereServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -33,36 +27,27 @@ public class CatalogServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Connection connection = null;
 		Gson json = new Gson();
-
 		try {
 			connection = DbManager.getConnection();
-			PreparedStatement ps = connection.prepareStatement("SELECT * FROM prodotti");
-			ResultSet rs = ps.executeQuery();
 			PrintWriter out = response.getWriter();
-			ArrayList<Prodotto> catalogo = new ArrayList<>();
 
+			Statement s = connection.createStatement();
+			String query = "SELECT nome FROM genere";
+			ResultSet rs = s.executeQuery(query);
+			ArrayList<String> generi = new ArrayList<>();
+
+			/* Aggiunta generi all'arraylist */
 			while (rs.next()) {
-				String isbn = rs.getString("isbn");
-				String nome = rs.getString("nome");
-				String descrizione = rs.getString("descrizione");
-				String img = rs.getString("immagine_prod");
-				String genere = rs.getString("genere_nome");
-				String categoria = rs.getString("categoria_nome");
-				int quantita = rs.getInt("quantita");
-				double prezzo = rs.getDouble("prezzo");
-				Prodotto p = new Prodotto(isbn, nome, descrizione, img, genere, categoria, quantita, prezzo);
-
-				catalogo.add(p);
+				String g = rs.getString("nome");
+				generi.add(g);
 			}
-			Collections.sort(catalogo, new ProdottoComparator());
-			out.write(json.toJson(catalogo));
 
-
-			rs.close();
+			Collections.sort(generi);
+			out.write(json.toJson(generi));
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			try {
@@ -72,5 +57,4 @@ public class CatalogServlet extends HttpServlet {
 			}
 		}
 	}
-
 }

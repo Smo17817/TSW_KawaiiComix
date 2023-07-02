@@ -18,47 +18,31 @@ function myFunction() {
 
 
 function filteredSearch() {
-  // Recupera tutti gli elementi con classe 'scheda'
-  var items = document.getElementsByClassName('scheda');
+  // Ottieni i valori dei filtri
+  const selectedCategories = Array.from(document.querySelectorAll('input.cat:checked')).map(input => input.value);
+  const selectedGenres = Array.from(document.querySelectorAll('input.gen:checked')).map(input => input.value);
 
-  // Recupera i valori delle checkbox dei generi
-  var generi = Array.from(document.querySelectorAll('.gen:checked')).map(function (element) {
-    return element.getAttribute('value');
+  // Rimuovi le schede dei prodotti esistenti
+  const schedeProdotto = document.getElementById('schedeProdotto');
+  schedeProdotto.innerHTML = '';
+
+  // Filtra i prodotti in base alle categorie e ai generi selezionati
+  const prodotti = document.querySelectorAll('.scheda');
+  prodotti.forEach(prodotto => {
+    const prodottoCategoria = prodotto.dataset.categoria;
+    const prodottoGenere = prodotto.dataset.genere;
+
+    if (
+      (selectedCategories.length === 0 || selectedCategories.includes(prodottoCategoria)) &&
+      (selectedGenres.length === 0 || selectedGenres.includes(prodottoGenere))
+    ) {
+      schedeProdotto.appendChild(prodotto.cloneNode(true));
+    }
   });
-
-  // Recupera i valori delle checkbox delle categorie
-  var categorie = Array.from(document.querySelectorAll('.cat:checked')).map(function (element) {
-    return element.getAttribute('value');
-  });
-
-  // Nascondi tutti gli elementi
-  for (var i = 0; i < items.length; i++) {
-    items[i].style.display = 'none';
-  }
-
-  // Mostra gli elementi che corrispondono alle condizioni
-  for (var i = 0; i < items.length; i++) {
-    var prodotto = JSON.parse(items[i].getAttribute('data-prodotto'));
-    var genere = prodotto.genere;
-    var categoria = prodotto.categoria;
-
-    var showItem = false;
-
-    // Controlla se l'elemento corrisponde a uno dei generi selezionati
-    if (generi.length === 0 || generi.includes(genere)) {
-      showItem = true;
-    }
-
-    // Controlla se l'elemento corrisponde a una delle categorie selezionate solo se l'elemento deve già essere mostrato
-    if (showItem && categorie.length > 0) {
-      showItem = categorie.includes(categoria);
-    }
-
-    // Mostra o nascondi l'elemento in base al risultato
-    if (showItem) {
-      items[i].style.display = 'block';
-    }
-  }
 }
+
+
+
+
 
 

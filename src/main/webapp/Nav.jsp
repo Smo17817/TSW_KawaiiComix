@@ -7,7 +7,7 @@
 			<h1 id="logo">KawaiiComix</h1>
 			<ul class="links">
 				<li><a href="index.jsp">Home</a></li>
-				<li><a href="CatalogServlet">Catalogo</a></li>
+				<li><a href="catalogo.jsp">Catalogo</a></li>
 				<li><a href="NewsServlet">News</a></li>
 			</ul>
 			<ul class="utilities">
