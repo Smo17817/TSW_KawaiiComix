@@ -1,0 +1,23 @@
+@charset "ISO-8859-1";
+
+section{
+	min-height: 68.6vh;
+}
+
+table{
+	width: 100%;
+	border-collapse: collapse;
+	table-layout: fixed;
+	white-space: nowrap;
+}
+
+thead{
+	border-bottom: 1px solid black;
+	font-weight: 700;
+}
+
+td{
+	padding: 6px 0;
+	text-align: center;
+	border-bottom: 1px solid grey;
+}

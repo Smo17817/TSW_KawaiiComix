@@ -56,6 +56,9 @@
    }  else if(currentPage.equals("/ordine.jsp")){
 	   cssFile ="ordine.css";
 	   AdditionalCss = true;
+   } else if(currentPage.equals("/controllaordini.jsp")){
+	   cssFile ="controllaordini.css";
+	   AdditionalCss = true;
    }
 %>
 <% if(AdditionalCss){%>

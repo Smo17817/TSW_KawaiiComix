@@ -11,30 +11,31 @@
 	<% 
  		OrdiniList ordiniList = (OrdiniList) session.getAttribute("ordini");
  		ArrayList<Ordine> ordini = (ArrayList<Ordine>) ordiniList.getOrdiniList();
+ 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
  		Collections.reverse(ordini);
+ 		String stato = "Annullato";
  			
  		String contenutoHtml = "";
  		for(Ordine o : ordini){
  			if(o.getUserId() == user.getId()){
  				contenutoHtml += "<div class=\"ordine\">";
- 				contenutoHtml += "<h3> ID: " + o.getId() + "</h3>";
+ 				if (o.getStato() == 1) stato = "Completato";
+ 				contenutoHtml += "<h3> ID: " + o.getId() + " - Data: " +  sdf.format(o.getData()) + " (" + stato +") </h3>";
  				for(OrdineSingolo os : o.getSingoli()){
  					contenutoHtml += "<div class=\"product\">";
  					contenutoHtml += "<img class=\"orderImg\" src=\""+ os.getProdotto().getImg() +"\">";
- 					contenutoHtml += "<p> Nome: " + os.getProdotto().getNome() + " x" + os.getQuantita() +"</p>";
- 					contenutoHtml += "<p> &#8364 " + os.getTotParziale() + "</p>";
- 					contenutoHtml += "</div>";
+ 					contenutoHtml += "<ul class=\"info\">";	
+ 					contenutoHtml += "<li> Nome: " + os.getProdotto().getNome() + " x" + os.getQuantita() +"</li>";
+ 					contenutoHtml += "<li> Totale Prodotti: &#8364 " + os.getTotParziale() + "</li>";
+ 	 				contenutoHtml += "<li> <h4> Totale: &#8364 " + o.getTotale() + "</h4> </li>";
+ 					contenutoHtml += "</ul> </div>";
  				}
- 				SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
- 				contenutoHtml += "<p>" + sdf.format(o.getData()) + "</p>";
- 				contenutoHtml += "<h4> Totale: &#8364 " + o.getTotale() + "</h4>";
- 				contenutoHtml += "</div>";
+ 				contenutoHtml += "</div>";	
  			}
  		}
 	 %> 
 
 	const content = '<%=contenutoHtml.replace("'", "\\'").replace("\n", "\\n")%>';
-	console.log(content);
 	$(document).ready(function(){
 		document.getElementById("container").innerHTML = content;
 	});
@@ -42,7 +43,7 @@
 
 <body>
 <jsp:include page="./Nav.jsp" flush="true"/>
-	<h2>Ordini</h2>	
+	<h2>I miei ordini</h2>	
 	<section id="container">
 	
 	

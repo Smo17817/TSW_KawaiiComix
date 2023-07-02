@@ -16,7 +16,6 @@
 		  	dynamicCatalog("<%=request.getContextPath()%>/CatalogServlet");
 		  	dynamicCategorie("<%=request.getContextPath()%>/CategoriaServlet");
 		 	dynamicGeneri("<%=request.getContextPath()%>/GenereServlet");
-
 		});
 	</script>
 	<main>

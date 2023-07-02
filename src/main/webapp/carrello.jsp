@@ -59,16 +59,6 @@
 		</section>
 		
 		<section id="bottom">
-			<div class="row">
-				<div class="promozione">
-					<div>
-						<h5>CODICE PROMOZIONALE</h5>
-						<p>Inserisci il codice</p>
-						<input type="text" placeholder="codice">
-						<button>Applica</button>
-					</div>
-				</div>	
-				
 				<div id="cassa">
 					<h5>TOTALE</h5>
 					<div class="totale">
@@ -81,12 +71,13 @@
 					</div>
 					<hr>
 					<div class="totale">
-						<h6>Totale: </h6>
+					<h6>Totale: </h6>
+					
 						<p class="totCumul">&#8364 totale</p>
 					</div>
 					<button onclick="checkout()"> Procedi al Pagamento</button>
 				</div>
-			</div>
+		
 		</section>
 	</main>
 <jsp:include page="./footer.jsp" flush="true"/>	

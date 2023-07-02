@@ -2,7 +2,7 @@
 
 main{
 	width: 100%;
-	min-height: 68vh;
+	min-height: 68.6vh;
 }
 
 h2{
@@ -51,25 +51,15 @@ td{
 	margin: 5rem;
 }
 
-.row {
-	display: flex;
-	justify-content: space-between;
-}
-
-.row h5{
-	margin-bottom: 1rem;
-}
-
-.promozione, .cassa{
-	border: 1px solid #b6b3b3;
+#cassa{
 	padding: 1rem 3rem;
 	border-radius: 2rem;
+	min-width: 50rem;
+	float: right;
+	margin: 0rem 2rem 5rem 3rem;
+	box-shadow: 0.5em 1em 0.3em rgba(1, 2, 68, 0.2);
 }
 
-
-.cassa {
-	width: 30rem;
-}
 
 .totale {
 	display: flex;

@@ -1,15 +1,27 @@
 @charset "ISO-8859-1";
 
-#container{
-	padding: 3rem 5rem;	
-	width: 100%;
-	min-height: 65.4vh;
+body > h2{
+	text-align: center;
+	margin-top: 3rem;
+}
+
+.ordine{
+	margin: 5rem 3rem;
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 1em 2em 2.5em rgba(1, 2, 68, 0.08);
+}
+.ordine > h3{
+	padding: 1rem 3rem;
+	background: #ff6f88;
 }
 
 .product{
 	display: flex;
+	padding: 1rem 3rem;
 }
 
 .orderImg{
-	max-height: 7rem;
+	max-height: 13rem;
+	padding-right: 2rem
 }

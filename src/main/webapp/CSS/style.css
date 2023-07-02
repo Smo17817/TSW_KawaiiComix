@@ -73,10 +73,10 @@ nav ul {
 
 .navsearch{
 	position: relative;
-	width: 6rem;
-	height: 6rem;
+	width: 4rem;
+	height: 4rem;
 	background: #fff;
-	border-radius: 6rem;
+	border-radius: 4rem;
 	box-shadow: 0 0 0 0.5rem #ff6f88;	
 	overflow: hidden;
 }
@@ -90,8 +90,8 @@ nav ul {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 6rem;
-	height: 6rem;
+	width: 4rem;
+	height: 4rem;
 	background: #ff6f88;
 	border-radius: 6rem;
 	display: flex;
@@ -99,7 +99,7 @@ nav ul {
 	align-items: center;
 	z-index: 1000;
 	cursor: pointer;
-	border: 0.3rem solid black;
+	border: 2.72px solid black;
 }
 
 .icon::before{
@@ -107,7 +107,7 @@ nav ul {
 	position: absolute;
 	width: 1.5rem;
 	height: 1.5rem;
-	border: 0.3rem solid black;
+	border: 0.2rem solid black;
 	border-radius: 50%;
 	transform: translate(-0.4rem, -0.4rem);
 }
@@ -115,7 +115,7 @@ nav ul {
 .icon::after{
 	content: "";
 	position: absolute;
-	width: 0.3rem;
+	width: 0.2rem;
 	height: 1.2rem;
 	background: black;
 	transform: translate(6px, 6px) rotate(315deg);
@@ -124,7 +124,7 @@ nav ul {
 .input{
 	position: relative;
 	width: 30rem;
-	height: 6rem;
+	height: 4rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;

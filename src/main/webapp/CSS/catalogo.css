@@ -1,16 +1,11 @@
 @charset "ISO-8859-1";
 
-* {
-	padding: 0; 
-	margin: 0;
-	box-sizing: border-box;
-	font-family: "Poppins", sans-serif;
-}
 
 main{
 	display: flex;
 	min-height: 90vh;
 }
+
 #container td{
 	padding: 0.5rem;
 }
@@ -29,22 +24,19 @@ label{
 
 /* SCHEDE PRODOTTO */
 
-
 #prodotti{
-	width: 60vw;
+	width: 100vw;
 	flex-wrap:  wrap;
 }
 #schedeProdotto {
 	display: grid;
-	grid-template-columns: repeat(auto-fit ,minmax(20rem, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+	grid-gap: 2rem;
 	justify-content: space-between;
-	gap: 2rem 2rem;
-	padding: 2em 0;
 
 }
 
 .scheda{
-	overflow: hidden;
 	background: #fff;
 	color: #21201e;
 	text-align: center;
@@ -60,7 +52,7 @@ label{
 }
 
 .scheda img{
-	height: 20rem;
+	max-height: 19rem;
 	margin: 1rem;
 	transition: all 0.3;
 }
