@@ -9,15 +9,18 @@ User user = (User) session.getAttribute("user");
 if (user == null)
 	response.sendRedirect("login.jsp");
 %>
+<script src="./Script/ordini.js"></script>
 <script>
 	<%	OrdiniList ordiniList = (OrdiniList) session.getAttribute("ordini");
 		ArrayList<Ordine> ordini = (ArrayList<Ordine>) ordiniList.getOrdiniList();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Collections.reverse(ordini);
 		String stato = "Annullato";
 
 		String contenutoHtml = "";
 		for (Ordine o : ordini) {
 			contenutoHtml += "<tr>";
+			contenutoHtml += "<td> <h4>" + sdf.format(o.getData()) + "</h4> </td>";
 			contenutoHtml += "<td> <h4>" + o.getId() + "</h4> </td>";
 			contenutoHtml += "<td>";
 			for (OrdineSingolo os : o.getSingoli()) 
@@ -29,7 +32,7 @@ if (user == null)
 			contenutoHtml += "<td> &#8364 " + o.getTotale() + "</td>";
 			if (o.getStato() == 1) stato = "Completato";
 			contenutoHtml += "<td>" + stato + "</td>";
-			contenutoHtml += "<td> <button> Annulla </button> </td> </tr>";
+			contenutoHtml += "<td> <button onclick=\"annullaordine(this)\"> Annulla </button> </td> </tr>";
 		}
 	%>
 	const content = '<%=contenutoHtml.replace("'", "\\'").replace("\n", "\\n")%>';
@@ -39,9 +42,6 @@ if (user == null)
 	});
 </script>
 
-
-
-
 <jsp:include page="./Nav.jsp" flush="true" />
 
 <body>
@@ -50,6 +50,7 @@ if (user == null)
 	<table>
 		<thead>
 			<tr>
+				<td>Data</td>
 				<td>Codice Ordine</td>
 				<td>Nome</td>
 				<td>Totale Parziale</td>

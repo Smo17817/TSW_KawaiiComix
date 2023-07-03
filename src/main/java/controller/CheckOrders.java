@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,13 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Ordine;
+import model.OrdineComparator;
 import model.OrdineSingolo;
 import model.OrdiniList;
 import model.Prodotto;
 
-/**
- * Servlet implementation class CheckOrders
- */
 @WebServlet("/CheckOrders")
 public class CheckOrders extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -99,7 +98,7 @@ public class CheckOrders extends HttpServlet {
 				}
 				ol.add(o);
 			}
-
+			Collections.sort(ol.getOrdiniList(), new OrdineComparator());
 			session.setAttribute("ordini", ol);
 			dispatcher = request.getRequestDispatcher("controllaordini.jsp");
 			dispatcher.forward(request, response);

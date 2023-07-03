@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.Ordine;
+import model.OrdineComparator;
 import model.OrdineSingolo;
 import model.OrdiniList;
 import model.Prodotto;
@@ -96,7 +98,8 @@ public class OrdineServlet extends HttpServlet {
 				}
 				ol.add(o);
 			}
-
+			Collections.sort(ol.getOrdiniList(), new OrdineComparator());
+			
 			session.setAttribute("ordini", ol);
 			dispatcher = request.getRequestDispatcher("ordine.jsp");
 			dispatcher.forward(request, response);
