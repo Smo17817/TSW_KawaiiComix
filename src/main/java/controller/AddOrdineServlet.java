@@ -81,7 +81,9 @@ public class AddOrdineServlet extends HttpServlet {
 				s.executeUpdate(query);
 			}
 
-			session.setAttribute("carrello", new Carrello());
+			
+			carrello.empty();
+			session.setAttribute("carrello", carrello);
 
 			dispatcher = request.getRequestDispatcher("profilo.jsp");
 			dispatcher.forward(request, response);

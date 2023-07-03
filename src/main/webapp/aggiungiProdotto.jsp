@@ -109,7 +109,8 @@
 							<option>Manhwa</option>
 							<option>Novel</option>
 							<option>Seinen</option>
-							<option>Shojo</option>
+							<option>Shoujo</option>
+							<option>Shoujo-Ai</option>
 							<option>Shonen</option>
 							<option>Web Comic</option>	
 							<option>Manga Magazine</option>			

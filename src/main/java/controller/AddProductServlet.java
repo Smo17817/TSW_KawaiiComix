@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -64,11 +65,13 @@ public class AddProductServlet extends HttpServlet {
 			ps.executeUpdate();
 			
 			
+			
 			Part imagePart = request.getPart("file");
 			if(imagePart.getSize() != 0 ) {
 				String file = getFileName(imagePart);
 				String saveDirectory = "/Users/davidedelfranconatale/Desktop/Eclipse/ProgettoTsw/src/main/webapp/images";
 	            String imagePath = saveDirectory+ File.separator + file; // Percorso per salvare l'immagine
+	    
 	            imagePart.write(imagePath);
 			}
 
