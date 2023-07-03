@@ -46,7 +46,7 @@ if (user == null)
 
 <body>
 <section>
-<h3> Controlla Ordini</h3>
+<h2> Controlla Ordini</h2>
 	<table>
 		<thead>
 			<tr>

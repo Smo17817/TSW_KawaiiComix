@@ -2,6 +2,12 @@
 
 section{
 	min-height: 68.6vh;
+	padding: 5rem 3rem;
+	overflow-x: auto;
+}
+
+h2{
+	padding-bottom: 2rem;
 }
 
 table{

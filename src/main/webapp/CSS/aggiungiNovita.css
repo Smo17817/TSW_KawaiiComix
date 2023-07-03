@@ -14,30 +14,26 @@ body{
 	font-size: 2rem;
 }
 
-.justaimg{
-	background-image: linear-gradient(rgba(0,0,0,0.5), transparent) , url("../icons/bkgrd.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-}
 
 #new_article{
-    min-height: 90vh;
+    min-height: 68.6vh;
 	display:flex;
 	align-items: center;
 	justify-content: center; 
 }
 
 .form-wrapper{
+	width: 50vh;
 	background: rgba(255,255,255, 0.9);
 	border-radius : 4rem;
 	display:flex;
 	flex-direction:column;
 	padding: 2rem;
-	width: 50%;
 	justify-content : center;
 	align-items: center;
 	flex-wrap: wrap;
+	margin: 5rem;
+	box-shadow: 0.5em 0.3em 1em rgba(1, 2, 68, 0.1);
 }
 
 .form-wrapper h2{
@@ -82,5 +78,22 @@ body{
 .form-row{
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
     padding: 3rem;
 }
+
+.article{
+	display: column;
+}
+
+.article textarea{
+  height: 10rem;
+  width: 35vh;
+  padding: 1rem 2rem;
+  border: 2px solid #ccc;
+  border-radius: 1rem;
+  background-color: #f8f8f8;
+  font-size: 1.6rem;
+  resize: none;
+  margin-bottom: 3rem;
+ }

@@ -30,9 +30,8 @@ if (user == null)
 						<label for="video">Video: </label> <input type="text" name="video"
 							placeholder="./video/nome_img.formato OPPURE youtube_link">
 					</div>
-					<div class="form-row">
-						<label for="corpo">Corpo </label> <input type="text" name="corpo"
-							placeholder="Scrivi qui il tuo articolo" required>
+					<div class="article">
+						<textarea id ="corpo" name="corpo" placeholder="Scrivi qui il tuo articolo..."></textarea>
 					</div>
 					<div class="sub-class">
 						<button type="submit">Aggiungi</button>
@@ -41,5 +40,6 @@ if (user == null)
 			</form>
 		</section>
 	</div>
+<jsp:include page="./footer.jsp" flush="true" />
 </body>
 </html>

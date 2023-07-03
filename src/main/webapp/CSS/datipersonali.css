@@ -12,15 +12,8 @@ body{
 	font-size: 2rem;
 }
 
-.justaimg{
-	background-image: linear-gradient(rgba(0,0,0,0.5), transparent) , url("../icons/bkgrd.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-}
-
 #personal-info {
-    min-height: 90vh;
+    min-height: 68.6vh;
 	display:flex;
 	align-items: center;
 	justify-content: center; 
@@ -36,6 +29,7 @@ body{
 	justify-content : center;
 	align-items: center;
 	flex-wrap: wrap;
+	box-shadow: 0.5em 0.3em 1em rgba(1, 2, 68, 0.1);
 }
 
 .form-wrapper h2{
