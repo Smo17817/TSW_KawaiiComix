@@ -11,7 +11,6 @@
 	<% 
  		OrdiniList ordiniList = (OrdiniList) session.getAttribute("ordini");
  		ArrayList<Ordine> ordini = (ArrayList<Ordine>) ordiniList.getOrdiniList();
- 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
  		Collections.reverse(ordini);
  		String stato = "Annullato";
  			
@@ -20,7 +19,7 @@
  			if(o.getUserId() == user.getId()){
  				contenutoHtml += "<div class=\"ordine\">";
  				if (o.getStato() == 1) stato = "Completato";
- 				contenutoHtml += "<h3> ID: " + o.getId() + " - Data: " +  sdf.format(o.getData()) + " (" + stato +") </h3>";
+ 				contenutoHtml += "<h3> ID: " + o.getId() + " - Data: " +  o.getData() + " (" + stato +") </h3>";
  				for(OrdineSingolo os : o.getSingoli()){
  					contenutoHtml += "<div class=\"product\">";
  					contenutoHtml += "<img class=\"orderImg\" src=\""+ os.getProdotto().getImg() +"\">";

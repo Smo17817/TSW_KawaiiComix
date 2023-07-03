@@ -135,3 +135,32 @@ function dynamicConsigliati(url) {
 		$("#consigliati").append(contenutoHtml);
 	});
 }
+
+function dynamicCheckOrders(url){
+	$.ajax({
+		url: url,
+		type: 'GET',
+		contentType: 'application/json; charset=utf-8'
+	}).done((response) => {
+		response = JSON.parse(response);
+		let contenutoHtml = "";
+		let stato ="Annullato";
+		
+		for (const o of response) {
+			contenutoHtml += "<tr data-utente='" + o.userId +"' data-giorno ='" + o.data + "'>";
+			contenutoHtml += "<td> <h4>" + o.data + "</h4> </td>";
+			contenutoHtml += "<td> <h4>" + o.userId + "</h4> </td>";
+			contenutoHtml += "<td> <h4>" + o.id + "</h4> </td>";
+			contenutoHtml += "<td>";
+			for (const os of o.singoli) 
+				contenutoHtml += "<p>" + os.prodotto.nome +"</p>";
+			contenutoHtml += "</td>";
+			contenutoHtml += "<td> &#8364 " + o.totale + "</td>";
+			if (o.stato == 1) stato = "Completato";
+			contenutoHtml += "<td>" + stato + "</td>";
+			contenutoHtml += "<td> <button onclick=\"annullaordine(this)\"> Annulla </button> </td> </tr>";
+		}
+	
+		$("#container").append(contenutoHtml);
+	});
+}

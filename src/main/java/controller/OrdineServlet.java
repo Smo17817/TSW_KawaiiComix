@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -35,7 +36,7 @@ public class OrdineServlet extends HttpServlet {
 
 		try {
 			connection = DbManager.getConnection();
-
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			Statement s = connection.createStatement();
 			OrdiniList ol = new OrdiniList();
 			Ordine o = null;
@@ -90,7 +91,7 @@ public class OrdineServlet extends HttpServlet {
 				int stato = rs.getInt("stato_ordine_id");
 				int spedizione = rs.getInt("metodo_spedizione_id");
 				int idIndirizzo = rs.getInt("address_id");
-				o = new Ordine(id, dateJava, totale, userId, stato, spedizione, idIndirizzo);
+				o = new Ordine(id, sdf.format(dateJava), totale, userId, stato, spedizione, idIndirizzo);
 				/* associo ogni ordine ai suoi ordini singoli */
 				for (OrdineSingolo temp : osList) {
 					if (temp.getOrdini_id() == id)

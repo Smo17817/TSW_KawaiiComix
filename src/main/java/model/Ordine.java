@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Ordine {
 	private int id;
-	private Date data;
+	private String data;
 	private double totale;
 	private int userId;
 	private int stato;
@@ -14,7 +14,7 @@ public class Ordine {
 	private int idIndirizzo;
 	private ArrayList<OrdineSingolo> singoli = new ArrayList<>();
 	
-	public Ordine(int id, Date data, double totale, int userId, int stato, int spedizione, int idIndirizzo) {
+	public Ordine(int id, String data, double totale, int userId, int stato, int spedizione, int idIndirizzo) {
 		super();
 		this.id = id;
 		this.data = data;
@@ -33,11 +33,11 @@ public class Ordine {
 		this.id = id;
 	}
 
-	public Date getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 

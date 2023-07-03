@@ -10,36 +10,9 @@ if (user == null)
 	response.sendRedirect("login.jsp");
 %>
 <script src="./Script/ordini.js"></script>
+<script src="./Script/dynamicCode.js"></script>
 <script>
-	<%	OrdiniList ordiniList = (OrdiniList) session.getAttribute("ordini");
-		ArrayList<Ordine> ordini = (ArrayList<Ordine>) ordiniList.getOrdiniList();
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Collections.reverse(ordini);
-		String stato = "Annullato";
-
-		String contenutoHtml = "";
-		for (Ordine o : ordini) {
-			contenutoHtml += "<tr>";
-			contenutoHtml += "<td> <h4>" + sdf.format(o.getData()) + "</h4> </td>";
-			contenutoHtml += "<td> <h4>" + o.getId() + "</h4> </td>";
-			contenutoHtml += "<td>";
-			for (OrdineSingolo os : o.getSingoli()) 
-				contenutoHtml += "<p>" + os.getProdotto().getNome() +"</p>";
-			contenutoHtml += "</td> <td>";
-			for (OrdineSingolo os : o.getSingoli())
-				contenutoHtml += "<p> &#8364 " + os.getProdotto().getPrezzo() +"</p>";
-			contenutoHtml += "</td>";
-			contenutoHtml += "<td> &#8364 " + o.getTotale() + "</td>";
-			if (o.getStato() == 1) stato = "Completato";
-			contenutoHtml += "<td>" + stato + "</td>";
-			contenutoHtml += "<td> <button onclick=\"annullaordine(this)\"> Annulla </button> </td> </tr>";
-		}
-	%>
-	const content = '<%=contenutoHtml.replace("'", "\\'").replace("\n", "\\n")%>';
-
-	$(document).ready(function() {
-		document.getElementById("container").innerHTML = content;
-	});
+	document.addEventListener("DOMContentLoaded", dynamicCheckOrders("<%=request.getContextPath()%>/CheckOrders"));
 </script>
 
 <jsp:include page="./Nav.jsp" flush="true" />
@@ -47,13 +20,26 @@ if (user == null)
 <body>
 <section>
 <h2> Controlla Ordini</h2>
+	<div id="filtri">
+	<h5>Filtri</h5>
+		<div class="user-search">
+			<label>Utente</label>
+			<input type="text" id="searchInput" placeholder="Cerca per User ID" onkeyup="filterRows()">
+		</div>
+		<div>
+			<label>da </label>
+			<input type="date" id="startDateInput" onchange="filterRows()" />
+			<label>a </label>
+			<input type="date" id="endDateInput" onchange="filterRows()" />
+		</div>
+	</div>
 	<table>
 		<thead>
 			<tr>
 				<td>Data</td>
-				<td>Codice Ordine</td>
+				<td> Utente </td>
+				<td>Codice Ordine</td>				
 				<td>Nome</td>
-				<td>Totale Parziale</td>
 				<td>Totale</td>
 				<td>Stato</td>
 				<td>Annulla ordine</td>
@@ -64,7 +50,6 @@ if (user == null)
 		</tbody>
 	</table>
 </section>
-
 	<jsp:include page="./footer.jsp" flush="true" />
 </body>
 </html>

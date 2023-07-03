@@ -1,10 +1,12 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -15,6 +17,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
 
 import model.Ordine;
 import model.OrdineComparator;
@@ -29,13 +33,13 @@ public class CheckOrders extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		Connection connection = null;
-		RequestDispatcher dispatcher = null;
+		Gson json = new Gson();
 
 		try {
 			connection = DbManager.getConnection();
-
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			PrintWriter out = response.getWriter();
 			Statement s = connection.createStatement();
 			OrdiniList ol = new OrdiniList();
 			Ordine o = null;
@@ -85,12 +89,13 @@ public class CheckOrders extends HttpServlet {
 				int id = rs.getInt("id");
 				java.sql.Date dateSql = rs.getDate("data");
 				java.util.Date dateJava = new java.util.Date(dateSql.getTime());
+				
 				double totale = rs.getDouble("totale");
 				int userId = rs.getInt("site_user_id");
 				int stato = rs.getInt("stato_ordine_id");
 				int spedizione = rs.getInt("metodo_spedizione_id");
 				int idIndirizzo = rs.getInt("address_id");
-				o = new Ordine(id, dateJava, totale, userId, stato, spedizione, idIndirizzo);
+				o = new Ordine(id, sdf.format(dateJava), totale, userId, stato, spedizione, idIndirizzo);
 				/* associo ogni ordine ai suoi ordini singoli */
 				for (OrdineSingolo temp : osList) {
 					if (temp.getOrdini_id() == id)
@@ -99,13 +104,10 @@ public class CheckOrders extends HttpServlet {
 				ol.add(o);
 			}
 			Collections.sort(ol.getOrdiniList(), new OrdineComparator());
-			session.setAttribute("ordini", ol);
-			dispatcher = request.getRequestDispatcher("controllaordini.jsp");
-			dispatcher.forward(request, response);
+			Collections.reverse(ol.getOrdiniList());
+			out.write(json.toJson(ol.getOrdiniList()));
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ServletException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();

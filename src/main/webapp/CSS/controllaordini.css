@@ -27,3 +27,18 @@ td{
 	text-align: center;
 	border-bottom: 1px solid grey;
 }
+
+/* SEZIONE FILTRI */
+
+#filtri{
+	margin-bottom: 2rem;
+}
+
+label{
+	font-size: 80%;
+}
+
+.user-search{
+	justify-content: space-between;
+	align-items: center;
+}
