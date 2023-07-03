@@ -35,17 +35,20 @@ public class AddNewsServlet extends HttpServlet {
 		Calendar c = Calendar.getInstance();
 		java.util.Date javaDate = c.getTime();
 		java.sql.Date sqlDate = new Date(javaDate.getTime());
+		
+		if(immagine.equals("")) immagine = null;
+		if(video.equals("")) video = null;
 
 		try {
-			String query = "INSERT INTO novita (titolo, sottotitolo, data, corpo, immagine, video) values(?, ?, ? ?, ?, ?)";
+			String query = "INSERT INTO novita (titolo, sottotitolo, data, corpo, immagine, video) values(?, ?, ?, ?, ?, ?)";
 			connection = DbManager.getConnection();
 			PreparedStatement ps = connection.prepareStatement(query);
 			ps.setString(1, titolo);
 			ps.setString(2,  sottotitolo);
 			ps.setDate(3, sqlDate);
-			ps.setString(2, corpo);
-			ps.setString(3, immagine);
-			ps.setString(4, video);
+			ps.setString(4, corpo);
+			ps.setString(5, immagine);
+			ps.setString(6, video);
 
 			ps.executeUpdate();
 

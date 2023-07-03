@@ -7,6 +7,7 @@
 	<jsp:include page="./Nav.jsp" flush="true"/>
 
 	<% Prodotto p = (Prodotto) request.getAttribute("prodotto");%>
+	<script src="./Script/dynamicCode.js"></script>
 	<script>
 		var disponibilita = '';
 		<%	if(p.getQuantita() == 0){%>
@@ -26,6 +27,8 @@
 			else
 				document.getElementById("disponibilita").style.color = 'green';
 		});
+		
+		document.addEventListener("DOMContentLoaded", dynamicConsigliati("<%=request.getContextPath()%>/ConsigliatiServlet?categoria=<%=p.getCategoria()%>"));
 	</script>
 	<main>
 	
@@ -48,6 +51,14 @@
 				<p><%=p.getDescrizione()%></p>
 			</div>
 		</section>
+		
+		<section id="bottom">
+			<h4>Potrebbero interessarti anche...</h4>
+			<div id="consigliati">
+			
+			</div>
+		</section>
+		
 	</main>
 <jsp:include page="./footer.jsp" flush="true"/>
 </body>
