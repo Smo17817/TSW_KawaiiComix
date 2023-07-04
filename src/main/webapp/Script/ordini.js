@@ -14,7 +14,6 @@ function filterRows() {
 	let endDate = new Date(endDateString);
 	let formattedStartDate = formatDate(startDate);
 	let formattedEndDate = formatDate(endDate);
-	console.log(formattedStartDate);
 
   	for (let i = 0; i < rows.length; i++) {
     	let userId = rows[i].getAttribute("data-utente");

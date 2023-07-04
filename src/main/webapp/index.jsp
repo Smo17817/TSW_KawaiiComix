@@ -6,6 +6,7 @@
 <body>
 <jsp:include page="./Nav.jsp" flush="true"/>
 <script src="./Script/dynamicCode.js"></script>
+<script src="./Script/index.js"></script>
 <script>
 		document.addEventListener("DOMContentLoaded", dynamicIndex("<%=request.getContextPath()%>/IndexServlet"));
 </script>
@@ -44,9 +45,9 @@
 			</div>
 		</div>
 		<div class="sliderNav">
-			<a href="#slide1"></a>
-			<a href="#slide2"></a>
-			<a href="#slide3"></a>
+			<a href="#slide1" onclick="disableVerticalScroll()"></a>
+			<a href="#slide2" onclick="disableVerticalScroll()"></a>
+			<a href="#slide3" onclick="disableVerticalScroll()"></a>
 		</div>
 	</section>
 	

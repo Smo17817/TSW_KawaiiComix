@@ -12,13 +12,13 @@ function totaleParziale(){
 		totParz += costo * quantita;
 		tot += totParz;
 		
-		product.getElementsByClassName("totProd")[i].innerHTML = "&#8364 " + totParz;
+		product.getElementsByClassName("totProd")[i].innerHTML = "&#8364 " + totParz.toFixed(2);
 	}
 	
 	let cassa, spedizione = 10;
 	
 	cassa = document.getElementById("cassa");
-	cassa.getElementsByClassName("tot")[0].innerHTML = "&#8364 " + tot;
+	cassa.getElementsByClassName("tot")[0].innerHTML = "&#8364 " + tot.toFixed(2);
 	if(tot == 0) // se non ci sono elementi nel carrello il totale è 0
 		spedizione = 0;	
 	cassa.getElementsByClassName("totCumul")[0].innerHTML = "&#8364 " + (tot + spedizione).toFixed(2);

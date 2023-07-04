@@ -29,7 +29,7 @@ public class AnnullaOrdineServlet extends HttpServlet {
 			Statement s = connection.createStatement();
 			s.executeUpdate(query);
 			
-			dispatcher = request.getRequestDispatcher("CheckOrders");
+			dispatcher = request.getRequestDispatcher("controllaordini.jsp");
 			dispatcher.forward(request, response);
 		}catch(SQLException e) {
 			e.printStackTrace();

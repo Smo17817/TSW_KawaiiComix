@@ -12,7 +12,7 @@ function dynamicIndex(url) {
 			contenutoHtml += "<a href=\"ProductServlet?isbn=" + prodotto.isbn + "\"><img src=\"" + prodotto.img + "\"> </a>";
 			contenutoHtml += "<div class=\"info\">";
 			contenutoHtml += "<h4>" + prodotto.nome + "</h4>";
-			contenutoHtml += "<p>&#8364 " + prodotto.prezzo + "</p>";
+			contenutoHtml += "<p>&#8364 " + prodotto.prezzo.toFixed(2) + "</p>";
 			contenutoHtml += "<a href=\"carrello.jsp?isbn=" + prodotto.isbn + "\"> Carrello</a>";
 			contenutoHtml += "</div> </div>";
 		}
@@ -35,7 +35,7 @@ function dynamicCart(url) {
 			contenutoHtml += "<td> <button onclick=eliminaRiga(this)><img src=\"./icons/trash.ico\" class=trash></button>";
 			contenutoHtml += "<td> <img class=thumbnail src=\"" + p.img + "\"></td>";
 			contenutoHtml += "<td>" + p.nome + "</td>";
-			contenutoHtml += "<td> <p class=costo>&#8364 " + p.prezzo + "</p> </td>";
+			contenutoHtml += "<td> <p class=costo>&#8364 " + p.prezzo.toFixed(2) + "</p> </td>";
 			contenutoHtml += "<td> <h5> <input type=number min=1 class=quantita onchange=totaleParziale() value=\"1\"> </h5> </td>";
 			contenutoHtml += "<td> <h5 class=totProd> totale </h5> </td>";
 			contenutoHtml += "</tr>";
@@ -91,7 +91,7 @@ function dynamicCatalog(url) {
 			contenutoHtml += "<a href=\"ProductServlet?isbn=" + p.isbn + "\"><img src=\"" + p.img + "\" class=\"trash\"></a>" + "\n";
 			contenutoHtml += "<div class=\"info\">" + "\n";
 			contenutoHtml += "<h4 class=\"pname\">" + p.nome + "</h4>" + "\n";
-			contenutoHtml += "<p> &#8364 " + p.prezzo + "</p>" + "\n";
+			contenutoHtml += "<p> &#8364 " + p.prezzo.toFixed(2) + "</p>" + "\n";
 			contenutoHtml += "<a href=\"carrello.jsp?isbn=" + p.isbn + "\">Carrello</a>" + "\n";
 			contenutoHtml += "</div>" + "\n";
 			contenutoHtml += "</div>" + "\n";
@@ -152,7 +152,7 @@ function dynamicConsigliati(url) {
 			contenutoHtml += "<a href=\"ProductServlet?isbn=" + prodotto.isbn + "\"><img src=\"" + prodotto.img + "\"> </a>";
 			contenutoHtml += "<div class=\"info\">";
 			contenutoHtml += "<h4>" + prodotto.nome + "</h4>";
-			contenutoHtml += "<p>&#8364 " + prodotto.prezzo + "</p>";
+			contenutoHtml += "<p>&#8364 " + prodotto.prezzo.toFixed(2) + "</p>";
 			contenutoHtml += "<a href=\"CartServlet?isbn=" + prodotto.isbn + "\"> Carrello</a>";
 			contenutoHtml += "</div> </div>";
 		}
@@ -180,7 +180,7 @@ function dynamicCheckOrders(url) {
 			for (const os of o.singoli)
 				contenutoHtml += "<p>" + os.prodotto.nome + "</p>";
 			contenutoHtml += "</td>";
-			contenutoHtml += "<td> &#8364 " + o.totale + "</td>";
+			contenutoHtml += "<td> &#8364 " + o.totale.toFixed(2) + "</td>";
 			if (o.stato == 1) stato = "Completato";
 			contenutoHtml += "<td>" + stato + "</td>";
 			contenutoHtml += "<td> <button onclick=\"annullaordine(this)\"> Annulla </button> </td> </tr>";
