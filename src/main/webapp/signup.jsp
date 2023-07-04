@@ -2,12 +2,17 @@
     pageEncoding="ISO-8859-1"%>
 <jsp:include page="./header.jsp" flush="true"/>
 <input type="hidden" id="status" value="<%= request.getAttribute("status")%>">
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link rel ="stylesheet" href="alert/dist/sweetalert.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
 <%String status = (String) request.getAttribute("status");%>
 <script type ="text/javascript">
 	if('<%= status %>' == 'success'){
-		swal("Congratulazione!", "Account creato correttamente!", "success");
+		Swal.fire("Congratulazione!", "Account creato correttamente!", "success");
+	}else if('<%= status %>' == 'duplicato'){
+		Swal.fire("Spiacente!", "Email già presente nel sito","error");
+	}else if('<%= status %>' == 'Invalid_email'){
+		Swal.fire("Spiacente!", "Inserire indirizzo email valido", "error");
 	}
 </script>
 <body>

@@ -3,7 +3,10 @@ package controller;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,11 +28,28 @@ public class SignupServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		Connection connection = null;
 		RequestDispatcher dispatcher = null;
+		
+		String q = "SELECT email_address FROM site_user WHERE email_address=?";
+		connection = DbManager.getConnection();
+		PreparedStatement ps;
+		try {
+			ps = connection.prepareStatement(q);
+			ps.setString(1, email);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				request.setAttribute("status", "duplicato");
+				dispatcher = request.getRequestDispatcher("signup.jsp");
+				dispatcher.forward(request, response);
+				return;
+				}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		String query = "INSERT INTO site_user(nome,cognome,email_address,password) values(?,?,?,?)";
 		try {
-			connection = DbManager.getConnection();
-			PreparedStatement ps = connection.prepareStatement(query);
+			ps = connection.prepareStatement(query);
 			ps.setString(1, nome);
 			ps.setString(2, cognome);
 			ps.setString(3, email);

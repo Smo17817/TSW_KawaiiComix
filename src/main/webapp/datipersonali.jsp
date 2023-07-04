@@ -5,24 +5,25 @@
 		response.sendRedirect("login.jsp");
  %>
 <input type="hidden" id="status" value="<%= request.getAttribute("status")%>">
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link rel ="stylesheet" href="alert/dist/sweetalert.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
 <%String status = (String) request.getAttribute("status");%>
 <script type ="text/javascript">
 	if('<%= status %>' == 'Invalid_nome')
-		swal("Spiacente!", "Inserire nome ", "error");
+		Swal.fire("Spiacente!", "Inserire nome ", "error");
 	else if('<%= status %>' == 'Invalid_cognome')
-	swal("Spiacente!", "Inserire cognome", "error");
+		Swal.fire("Spiacente!", "Inserire cognome", "error");
 	else if('<%= status %>' == 'Invalid_email')
-		swal("Spiacente!", "Inserire email", "error");
+		Swal.fire("Spiacente!", "Inserire email", "error");
 	else if('<%= status %>' == 'Invalid_password')
-		swal("Spiacente!", "Inserire password", "error");
+		Swal.fire("Spiacente!", "Inserire password", "error");
 	else if('<%= status %>' == 'Invalid_password2')
-		swal("Spiacente!", "Le password non combaciano", "error");
+		Swal.fire("Spiacente!", "Le password non combaciano", "error");
 	else if('<%= status %>' == 'success')
-		swal("Congratulazione!", "Dati registrati correttamente", "success");
+		Swal.fire("Congratulazione!", "Dati registrati correttamente", "success");
 	else if('<%= status %>' == 'failed')
-		swal("Siamo spiacenti!", "Dati non registrati , reinserire", "error");
+		Swal.fire("Siamo spiacenti!", "Dati non registrati , reinserire", "error");
 	
 </script>
 <jsp:include page="./header.jsp" flush="true"/>

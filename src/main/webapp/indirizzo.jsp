@@ -7,24 +7,25 @@
  %>
 <% Indirizzo indirizzo = (Indirizzo) session.getAttribute("indirizzo"); %>
 <input type="hidden" id="status" value="<%= request.getAttribute("status")%>">
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link rel ="stylesheet" href="alert/dist/sweetalert.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
 <%String status = (String) request.getAttribute("status");%>
 <script type ="text/javascript">
 	if('<%= status %>' == 'Invalid_address')
-		swal("Spiacente!", "Inserire l'indirizzo", "error");
+		Swal.fire("Spiacente!", "Inserire l'indirizzo", "error");
 	else if('<%= status %>' == 'Invalid_citta')
-		swal("Spiacente!", "Inserire nome città", "error");
+		Swal.fire("Spiacente!", "Inserire nome città", "error");
 	else if('<%= status %>' == 'Invalid_provincia')
-		swal("Spiacente!", "Inserire nome provincia", "error");
+		Swal.fire("Spiacente!", "Inserire nome provincia", "error");
 	else if('<%= status %>' == 'Invalid_cap')
-		swal("Spiacente!", "Inserire CAP valido", "error");
+		Swal.fire("Spiacente!", "Inserire CAP valido", "error");
 	else if('<%= status %>' == 'Invalid_nazione')
-		swal("Spiacente!", "Inserire nazione", "error");
+		Swal.fire("Spiacente!", "Inserire nazione", "error");
 	else if('<%= status %>' == 'success')
-		swal("Congratulazione!", "Dati registrati correttamente", "success");
+		Swal.fire("Congratulazione!", "Dati registrati correttamente", "success");
 	else if('<%= status %>' == 'failed')
-		swal("Siamo spiacenti!", "Dati non registrati , reinserire", "error");
+		Swal.fire("Siamo spiacenti!", "Dati non registrati , reinserire", "error");
 
 	
 		
@@ -51,7 +52,7 @@
 						</div>
 						<div  class="form-row">
 							<label for="cap">CAP:</label>
-							<input type="text" id="cap" placeholder="<%=indirizzo.getCap()%>" name="cap">
+							<input type="text" id="cap" placeholder="<%=indirizzo.getCap()%>" pattern="^[0-9]{5}$"name="cap" placeholder="00000">
 						</div>
 						<div  class="form-row">
 							<label for="nazione">Nazione:</label>
