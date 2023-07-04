@@ -59,6 +59,9 @@
    } else if(currentPage.equals("/controllaordini.jsp")){
 	   cssFile ="controllaordini.css";
 	   AdditionalCss = true;
+   } else if(currentPage.equals("/modificaProdotto.jsp")){
+	   cssFile ="modificaProdotto.css";
+	   AdditionalCss = true;
    }
 %>
 <% if(AdditionalCss){%>

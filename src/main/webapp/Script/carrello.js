@@ -21,7 +21,7 @@ function totaleParziale(){
 	cassa.getElementsByClassName("tot")[0].innerHTML = "&#8364 " + tot;
 	if(tot == 0) // se non ci sono elementi nel carrello il totale è 0
 		spedizione = 0;	
-	cassa.getElementsByClassName("totCumul")[0].innerHTML = "&#8364 " + (tot + spedizione);
+	cassa.getElementsByClassName("totCumul")[0].innerHTML = "&#8364 " + (tot + spedizione).toFixed(2);
 }
 
 function eliminaRiga(button) {

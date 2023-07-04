@@ -13,11 +13,36 @@ function dynamicIndex(url) {
 			contenutoHtml += "<div class=\"info\">";
 			contenutoHtml += "<h4>" + prodotto.nome + "</h4>";
 			contenutoHtml += "<p>&#8364 " + prodotto.prezzo + "</p>";
-			contenutoHtml += "<a href=\"CartServlet?isbn=" + prodotto.isbn + "\"> Carrello</a>";
+			contenutoHtml += "<a href=\"carrello.jsp?isbn=" + prodotto.isbn + "\"> Carrello</a>";
 			contenutoHtml += "</div> </div>";
 		}
 
 		$("#schedeProdotto").append(contenutoHtml);
+	});
+}
+
+function dynamicCart(url) {
+	$.ajax({
+		url: url,
+		type: 'GET',
+		contentType: 'application/json; charset=utf-8'
+	}).done((response) => {
+		response = JSON.parse(response);
+		let contenutoHtml = "";
+
+		for (const p of response) {
+			contenutoHtml += "<tr>";
+			contenutoHtml += "<td> <button onclick=eliminaRiga(this)><img src=\"./icons/trash.ico\" class=trash></button>";
+			contenutoHtml += "<td> <img class=thumbnail src=\"" + p.img + "\"></td>";
+			contenutoHtml += "<td>" + p.nome + "</td>";
+			contenutoHtml += "<td> <p class=costo>&#8364 " + p.prezzo + "</p> </td>";
+			contenutoHtml += "<td> <h5> <input type=number min=1 class=quantita onchange=totaleParziale() value=\"1\"> </h5> </td>";
+			contenutoHtml += "<td> <h5 class=totProd> totale </h5> </td>";
+			contenutoHtml += "</tr>";
+		}
+
+		$("#dinamico").append(contenutoHtml);
+		totaleParziale();
 	});
 }
 
@@ -67,7 +92,7 @@ function dynamicCatalog(url) {
 			contenutoHtml += "<div class=\"info\">" + "\n";
 			contenutoHtml += "<h4 class=\"pname\">" + p.nome + "</h4>" + "\n";
 			contenutoHtml += "<p> &#8364 " + p.prezzo + "</p>" + "\n";
-			contenutoHtml += "<a href=\"CartServlet?isbn=" + p.isbn + "\">Carrello</a>" + "\n";
+			contenutoHtml += "<a href=\"carrello.jsp?isbn=" + p.isbn + "\">Carrello</a>" + "\n";
 			contenutoHtml += "</div>" + "\n";
 			contenutoHtml += "</div>" + "\n";
 		}
@@ -136,7 +161,7 @@ function dynamicConsigliati(url) {
 	});
 }
 
-function dynamicCheckOrders(url){
+function dynamicCheckOrders(url) {
 	$.ajax({
 		url: url,
 		type: 'GET',
@@ -144,23 +169,23 @@ function dynamicCheckOrders(url){
 	}).done((response) => {
 		response = JSON.parse(response);
 		let contenutoHtml = "";
-		let stato ="Annullato";
-		
+		let stato = "Annullato";
+
 		for (const o of response) {
-			contenutoHtml += "<tr data-utente='" + o.userId +"' data-giorno ='" + o.data + "'>";
+			contenutoHtml += "<tr data-utente='" + o.userId + "' data-giorno ='" + o.data + "'>";
 			contenutoHtml += "<td> <h4>" + o.data + "</h4> </td>";
 			contenutoHtml += "<td> <h4>" + o.userId + "</h4> </td>";
 			contenutoHtml += "<td> <h4>" + o.id + "</h4> </td>";
 			contenutoHtml += "<td>";
-			for (const os of o.singoli) 
-				contenutoHtml += "<p>" + os.prodotto.nome +"</p>";
+			for (const os of o.singoli)
+				contenutoHtml += "<p>" + os.prodotto.nome + "</p>";
 			contenutoHtml += "</td>";
 			contenutoHtml += "<td> &#8364 " + o.totale + "</td>";
 			if (o.stato == 1) stato = "Completato";
 			contenutoHtml += "<td>" + stato + "</td>";
 			contenutoHtml += "<td> <button onclick=\"annullaordine(this)\"> Annulla </button> </td> </tr>";
 		}
-	
+
 		$("#container").append(contenutoHtml);
 	});
 }

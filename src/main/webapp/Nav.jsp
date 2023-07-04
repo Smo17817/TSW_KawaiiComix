@@ -31,7 +31,7 @@
 				<li><a href="./profilo.jsp"><img
 						src="./icons/user_person_profile_avatar_icon_190943.ico"
 						alt="avatar utente" /></a></li>
-				<li><a href="CartServlet"><img
+				<li><a href="carrello.jsp"><img
 						src="./icons/shopping-cart_icon-icons.com_65051.ico" alt="" /></a>
 				</li>
 			</ul>

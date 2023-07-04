@@ -1,18 +1,20 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.google.gson.Gson;
 
 import model.Carrello;
 import model.Prodotto;
@@ -26,13 +28,14 @@ public class CartServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		RequestDispatcher dispatcher = null;
 		Carrello carrello = (Carrello) session.getAttribute("carrello");
 		String isbn = request.getParameter("isbn");
 		User user = (User) session.getAttribute("user");
 		Connection connection = null;
+		Gson json = new Gson();
 
 		try {
+			PrintWriter out = response.getWriter();
 			connection = DbManager.getConnection();
 			if (user == null) 
 				response.sendRedirect("login.jsp");
@@ -65,13 +68,11 @@ public class CartServlet extends HttpServlet {
 					}
 				}
 
-				dispatcher = request.getRequestDispatcher("carrello.jsp");
-				dispatcher.forward(request, response);
+				rs.close();
+				out.write(json.toJson(carrello.getCarrello()));
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (ServletException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -25,8 +25,8 @@
  					contenutoHtml += "<img class=\"orderImg\" src=\""+ os.getProdotto().getImg() +"\">";
  					contenutoHtml += "<ul class=\"info\">";	
  					contenutoHtml += "<li> Nome: " + os.getProdotto().getNome() + " x" + os.getQuantita() +"</li>";
- 					contenutoHtml += "<li> Totale Prodotti: &#8364 " + os.getTotParziale() + "</li>";
- 	 				contenutoHtml += "<li> <h4> Totale: &#8364 " + o.getTotale() + "</h4> </li>";
+ 					contenutoHtml += "<li> Totale Prodotti: &#8364 " + String.format("%.2f", os.getTotParziale()) + "</li>";
+ 	 				contenutoHtml += "<li> <h4> Totale: &#8364 " + String.format("%.2f", o.getTotale()) + "</h4> </li>";
  					contenutoHtml += "</ul> </div>";
  				}
  				contenutoHtml += "</div>";	

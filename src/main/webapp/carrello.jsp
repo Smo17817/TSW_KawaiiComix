@@ -9,32 +9,11 @@
 <body>
 	<jsp:include page="./Nav.jsp" flush="true"/>
 	<script src="./Script/carrello.js"></script>
+	<script src="./Script/dynamicCode.js"></script>
 	<script>
-		<% 
-			Carrello carrello = (Carrello) session.getAttribute("carrello");
-			ArrayList<Prodotto> list = (ArrayList<Prodotto>) carrello.getCarrello();
-			
-			String contenutoHtml = "";
-			for(Prodotto p : list){
-				contenutoHtml += "<tr>";
-				contenutoHtml += "<td> <button onclick=eliminaRiga(this)><img src=\"./icons/trash.ico\" class=trash></button>";
-				contenutoHtml += "<td> <img class=thumbnail src=\"" + p.getImg() + "\"></td>";
-				contenutoHtml += "<td>" + p.getNome() + "</td>";
-				contenutoHtml += "<td> <p class=costo>&#8364 " + p.getPrezzo() + "</p> </td>";
-				contenutoHtml += "<td> <h5> <input type=number min=1 class=quantita onchange=totaleParziale() value=\"1\"> </h5> </td>";
-				contenutoHtml += "<td> <h5 class=totProd> totale </h5> </td>";
-				contenutoHtml += "</tr>";
-			}			
-		%>
-		
-		const content = '<%=contenutoHtml.replace("'", "\\'").replace("\n", "\\n")%>';
-		
-		$(document).ready(function(){
-			document.getElementById("dinamico").innerHTML = content;
-		});
-		document.addEventListener("DOMContentLoaded", function() {
-		    totaleParziale();
-		});
+
+		document.addEventListener("DOMContentLoaded", dynamicCart("<%=request.getContextPath()%>/CartServlet?isbn=<%=request.getParameter("isbn")%>")); 	
+	
 	</script>
 	
 	<main>
