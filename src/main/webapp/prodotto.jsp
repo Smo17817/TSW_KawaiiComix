@@ -43,7 +43,7 @@
 					<p>Genere: <%=p.getGenere()%><p>
 					<p>Categoria: <%=p.getCategoria()%></p>
 					<h3 id="disponibilita"></h3>
-					<a href="CartServlet?isbn=<%=p.getIsbn()%>"> Aggiungi al Carrello</a>
+					<a href="carrello.jsp?isbn=<%=p.getIsbn()%>"> Aggiungi al Carrello</a>
 				</div>
 			</div>
 			<div class = "descrizione">
