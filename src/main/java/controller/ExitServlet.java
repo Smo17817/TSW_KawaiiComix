@@ -37,14 +37,10 @@ public class ExitServlet extends HttpServlet {
 
 			for (String isbn : isbnList) {
 				String query = "INSERT INTO carrello_prodotto (carrello_id , prodotto_isbn) VALUES (?,?)";
-				try {
-					PreparedStatement ps = connection.prepareStatement(query);
-					ps.setInt(1, carrello.getId());
-					ps.setString(2, isbn);
-					ps.executeUpdate();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				PreparedStatement ps = connection.prepareStatement(query);
+				ps.setInt(1, carrello.getId());
+				ps.setString(2, isbn);
+				ps.executeUpdate();
 			}
 
 			session.invalidate(); // Invalida la sessione, rimuovendo tutti gli attributi ad essa associati
