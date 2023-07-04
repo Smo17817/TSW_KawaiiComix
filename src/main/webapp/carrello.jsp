@@ -4,7 +4,7 @@
  <% if(session.getAttribute("user")==null)
 		response.sendRedirect("login.jsp");
  %>
- 
+ <!--  COMMENTOOOOOOOOOOOOOOOOOOOOOOOOOOOOO -->
 <jsp:include page="./header.jsp" flush="true"/>
 <body>
 	<jsp:include page="./Nav.jsp" flush="true"/>

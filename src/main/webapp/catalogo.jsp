@@ -4,7 +4,7 @@
 <%@ page import="java.util.*,model.Prodotto,model.Catalogo"%>
 <%@ page import="com.google.gson.Gson"%>
 
-
+<!--  COMMENTOOOOOOOOOOOOOOOOOOOOOOOOOOOOO -->
 
 <jsp:include page="./header.jsp" flush="true" />
 <body>
