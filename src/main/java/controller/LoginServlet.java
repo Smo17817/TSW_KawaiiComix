@@ -29,6 +29,7 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String address = "indirizzo";
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		HttpSession session = request.getSession();
@@ -56,16 +57,16 @@ public class LoginServlet extends HttpServlet {
 
 				/* quando si fa il log in, vengono caricate anche le info sull'indirizzo */
 				if (rs.next()) {
-					String indirizzo = rs.getString("indirizzo");
+					String indirizzo = rs.getString(address);
 					String cap = rs.getString("codice_postale");
 					String citta = rs.getString("citta");
 					String provincia = rs.getString("provincia");
 					String nazione = rs.getString("nazione");
 					Indirizzo i = new Indirizzo(indirizzo, cap, citta, provincia, nazione);
-					session.setAttribute("indirizzo", i);
+					session.setAttribute(address, i);
 				} else {
 					/* se l'indirizzo è inesistente, ne viene creato uno di default (serve per i placeholder */
-					session.setAttribute("indirizzo", new Indirizzo("Inserisci i tuoi dati", "", "", "", ""));
+					session.setAttribute(address, new Indirizzo("Inserisci i tuoi dati", "", "", "", ""));
 				}
 				
 				query = "SELECT * FROM carrello WHERE user_id=" + id;

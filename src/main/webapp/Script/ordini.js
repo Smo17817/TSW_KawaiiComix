@@ -15,13 +15,13 @@ function filterRows() {
 	let formattedStartDate = formatDate(startDate);
 	let formattedEndDate = formatDate(endDate);
 
-  	for (let i = 0; i < rows.length; i++) {
-    	let userId = rows[i].getAttribute("data-utente");
-    	let giorno = rows[i].getAttribute("data-giorno");
+  	for (const row of rows) {
+    	let userId = row.getAttribute("data-utente");
+    	let giorno = row.getAttribute("data-giorno");
     	if (userId.toLowerCase().includes(input) && giorno >= formattedStartDate && giorno <= formattedEndDate) {
-    		rows[i].style.display = "";
+    		row.style.display = "";
     	} else {
-      		rows[i].style.display = "none";
+      		row.style.display = "none";
     	}
   	}
 }

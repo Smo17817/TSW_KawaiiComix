@@ -51,7 +51,8 @@ public class AddNewsServlet extends HttpServlet {
 			ps.setString(6, video);
 
 			ps.executeUpdate();
-
+			
+			ps.close();
 			dispatcher = request.getRequestDispatcher("aggiungiNovita.jsp");
 			dispatcher.forward(request, response);
 		} catch (SQLException e) {

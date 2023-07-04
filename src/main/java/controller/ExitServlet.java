@@ -23,40 +23,36 @@ public class ExitServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//prima di invalidare la sessione ci prendiamo i dati dal carrello  
+		// prima di invalidare la sessione ci prendiamo i dati dal carrello
 		HttpSession session = request.getSession(false);
 		Connection connection = null;
 		Carrello carrello = (Carrello) session.getAttribute("carrello");
-		ArrayList<Prodotto>  prodotti =  (ArrayList<Prodotto>) carrello.getCarrello(); 
+		ArrayList<Prodotto> prodotti = (ArrayList<Prodotto>) carrello.getCarrello();
 		ArrayList<String> isbnList = new ArrayList<String>();
-		for(Prodotto prod : prodotti) {
+		for (Prodotto prod : prodotti) {
 			isbnList.add(prod.getIsbn());
 		}
-		
-		connection = DbManager.getConnection();
-		
-		for(String isbn : isbnList) {
-			String query = "INSERT INTO carrello_prodotto (carrello_id , prodotto_isbn) VALUES (?,?)";
-			try {
-				PreparedStatement ps = connection.prepareStatement(query);
-				ps.setInt(1, carrello.getId());
-				ps.setString(2, isbn);
-				ps.executeUpdate();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		try {
+			connection = DbManager.getConnection();
+
+			for (String isbn : isbnList) {
+				String query = "INSERT INTO carrello_prodotto (carrello_id , prodotto_isbn) VALUES (?,?)";
+				try {
+					PreparedStatement ps = connection.prepareStatement(query);
+					ps.setInt(1, carrello.getId());
+					ps.setString(2, isbn);
+					ps.executeUpdate();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
-		}
-		try {
+
+			session.invalidate(); // Invalida la sessione, rimuovendo tutti gli attributi ad essa associati
+
 			connection.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		session.invalidate(); // Invalida la sessione, rimuovendo tutti gli attributi ad essa associati
-	
-		try {
 			response.sendRedirect("login.jsp"); // Reindirizza all'URL specificato (pagina di login nel nostro esempio)
+		} catch (SQLException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

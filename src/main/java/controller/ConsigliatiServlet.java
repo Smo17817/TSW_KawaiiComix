@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -49,7 +50,7 @@ public class ConsigliatiServlet extends HttpServlet {
 				Prodotto prodotto = new Prodotto(isbn, nome, descrizione, img, genere, categoria, quantita, prezzo);
 				consigliati.add(prodotto);
 			}
-			consigliati = prodottiCasuali(consigliati, consigliati.size());
+			consigliati = (ArrayList<Prodotto>) prodottiCasuali(consigliati, consigliati.size());
 			out.write(json.toJson(consigliati));
 			rs.close();
 
@@ -65,12 +66,14 @@ public class ConsigliatiServlet extends HttpServlet {
 			}
 		}
 	}
-	public ArrayList<Prodotto> prodottiCasuali(ArrayList<Prodotto> prodotti, int quantita) {
-		if(quantita > 5) quantita = 5;
-        ArrayList<Prodotto> prodottiCasuali = new ArrayList<>(5);
+	public List<Prodotto> prodottiCasuali(List<Prodotto> prodotti, int quantita) {
+		if(quantita > 5) 
+			quantita = 5;
+        
+		List<Prodotto> prodottiCasuali = new ArrayList<>(5);
         ArrayList<Prodotto> copiaElementi = new ArrayList<>(prodotti);
 
-        Collections.shuffle(copiaElementi); // Mischio l'ArrayList
+        Collections.shuffle(copiaElementi);
 
         for (int i = 0; i < quantita; i++) {
             prodottiCasuali.add(copiaElementi.get(i));
