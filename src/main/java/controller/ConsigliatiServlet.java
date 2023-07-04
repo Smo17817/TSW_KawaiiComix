@@ -53,11 +53,11 @@ public class ConsigliatiServlet extends HttpServlet {
 			out.write(json.toJson(consigliati));
 			rs.close();
 
-		} catch (
-
-		SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally {
 			try {
 				connection.close();
 			} catch (SQLException e) {

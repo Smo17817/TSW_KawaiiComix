@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,7 +25,6 @@ public class EditProductServlet extends HttpServlet {
 		
 		try {
 			String prodotto = request.getParameter("scelta");
-			System.out.println(prodotto);
 			String nome = request.getParameter("nome");
 			String descrizione = request.getParameter("descrizione");
 			String immagine = request.getParameter("immagine");
@@ -58,7 +56,7 @@ public class EditProductServlet extends HttpServlet {
 			ps.setInt(5, quantita);
 			ps.setString(6, categoria);
 			ps.setString(7, genere);
-			ps.setString(8, prodotto);
+			ps.setString(8, isbn);
 			ps.executeUpdate();
 			
 

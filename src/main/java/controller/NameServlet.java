@@ -16,11 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import model.Prodotto;
-
-/**
- * Servlet implementation class NameServlet
- */
 @WebServlet("/NameServlet")
 public class NameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
