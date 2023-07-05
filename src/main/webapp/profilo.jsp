@@ -19,6 +19,7 @@ else if (user.getId() == 1) {
 				let contenutoHtml = '';
 				contenutoHtml += '<li> <img class=\"adimg\" src="./icons/upload.ico"> <a href="aggiungiProdotto.jsp"> Aggiungi Prodotto <p> (ADMIN) </p></a> </li>';
 				contenutoHtml += '<li> <img class=\"adimg\" src="./icons/edit.ico"> <a href="modificaProdotto.jsp"> Modifica Prodotto <p> (ADMIN) </p></a> </li>';
+				contenutoHtml += '<li> <img class=\"adimg\" src="./icons/delete.ico"> <a href="eliminaProdotto.jsp"> Elimina Prodotto <p> (ADMIN) </p></a> </li>';
 				contenutoHtml += '<li> <img class=\"adimg\" src="./icons/news.ico"> <a href="aggiungiNovita.jsp"> Aggiungi Notizie <p> (ADMIN) </p></a> </li>';
 				contenutoHtml += '<li> <img class=\"adimg\" src="./icons/logistic.ico"> <a href="controllaordini.jsp"> Controlla Ordini <p> (ADMIN) </p> </a> </li>';
 				document.getElementById("admin").innerHTML = contenutoHtml;

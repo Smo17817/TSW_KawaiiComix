@@ -74,14 +74,12 @@ public class AddOrdineServlet extends HttpServlet {
 			}
 			
 			for (Prodotto p : carrello.getCarrello()) {
-				query = "INSERT INTO ordine_singolo (quantità, totale_parziale, ordini_id, prodotti_isbn) values("
-						+ p.getQuantita() + ", " + (p.getPrezzo() * p.getQuantita()) + ", " + ordine_id + ", "
-						+ p.getIsbn() + ")";
-
+				query = "INSERT INTO ordine_singolo (quantità, totale_parziale, ordini_id, prodotti_isbn, prodotti_nome, prodotti_img) values("
+						+ p.getQuantita() + ", " + (p.getPrezzo() * p.getQuantita()) + ", " + ordine_id + ", '"
+						+ p.getIsbn() + "', '" + p.getNome() + "', '" + p.getImg() + "')";
+				
 				s.executeUpdate(query);
 			}
-
-			
 			carrello.empty();
 			session.setAttribute("carrello", carrello);
 

@@ -44,24 +44,9 @@ public class CheckOrders extends HttpServlet {
 			OrdineSingolo os = null;
 			Prodotto p = null;
 
-			String query = "SELECT * FROM prodotti";
-			ResultSet rs = s.executeQuery(query);
-			ArrayList<Prodotto> prodotti = new ArrayList<>();
-			while (rs.next()) {
-				String isbn = rs.getString("isbn");
-				String nome = rs.getString("nome");
-				String descrizione = rs.getString("descrizione");
-				String img = rs.getString("immagine_prod");
-				String genere = rs.getString("genere_nome");
-				String categoria = rs.getString("categoria_nome");
-				int quantitaProd = rs.getInt("quantita");
-				double prezzo = rs.getInt("prezzo");
-				p = new Prodotto(isbn, nome, descrizione, img, genere, categoria, quantitaProd, prezzo);
-				prodotti.add(p);
-			}
 
-			query = "SELECT * FROM ordine_singolo";
-			rs = s.executeQuery(query);
+			String query = "SELECT * FROM ordine_singolo";
+			ResultSet rs = s.executeQuery(query);
 			ArrayList<OrdineSingolo> osList = new ArrayList<>();
 			/* ricerca di tutti gli ordini singoli del database */
 			while (rs.next()) {
@@ -70,13 +55,10 @@ public class CheckOrders extends HttpServlet {
 				double totParziale = rs.getDouble("totale_parziale");
 				int ordini_id = rs.getInt("ordini_id");
 				String prodIsbn = rs.getString("prodotti_isbn");
+				String prodNome = rs.getString("prodotti_nome");
+				String prodImg = rs.getString("prodotti_img");
 
-				/* Cerco il prodotto che ha l'isbn dell'ordine singolo */
-				for (Prodotto prod : prodotti) {
-					if (prod.getIsbn().equals(prodIsbn))
-						p = prod;
-				}
-				os = new OrdineSingolo(idSingle, quantita, totParziale, ordini_id, p);
+				os = new OrdineSingolo(idSingle, quantita, totParziale, ordini_id, prodIsbn, prodNome, prodImg);
 				osList.add(os);
 			}
 

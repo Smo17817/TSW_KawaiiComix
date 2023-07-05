@@ -178,7 +178,7 @@ function dynamicCheckOrders(url) {
 			contenutoHtml += "<td> <h4>" + o.id + "</h4> </td>";
 			contenutoHtml += "<td>";
 			for (const os of o.singoli)
-				contenutoHtml += "<p>" + os.prodotto.nome + "</p>";
+				contenutoHtml += "<p>" + os.prodottoNome + "</p>";
 			contenutoHtml += "</td>";
 			contenutoHtml += "<td> &#8364 " + o.totale.toFixed(2) + "</td>";
 			if (o.stato == 1) stato = "Completato";

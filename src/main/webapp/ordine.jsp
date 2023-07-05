@@ -22,9 +22,9 @@
  				contenutoHtml += "<h3> ID: " + o.getId() + " - Data: " +  o.getData() + " (" + stato +") </h3>";
  				for(OrdineSingolo os : o.getSingoli()){
  					contenutoHtml += "<div class=\"product\">";
- 					contenutoHtml += "<img class=\"orderImg\" src=\""+ os.getProdotto().getImg() +"\">";
+ 					contenutoHtml += "<img class=\"orderImg\" src=\""+ os.getProdottoImg() +"\">";
  					contenutoHtml += "<ul class=\"info\">";	
- 					contenutoHtml += "<li> Nome: " + os.getProdotto().getNome() + " x" + os.getQuantita() +"</li>";
+ 					contenutoHtml += "<li> Nome: " + os.getProdottoNome() + " x" + os.getQuantita() +"</li>";
  					contenutoHtml += "<li> Totale Prodotti: &#8364 " + String.format("%.2f", os.getTotParziale()) + "</li>";
  	 				contenutoHtml += "<li> <h4> Totale: &#8364 " + String.format("%.2f", o.getTotale()) + "</h4> </li>";
  					contenutoHtml += "</ul> </div>";
