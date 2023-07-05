@@ -32,7 +32,7 @@ function dynamicCart(url) {
 
 		for (const p of response) {
 			contenutoHtml += "<tr>";
-			contenutoHtml += "<td> <button onclick=eliminaRiga(this)><img src=\"./icons/trash.ico\" class=trash></button>";
+			contenutoHtml += "<td> <button data-isbn='"+ p.isbn +"'onclick=eliminaRiga(this)><img src=\"./icons/trash.ico\" class=trash></button>";
 			contenutoHtml += "<td> <img class=thumbnail src=\"" + p.img + "\"></td>";
 			contenutoHtml += "<td>" + p.nome + "</td>";
 			contenutoHtml += "<td> <p class=costo>&#8364 " + p.prezzo.toFixed(2) + "</p> </td>";
@@ -40,7 +40,6 @@ function dynamicCart(url) {
 			contenutoHtml += "<td> <h5 class=totProd> totale </h5> </td>";
 			contenutoHtml += "</tr>";
 		}
-
 		$("#dinamico").append(contenutoHtml);
 		totaleParziale();
 	});

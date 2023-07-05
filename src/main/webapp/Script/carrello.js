@@ -12,7 +12,7 @@ function totaleParziale(){
 		totParz += costo * quantita;
 		tot += totParz;
 		
-		product.getElementsByClassName("totProd")[i].innerHTML = "&#8364 " + totParz.toFixed(2);
+		product.getElementsByClassName("totProd")[i].innerHTML = "&#8364 " + totParz.toFixed(2); 
 	}
 	
 	let cassa, spedizione = 10;
@@ -25,10 +25,29 @@ function totaleParziale(){
 }
 
 function eliminaRiga(button) {
-	let row = button.parentNode.parentNode;
-	row.parentNode.removeChild(row);
-	totaleParziale();
+  let row = button.parentNode.parentNode;
+  let idProdotto = button.getAttribute("data-isbn");
+  var pathArray = window.location.pathname.split('/');
+  var contextPath = '/' + pathArray[1];
+  var url = contextPath + "/RimuoviProdotto";
+
+  $.ajax({
+    url: url,
+    type: 'POST',
+    data: {isbn: idProdotto },
+    success: function(response) {
+      // Rimuovi la riga del prodotto dal carrello nell'interfaccia utente
+      row.parentNode.removeChild(row);
+
+      // Aggiorna i totali
+      totaleParziale();
+    },
+    error: function(xhr, status, error) {
+      console.error(error);
+    }
+  });
 }
+
 
 function checkout(url) {
 	let element = document.getElementsByClassName("totCumul")[0];

@@ -10,7 +10,7 @@
 	<script src="./Script/carrello.js"></script>
 	<script src="./Script/dynamicCode.js"></script>
 	<script>
-		document.addEventListener("DOMContentLoaded", dynamicCart("<%=request.getContextPath()%>/CartServlet?isbn=<%=request.getParameter("isbn")%>")); 	
+		document.addEventListener("DOMContentLoaded", dynamicCart("<%=request.getContextPath()%>/CartServlet?isbn=<%=request.getParameter("isbn")%>"));
 	</script>
 	
 	<main>
