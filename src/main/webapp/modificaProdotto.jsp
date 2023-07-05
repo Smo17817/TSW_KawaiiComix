@@ -18,7 +18,7 @@
 </script>
 	<section id="new_product">
 		<div class="form-wrapper">
-			<form enctype ="multipart/form-data" action="EditProductServlet" method="POST">
+			<form enctype ="multipart/form-data" action="EditProductServlet" method="GET">
 				<h2>Modifica un Prodotto</h2>
 				<div class="form-row">
 					<label for="scelta">Prodotto: </label>
@@ -45,6 +45,57 @@
 				<div class="form-row">
 					<label for="quantita">Quantità: </label>
 					<input type="number" min="0" name="quantita" required>
+				</div>
+				<div class="form-row">
+					<label for="genere">Genere: </label>
+					<select name="genere" required>
+						<option>-scegliere genere-</option>
+						<option>Avventura</option>
+						<option>Azione</option>
+						<option>Combattimento</option>
+						<option>Commedia</option>
+						<option>Crimine</option>
+						<option>Drammatico</option>
+						<option>Fantascienza</option>
+						<option>Fantastico</option>
+						<option>Fantasy</option>
+						<option>Gang Giovanili</option>
+						<option>Giallo</option>
+						<option>Guerra</option>
+						<option>Horror</option>
+						<option>Magia</option>
+						<option>Mecha</option>
+						<option>Mistero</option>
+						<option>Musicale</option>
+						<option>Poliziesco</option>
+						<option>Psicologico</option>
+						<option>Scolastico</option>
+						<option>Sentimentale</option>
+						<option>Sportivo</option>
+						<option>Storico</option>
+						<option>Supereroi</option>
+						<option>Thriller</option>					
+					</select>
+				</div>
+				<div class="form-row">
+					<label for="categoria">Categoria: </label>
+						<select name="categoria" required>
+							<option>-scegliere categoria-</option>
+							<option>Art Book</option>
+							<option>Character Book</option>
+							<option>Josei</option>
+							<option>Kodomo</option>
+							<option>Manga</option>
+							<option>Manga Italiani</option>
+							<option>Manhwa</option>
+							<option>Novel</option>
+							<option>Seinen</option>
+							<option>Shoujo</option>
+							<option>Shoujo-Ai</option>
+							<option>Shonen</option>
+							<option>Web Comic</option>	
+							<option>Manga Magazine</option>			
+					</select>
 				</div>
 				<div class="sub-class"> 
 					<button type="submit">Modifica</button>

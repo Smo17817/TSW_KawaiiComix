@@ -19,30 +19,28 @@ public class EditProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Connection connection = null;
 		RequestDispatcher dispatcher = null;
 		
 		try {
-			String prodotto = request.getParameter("scelta");
+			String prodotto = (String) request.getParameter("scelta");
 			String nome = request.getParameter("nome");
 			String descrizione = request.getParameter("descrizione");
 			String immagine = request.getParameter("immagine");
 			double prezzo = Double.parseDouble(request.getParameter("prezzo"));
 			int quantita = Integer.parseInt(request.getParameter("quantita"));
+			String genere = request.getParameter("genere");
+			String categoria = request.getParameter("categoria");
 			
 			connection = DbManager.getConnection();
-			String query = "SELECT isbn FROM prodotti WHERE nome = " + prodotto;
+			String query = "SELECT isbn FROM prodotti WHERE nome = '" + prodotto + "'";
 			Statement s = connection.createStatement();
 			ResultSet rs = s.executeQuery(query);
 			
 			rs.next();
 			String isbn = rs.getString("isbn");
-			String genere = rs.getString("genere_nome");
-			String categoria = rs.getString("categoria_nome");
-			
-				
-			
+					
 			query = "UPDATE prodotti "
 					+ "SET nome=?, descrizione=?, immagine_prod=?, prezzo=?, quantita=?, categoria_nome=?, genere_nome=? "
 					+ "WHERE isbn=?";	
@@ -60,7 +58,7 @@ public class EditProductServlet extends HttpServlet {
 			ps.executeUpdate();
 			
 
-			dispatcher = request.getRequestDispatcher("modificaProdotto.jsp");
+			dispatcher = request.getRequestDispatcher("profilo.jsp");
 			dispatcher.forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -78,7 +76,9 @@ public class EditProductServlet extends HttpServlet {
 			}
 		}
 	}
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
 
 
 }

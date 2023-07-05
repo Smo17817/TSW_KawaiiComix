@@ -38,8 +38,9 @@ html {
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
-	width: 70%;
+	width: 80%;
 	margin: auto;
+	margin-top: 2rem;
 	padding: 2rem;
 	flex-wrap: wrap;
 }
