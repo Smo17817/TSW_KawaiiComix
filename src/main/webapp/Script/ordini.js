@@ -1,3 +1,4 @@
+
 function annullaordine(button) {
 	let tr = button.parentNode.parentNode;
 	let id = tr.getElementsByTagName("td")[2].getElementsByTagName("h4")[0].innerText;

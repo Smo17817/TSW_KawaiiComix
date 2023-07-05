@@ -21,7 +21,7 @@ function dynamicIndex(url) {
 	});
 }
 
-function dynamicCart(url) { //COMMENTOOOOOOOOOOOOOOOOOOOOO
+function dynamicCart(url) {
 	$.ajax({
 		url: url,
 		type: 'GET',

@@ -11,7 +11,6 @@
 		document.addEventListener("DOMContentLoaded", dynamicIndex("<%=request.getContextPath()%>/IndexServlet"));
 </script>
 <main>
-<!--  COMMENTOOOOOOOOOOOOOOOOOOOOOOOOOOOOO -->
 	<section class="banner">
 	<div class="slider">
 			<div class="content" id="slide1">

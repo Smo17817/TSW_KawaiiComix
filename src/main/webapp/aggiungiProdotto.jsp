@@ -7,8 +7,9 @@
 		response.sendRedirect("login.jsp");
  %>
 <input type="hidden" id="status" value="<%= request.getAttribute("status")%>">
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link rel ="stylesheet" href="alert/dist/sweetalert.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
 <jsp:include page="./header.jsp" flush="true"/>
  <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -23,7 +24,7 @@
           var fileExt = fileName.substring(fileName.lastIndexOf(".")).toLowerCase();
 
           if (!(fileExt === ".jpg" || fileExt === ".png")) {
-        	  swal("Spiacente!","Inserire formato valido(.jpg,.png)","error");
+        	  Swal.fire("Spiacente!","Inserire formato valido(.jpg,.png)","error");
         	  fileInput.value = "";
           }
         }

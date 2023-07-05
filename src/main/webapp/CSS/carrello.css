@@ -1,5 +1,15 @@
 @charset "ISO-8859-1";
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
 main{
 	width: 100%;
 	min-height: 68.6vh;

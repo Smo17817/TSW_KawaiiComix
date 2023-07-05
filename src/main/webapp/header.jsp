@@ -62,7 +62,7 @@
    } else if(currentPage.equals("/modificaProdotto.jsp")){
 	   cssFile ="modificaProdotto.css";
 	   AdditionalCss = true;
-   } else if(currentPage.equals("/richiestapassword.jsp")){
+   }else if(currentPage.equals("/richiestapassword.jsp")){
 	   cssFile ="richiestapassword.css";
 	   AdditionalCss = true;
    }  else if(currentPage.equals("/eliminaProdotto.jsp")){
