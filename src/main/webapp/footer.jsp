@@ -4,7 +4,7 @@
 <body>
 	<footer>
 		<div class="footer-content">
-			<h3> KawaiiComix</h3>
+			<h3> Kawaii Comix</h3>
 			<p>Progetto per esame di Tecnologie e Software per il Web</p>
 			<ul class="socials">
 				<li><a href="#"><i class="fa fa-facebook"></i></a></li>

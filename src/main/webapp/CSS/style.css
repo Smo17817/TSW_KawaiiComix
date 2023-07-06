@@ -59,8 +59,17 @@ nav ul {
 }
 
 #logo {
-	flex: 2 1 40rem;
+	height: 10rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
 	font-family: "Pattaya", sans-serif;
+	background: url('../icons/kcback.png');
+	background-repeat: no-repeat;
+	background-size: 10rem;
+	background-position: center;
 }
 
 .utilities {

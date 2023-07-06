@@ -4,7 +4,7 @@
 <body>
 	<header class="main-head">
 		<nav>
-			<h1 id="logo">KawaiiComix</h1>
+			<h1 id="logo">Kawaii Comix</h1>
 			<ul class="links">
 				<li><a href="index.jsp">Home</a></li>
 				<li><a href="catalogo.jsp">Catalogo</a></li>
