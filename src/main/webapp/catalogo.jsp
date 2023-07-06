@@ -33,12 +33,12 @@
 				</table>
 
 			</div>
-		</section>
+		
 
 		<section id="prodotti">
 			<div id="schedeProdotto"></div>
 		</section>
-
+	</section>
 	</main>
 	<jsp:include page="./footer.jsp" flush="true" />
 </body>

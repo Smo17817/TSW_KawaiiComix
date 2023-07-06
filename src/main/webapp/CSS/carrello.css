@@ -12,7 +12,7 @@ html {
 
 main{
 	width: 100%;
-	min-height: 68.6vh;
+	min-height: 71.65vh;
 }
 
 h2{
@@ -25,10 +25,12 @@ h2{
 }
 
 table{
+	border-radius: 12px;
 	width: 100%;
 	border-collapse: collapse;
 	table-layout: fixed;
 	white-space: nowrap;
+	background-color: rgba(255, 255, 255, 0.8);
 }
 
 thead{
@@ -68,6 +70,7 @@ td{
 	float: right;
 	margin: 0rem 2rem 5rem 3rem;
 	box-shadow: 0.5em 1em 0.3em rgba(1, 2, 68, 0.2);
+	background-color: rgba(255, 255, 255, 0.8);
 }
 
 

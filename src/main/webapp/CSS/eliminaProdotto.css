@@ -6,10 +6,11 @@ html {
 
 body{
 	font-size: 2rem;
+	overflow-y: hide;
 }
 
 #new_product{
-    min-height: 68.4vh;
+    min-height: 71.65vh;
 	display:flex;
 	align-items: center;
 	justify-content: center; 

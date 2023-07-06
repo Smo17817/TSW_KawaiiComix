@@ -11,7 +11,7 @@ body > h2{
 
 .ordine{
 	margin: 5rem 3rem;
-	background: #fff;
+	background-color: rgba(255, 255, 255, 0.8);
 	border-radius: 12px;
 	box-shadow: 1em 2em 2.5em rgba(1, 2, 68, 0.08);
 }
@@ -19,6 +19,11 @@ body > h2{
 	padding: 1rem 3rem;
 	background: #ff6f88;
 }
+
+.ordine > h4{
+	padding: 2rem 3rem;
+}
+
 
 .product{
 	display: flex;

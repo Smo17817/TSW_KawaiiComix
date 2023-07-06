@@ -13,10 +13,10 @@ body {
 }
 
 #articles {
-	min-height: 90vh;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+	width: 100vw;
 }
 
 #scheda-news h2 {
@@ -24,15 +24,15 @@ body {
 }
 
 .scheda {
-	min-height: 50rem;
-	width: 80vw;
+	min-height: 47rem;
+	width: 90vw;
 	padding: 2rem 4rem;
 	border-radius: 4rem;
-	margin-top: 2rem;
+	margin: 2rem 5rem;
 	position: relative;
 	background-color: #fff;
-	box-shadow: 3px 6px 14px #0000001a;
-	border-top: 5px solid #ff1552;
+	box-shadow: 1rem 1rem 1.5rem rgba(1, 2, 68, 0.2);
+	border-top: 5px solid #b71543;
 }
 
 .scheda img {
@@ -42,7 +42,6 @@ body {
 }
 
 /* IFRAME */
-
 .video-container {
 	position: relative;
 	width: 100%;
