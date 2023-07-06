@@ -1,83 +1,88 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 html {
-  font-size: 62.5%;
+	font-size: 62.5%;
 }
 
 h1 {
-  font-size: 2.6rem;
+	font-size: 2.6rem;
 }
 
-li,
-button,
-label,
-input,
-p {
-  font-size: 2rem;
+li, button, label, input, p {
+	font-size: 2rem;
 }
 
 h2 {
-  font-size: 4.8rem;
+	font-size: 4.8rem;
 }
 
 h3 {
-  font-size: 3rem;
-  font-weight: normal;
+	font-size: 3rem;
+	font-weight: normal;
 }
 
-h4,
-h5 {
-  font-size: 2.8rem;
+h4, h5 {
+	font-size: 2.8rem;
 }
 
+main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 80vh;
+}
 
-#login{
-	min-height: 90vh;
+#login {
+	width: 70rem;
+	height: auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	position: relative;
-	
+	background-color: rgba(255, 255, 255, 0.8);
+	box-shadow: 0.5em 0.3em 1em rgba(1, 2, 68, 0.1);
+	border-radius: 12px;
 }
 
-#login-img{
+#login-img {
 	display: flex;
 	justify-content: center;
 	margin-bottom: 3rem;
 }
 
-#login-img img{
-	height: 30%;
-	position: absolute;
-	top: 5%;
+#login-img img {
+	margin: 0 3rem;
+	margin-top: 5rem;
+	position: relative;
+	border-radius: 12px;
+	height: 40rem;
 }
 
-#login h3{
+#login h3 {
 	padding: 2rem;
 }
 
-.login-form{
+.login-form {
 	display: flex;
 	flex-direction: column;
-	align-items:  center;
-	width: 50%;
+	align-items: center;
+	width: 70%;
 }
 
-.login-form input{
+.login-form input {
 	padding: 1.5rem 4rem;
-	margin : 1rem;
+	margin: 1rem;
 }
 
-.login-form button{
+.login-form button {
 	border: none;
 	font-size: 1.8rem;
 	width: 20%;
-	padding : 1rem;
+	padding: 1rem;
 	margin: 1rem;
 	border-radius: 2rem;
 	background-color: #ff6f88;
@@ -85,19 +90,18 @@ h5 {
 	transition: background 0.5s ease-in-out;
 }
 
-.login-form button:hover{
-	background:#c83c54;
-
-}	
-	
-.links{
- 	width: 30%;
- 	margin-top: 2rem;
- 	display: flex;
+.login-form button:hover {
+	background: #c83c54;
 }
 
+.links {
+	width: 50%;
+	margin: 2rem;
+	margin-bottom: 5rem;
+	display: flex;
+	justify-content: space-between;
+}
 
-
- .links p{
- 	text-align: center;
- }
+.links p {
+	text-align: center;
+}

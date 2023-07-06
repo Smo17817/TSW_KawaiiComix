@@ -45,8 +45,7 @@ html {
 	align-items: center;
 	margin : auto;
 	flex : 1 0 100%;
-	scroll-snap-align: start;
-	
+	scroll-snap-align: start;	
 }
 
 .textbox{

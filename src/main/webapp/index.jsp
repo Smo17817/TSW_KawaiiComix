@@ -45,9 +45,9 @@
 			</div>
 		</div>
 		<div class="sliderNav">
-			<a href="#slide1" onclick="disableVerticalScroll()"></a>
-			<a href="#slide2" onclick="disableVerticalScroll()"></a>
-			<a href="#slide3" onclick="disableVerticalScroll()"></a>
+			<a href="#slide1" onclick="scrollSenzaOffset(event)"></a>
+			<a href="#slide2" onclick="scrollSenzaOffset(event)"></a>
+			<a href="#slide3" onclick="scrollSenzaOffset(event)"></a>
 		</div>
 	</section>
 	

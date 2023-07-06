@@ -25,7 +25,7 @@
 				<div class="links">
 					<a href="richiestapassword.jsp">Hai dimenticato la password?</a>
 					<p>Non sei iscritto? <a href="signup.jsp">Iscriviti!</a></p>	
-				</div>	
+				</div>
 		</section>
 	</main>
 </body>
