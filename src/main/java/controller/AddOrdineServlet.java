@@ -34,6 +34,7 @@ public class AddOrdineServlet extends HttpServlet {
 		RequestDispatcher dispatcher = null;
 		User user = (User) session.getAttribute("user");
 		Carrello carrello = (Carrello) session.getAttribute("carrello");
+		
 		int address_id = -1;
 
 		try {
@@ -45,6 +46,12 @@ public class AddOrdineServlet extends HttpServlet {
 
 			if (rs.next())
 				address_id = rs.getInt("id");
+			else {
+				request.setAttribute("status", "noAddress");
+				dispatcher = request.getRequestDispatcher("indirizzo.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
 
 			Calendar c = Calendar.getInstance();
 			java.util.Date javaDate = c.getTime();
@@ -64,6 +71,10 @@ public class AddOrdineServlet extends HttpServlet {
 			ps.setInt(6, 1); // posteItaliane
 			ps.setInt(7, address_id);
 			ps.executeUpdate();
+			
+			
+
+			
 
 			String[] values = request.getParameter("quantita").split(",");
 			int i = 0;
@@ -79,6 +90,18 @@ public class AddOrdineServlet extends HttpServlet {
 						+ p.getIsbn() + "', '" + p.getNome() + "', '" + p.getImg() + "')";
 				
 				s.executeUpdate(query);
+				query= "SELECT quantita FROM prodotti WHERE isbn = ?";
+				ps = connection.prepareStatement(query);
+				ps.setString(1,p.getIsbn());
+				rs = ps.executeQuery();
+				if(rs.next()) {
+					query= "UPDATE prodotti SET quantita = ? WHERE isbn = ?";
+					ps = connection.prepareStatement(query);
+					ps.setInt(1, (rs.getInt("quantita")-p.getQuantita()));
+					ps.setString(2, p.getIsbn());
+					ps.executeUpdate();
+					ps.close();
+				}
 			}
 			carrello.empty();
 			session.setAttribute("carrello", carrello);

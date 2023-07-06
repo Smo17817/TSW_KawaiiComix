@@ -26,9 +26,15 @@ public class ExitServlet extends HttpServlet {
 		// prima di invalidare la sessione ci prendiamo i dati dal carrello
 		HttpSession session = request.getSession(false);
 		Connection connection = null;
+		
+		if(session.getAttribute("carrello").equals(null))
+			session.invalidate();
+			
 		Carrello carrello = (Carrello) session.getAttribute("carrello");
 		ArrayList<Prodotto> prodotti = (ArrayList<Prodotto>) carrello.getCarrello();
 		ArrayList<String> isbnList = new ArrayList<String>();
+		
+		
 		for (Prodotto prod : prodotti) {
 			isbnList.add(prod.getIsbn());
 		}

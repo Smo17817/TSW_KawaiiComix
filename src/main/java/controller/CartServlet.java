@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,8 +33,14 @@ public class CartServlet extends HttpServlet {
 		String isbn = request.getParameter("isbn");
 		User user = (User) session.getAttribute("user");
 		Connection connection = null;
+		RequestDispatcher dispatcher = null;
 		Gson json = new Gson();
 
+		if(isbn == null) {
+			System.out.println("ciao");
+			response.sendRedirect("carrello.jsp");
+			return;
+		}
 		try {
 			PrintWriter out = response.getWriter();
 			connection = DbManager.getConnection();

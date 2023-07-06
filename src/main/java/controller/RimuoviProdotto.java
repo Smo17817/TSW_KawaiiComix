@@ -40,21 +40,22 @@ public class RimuoviProdotto extends HttpServlet {
 		
 
 		for(Prodotto p : list) {
-			if(p.getIsbn().equals(isbnProdotto)) {
-				list.remove(p);
-				System.out.print("rimosso");
-				break;
+			if(isbnProdotto != null) {
+				if(p.getIsbn().equals(isbnProdotto)) {
+					list.remove(p);
+					System.out.print("rimosso");
+					break;
+				}
+			}else {
+					return;
 			}
 		}
-		System.out.print(list.toString());
 		
 		carrello.setCarrello(list);
-		System.out.print(carrello.getCarrello().toString());
 		session.setAttribute("carrello", carrello);
+		System.out.println( ((Carrello) session.getAttribute("carrello")).getCarrello().toString());
 		
-		dispatcher = request.getRequestDispatcher("index.jsp");
-		dispatcher.forward(request, response);
-
+		return;
 			
 	}
 

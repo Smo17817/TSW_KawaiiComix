@@ -12,23 +12,26 @@
 <link rel="stylesheet" href="sweetalert2.min.css">
 <%String status = (String) request.getAttribute("status");%>
 <script type ="text/javascript">
-	if('<%= status %>' == 'Invalid_address')
+	console.log('<%= status %>');
+	if('<%= status %>' == 'Invalid_address'){
 		Swal.fire("Spiacente!", "Inserire l'indirizzo", "error");
-	else if('<%= status %>' == 'Invalid_citta')
+	} else if('<%= status %>' == 'Invalid_citta'){
 		Swal.fire("Spiacente!", "Inserire nome città", "error");
-	else if('<%= status %>' == 'Invalid_provincia')
+	} else if('<%= status %>' == 'Invalid_provincia'){
 		Swal.fire("Spiacente!", "Inserire nome provincia", "error");
-	else if('<%= status %>' == 'Invalid_cap')
+	} else if('<%= status %>' == 'Invalid_cap'){
 		Swal.fire("Spiacente!", "Inserire CAP valido", "error");
-	else if('<%= status %>' == 'Invalid_nazione')
+	} else if('<%= status %>' == 'Invalid_nazione'){
 		Swal.fire("Spiacente!", "Inserire nazione", "error");
-	else if('<%= status %>' == 'success')
+	} else if('<%= status %>' == 'success'){
 		Swal.fire("Congratulazione!", "Dati registrati correttamente", "success");
-	else if('<%= status %>' == 'failed')
+	} else if('<%= status %>' == 'failed'){
 		Swal.fire("Siamo spiacenti!", "Dati non registrati , reinserire", "error");
+	} else if('<%= status %>' == 'noAddress'){
+		Swal.fire("Spiacente!", "Devi inserire un indirizzo per ordinare reinserire", "error");
+	}
 
 	
-		
 </script>
 <body>
 	<div class="justaimg">
