@@ -30,7 +30,7 @@ body{
 	min-width: 50%;
 	justify-content : space-between;
 	flex-wrap: wrap;
-	margin: 1rem;
+	margin: 10rem;
 	box-shadow: 0.5em 0.3em 1em rgba(1, 2, 68, 0.1);
 }
 
