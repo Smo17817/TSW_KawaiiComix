@@ -7,9 +7,12 @@
 		response.sendRedirect("login.jsp");
  %>
 <input type="hidden" id="status" value="<%= request.getAttribute("status")%>">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="sweetalert2.min.js"></script>
-<link rel="stylesheet" href="sweetalert2.min.css">
+<script src="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.all.min.js
+"></script>
+<link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
+" rel="stylesheet">
 <jsp:include page="./header.jsp" flush="true"/>
  <script>
     document.addEventListener("DOMContentLoaded", function() {

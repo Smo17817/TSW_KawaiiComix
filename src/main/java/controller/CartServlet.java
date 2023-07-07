@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -35,14 +36,15 @@ public class CartServlet extends HttpServlet {
 		Connection connection = null;
 		RequestDispatcher dispatcher = null;
 		Gson json = new Gson();
+		PrintWriter out = response.getWriter();
 
 		if(isbn == null) {
-			System.out.println("ciao");
-			response.sendRedirect("carrello.jsp");
+			HashMap<String , String> hashMap = new HashMap<>();
+			hashMap.put("url", "carrello.jsp");
+			out.write(json.toJson(hashMap));
 			return;
 		}
 		try {
-			PrintWriter out = response.getWriter();
 			connection = DbManager.getConnection();
 			if (user == null) 
 				response.sendRedirect("login.jsp");

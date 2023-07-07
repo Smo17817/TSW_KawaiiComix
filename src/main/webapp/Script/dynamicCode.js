@@ -30,19 +30,27 @@ function dynamicCart(url) {
 	}).done((response) => {
 		response = JSON.parse(response);
 		let contenutoHtml = "";
-
-		for (const p of response) {
-			contenutoHtml += "<tr>";
-			contenutoHtml += "<td> <button data-isbn='"+ p.isbn +"'onclick=eliminaRiga(this)><img src=\"./icons/trash.ico\" class=trash></button>";
-			contenutoHtml += "<td> <img class=thumbnail src=\"" + p.img + "\"></td>";
-			contenutoHtml += "<td>" + p.nome + "</td>";
-			contenutoHtml += "<td> <p class=costo>&#8364 " + p.prezzo.toFixed(2) + "</p> </td>";
-			contenutoHtml += "<td> <h5> <input type=number min=1 class=quantita onchange=totaleParziale() value=\"1\"> </h5> </td>";
-			contenutoHtml += "<td> <h5 class=totProd> totale </h5> </td>";
-			contenutoHtml += "</tr>";
+		
+		if(response.url === undefined){
+			for (const p of response) 
+			{
+				contenutoHtml += "<tr>";
+				contenutoHtml += "<td> <button data-isbn='"+ p.isbn +"'onclick=eliminaRiga(this)><img src=\"./icons/trash.ico\" class=trash></button>";
+				contenutoHtml += "<td> <img class=thumbnail src=\"" + p.img + "\"></td>";
+				contenutoHtml += "<td>" + p.nome + "</td>";
+				contenutoHtml += "<td> <p class=costo>&#8364 " + p.prezzo.toFixed(2) + "</p> </td>";
+				contenutoHtml += "<td> <h5> <input type=number min=1 class=quantita onchange=totaleParziale() value=\"1\"> </h5> </td>";
+				contenutoHtml += "<td> <h5 class=totProd> totale </h5> </td>";
+				contenutoHtml += "</tr>";
+			}
+			$("#dinamico").append(contenutoHtml);
+			totaleParziale();
+		}else{
+			window.location.assign(response.url);
+			
 		}
-		$("#dinamico").append(contenutoHtml);
-		totaleParziale();
+
+
 	});
 }
 

@@ -43,7 +43,6 @@ public class RimuoviProdotto extends HttpServlet {
 			if(isbnProdotto != null) {
 				if(p.getIsbn().equals(isbnProdotto)) {
 					list.remove(p);
-					System.out.print("rimosso");
 					break;
 				}
 			}else {
@@ -53,7 +52,6 @@ public class RimuoviProdotto extends HttpServlet {
 		
 		carrello.setCarrello(list);
 		session.setAttribute("carrello", carrello);
-		System.out.println( ((Carrello) session.getAttribute("carrello")).getCarrello().toString());
 		
 		return;
 			
