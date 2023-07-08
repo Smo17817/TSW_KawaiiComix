@@ -39,8 +39,7 @@ public class AddProductServlet extends HttpServlet {
 		Connection connection = null;
 		RequestDispatcher dispatcher = null;
 		
-		String query = "INSERT INTO prodotti(isbn, nome, descrizione, immagine_prod, prezzo, quantita, genere_nome, categoria_nome) values(?,?,?,?, ?, ?, ?, ?)";
-		
+		String query = "INSERT INTO prodotti(isbn, nome, descrizione, immagine_prod, prezzo, quantita, genere_nome, categoria_nome) values(?,?,?,?, ?, ?, ?, ?)";		
 		
 		try {
 			String isbn = request.getParameter("isbn");

@@ -46,7 +46,8 @@ html {
 }
 
 .account li {
-	display: grid;
+	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	height: 15rem;
@@ -60,6 +61,14 @@ html {
 	box-shadow: 0.5em 0.3em 1em rgba(1, 2, 68, 0.1);
 }
 
+a{
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	height: 10rem;
+	width: 15rem;
+}
+
 .proimg {
 	width: 7rem;
 	height: 7rem;
@@ -71,7 +80,7 @@ html {
 	transition: 0.2s;
 }
 
-.account a:hover {
+a:hover {
 	text-decoration: none;
 	color: #ff6f88;
 	opacity: 1;
@@ -79,9 +88,10 @@ html {
 
 #admin li{
 	justify-content: center;
+	font-size: 90%;
 }
 
 #admin .adimg{
-	padding-left: 2em;
-	height: 5rem;
+	padding-left: 4.5rem;
+	height: 4rem;
 }

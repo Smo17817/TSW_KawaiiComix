@@ -10,6 +10,7 @@
 <meta name=" description" content="Vendita Manga al Dettaglio" />
 <meta name="robots" content="index,follow" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="./Script/carrello.js"></script>
  <% 
    String currentPage = request.getServletPath(); // Ottieni il percorso della tua pagina JSP corrente
    String cssFile = "";

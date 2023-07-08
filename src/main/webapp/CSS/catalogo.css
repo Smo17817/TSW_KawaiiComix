@@ -1,35 +1,34 @@
 @charset "ISO-8859-1";
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 html {
-  font-size: 62.5%;
+	font-size: 62.5%;
 }
 
-
-main{
+main {
 	display: flex;
 	min-height: 90vh;
 }
 
-#container{
+#container {
 	display: flex;
 }
 
-#container td{
+#container td {
 	padding: 0.5rem;
 }
 
-label{
+label {
 	margin: 1rem;
 }
 
 /* FILTRI */
-
-#filtri{
+#filtri {
 	border-radius: 12px;
 	padding: 2rem;
 	margin: 2rem;
@@ -38,14 +37,13 @@ label{
 	min-width: 30rem;
 }
 
-
 /* SCHEDE PRODOTTO */
-
-#prodotti{
+#prodotti {
 	min-width: 90vw;
-	flex-wrap:  wrap;
+	flex-wrap: wrap;
 	padding: 2rem;
 }
+
 #schedeProdotto {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
@@ -53,7 +51,7 @@ label{
 	justify-content: center;
 }
 
-.scheda{
+.scheda {
 	border-radius: 12px;
 	background-color: rgba(255, 255, 255, 0.8);
 	color: #21201e;
@@ -65,17 +63,17 @@ label{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content:center;
+	justify-content: center;
 	box-shadow: 1em 1rem 1rem rgba(1, 2, 68, 0.2);
 }
 
-.scheda img{
+.scheda img {
 	max-height: 19rem;
 	margin: 1rem;
 	transition: all 0.3;
 }
 
-.info a{
+.info a {
 	display: inline-block;
 	margin-top: 20px;
 	padding: 8px 20px;
@@ -86,41 +84,38 @@ label{
 	letter-spacing: 1px;
 	text-decoration: none;
 	transition: background 0.5s ease-in-out;
+	cursor: pointer;
 }
 
-.info a :hover{
+.info a :hover {
 	background: #b71543;
 }
 
-@media (max-width: 768px) {
-  #container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  #filtri {
-    display: none;
-  }
-
-  #filtroBottone {
-    display: block;
-    margin: 2rem;
-    padding: 1rem;
-    background: #ff6f88;
-    color: #fff;
-    border-radius: 40px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-decoration: none;
-    transition: background 0.5s ease-in-out;
-    cursor: pointer;
-  }
-
-  #prodotti {
-    padding-top: 1rem;
-  }
-  
-  #schedeProdotto{
-	  justify-items: center;
-  }
+@media ( max-width : 768px) {
+	#container {
+		flex-direction: column;
+		align-items: center;
+	}
+	#filtri {
+		display: none;
+	}
+	#filtroBottone {
+		display: block;
+		margin: 2rem;
+		padding: 1rem;
+		background: #ff6f88;
+		color: #fff;
+		border-radius: 40px;
+		font-weight: 500;
+		letter-spacing: 1px;
+		text-decoration: none;
+		transition: background 0.5s ease-in-out;
+		cursor: pointer;
+	}
+	#prodotti {
+		padding-top: 1rem;
+	}
+	#schedeProdotto {
+		justify-items: center;
+	}
 }

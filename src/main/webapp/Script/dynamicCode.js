@@ -14,13 +14,14 @@ function dynamicIndex(url) {
 			contenutoHtml += "<div class=\"info\">";
 			contenutoHtml += "<h4>" + prodotto.nome + "</h4>";
 			contenutoHtml += "<p>&#8364 " + prodotto.prezzo.toFixed(2) + "</p>";
-			contenutoHtml += "<a href=\"carrello.jsp?isbn=" + prodotto.isbn + "\"> Carrello</a>";
+			contenutoHtml += "<a onclick=\"addCart(" + prodotto.quantita + ", '" + prodotto.isbn + "')\"> Carrello</a>";
 			contenutoHtml += "</div> </div>";
 		}
 
 		$("#schedeProdotto").append(contenutoHtml);
 	});
 }
+
 
 function dynamicCart(url) {
 	$.ajax({
@@ -30,12 +31,11 @@ function dynamicCart(url) {
 	}).done((response) => {
 		response = JSON.parse(response);
 		let contenutoHtml = "";
-		
-		if(response.url === undefined){
-			for (const p of response) 
-			{
+
+		if (response.url === undefined) {
+			for (const p of response) {
 				contenutoHtml += "<tr>";
-				contenutoHtml += "<td> <button data-isbn='"+ p.isbn +"'onclick=eliminaRiga(this)><img src=\"./icons/trash.ico\" class=trash></button>";
+				contenutoHtml += "<td> <button data-isbn='" + p.isbn + "'onclick=eliminaRiga(this)><img src=\"./icons/trash.ico\" class=trash></button>";
 				contenutoHtml += "<td> <img class=thumbnail src=\"" + p.img + "\"></td>";
 				contenutoHtml += "<td>" + p.nome + "</td>";
 				contenutoHtml += "<td> <p class=costo>&#8364 " + p.prezzo.toFixed(2) + "</p> </td>";
@@ -45,12 +45,9 @@ function dynamicCart(url) {
 			}
 			$("#dinamico").append(contenutoHtml);
 			totaleParziale();
-		}else{
+		} else {
 			window.location.assign(response.url);
-			
 		}
-
-
 	});
 }
 
@@ -96,13 +93,13 @@ function dynamicCatalog(url) {
 
 		for (const p of response) {
 			contenutoHtml += "<div class=\"scheda\" data-categoria=\"" + p.categoria + "\" data-genere=\"" + p.genere + "\">";
-			contenutoHtml += "<a href=\"ProductServlet?isbn=" + p.isbn + "\"><img src=\"" + p.img + "\" class=\"trash\"></a>" + "\n";
+			contenutoHtml += "<a href=\"ProductServlet?isbn=" + p.isbn + "\"><img src=\"" + p.img + "\" class=\"trash\"></a>";
 			contenutoHtml += "<div class=\"info\">" + "\n";
 			contenutoHtml += "<h4 class=\"pname\">" + p.nome + "</h4>" + "\n";
 			contenutoHtml += "<p> &#8364 " + p.prezzo.toFixed(2) + "</p>" + "\n";
-			contenutoHtml += "<a href=\"carrello.jsp?isbn=" + p.isbn + "\">Carrello</a>" + "\n";
-			contenutoHtml += "</div>" + "\n";
-			contenutoHtml += "</div>" + "\n";
+			contenutoHtml +=  "<a onclick=\"addCart(" + p.quantita + ", '" + p.isbn + "')\"> Carrello</a>";
+			contenutoHtml += "</div>";
+			contenutoHtml += "</div>";
 		}
 		$("#schedeProdotto").append(contenutoHtml);
 	});
@@ -161,7 +158,7 @@ function dynamicConsigliati(url) {
 			contenutoHtml += "<div class=\"info\">";
 			contenutoHtml += "<h4>" + prodotto.nome + "</h4>";
 			contenutoHtml += "<p>&#8364 " + prodotto.prezzo.toFixed(2) + "</p>";
-			contenutoHtml += "<a href=\"CartServlet?isbn=" + prodotto.isbn + "\"> Carrello</a>";
+			contenutoHtml += "<a onclick=\"addCart(" + prodotto.quantita + ", '" + prodotto.isbn + "')\"> Carrello</a>";
 			contenutoHtml += "</div> </div>";
 		}
 
@@ -207,7 +204,7 @@ function dynamicModificaProdotto(url) {
 		response = JSON.parse(response);
 		let contenutoHtml = "<option> -seleziona un prodotto- </option>";
 
-		for (const n of response) 
+		for (const n of response)
 			contenutoHtml += '<option>' + n + '</option>'
 
 		$("#chooseProduct").append(contenutoHtml);

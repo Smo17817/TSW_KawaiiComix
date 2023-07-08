@@ -1,3 +1,9 @@
+function addCart(quantita, isbn){
+	if(quantita != 0)
+		window.location.href = "carrello.jsp?isbn=" + isbn;
+
+}
+
 function totaleParziale(){
 	let product, elem1, elem2, costo, quantita, totParz, tot = 0;
 		

@@ -17,11 +17,11 @@ else if (user.getId() == 1) {
 		if (id == 1) {
 			$(document).ready(function() {
 				let contenutoHtml = '';
-				contenutoHtml += '<li> <img class=\"adimg\" src="./icons/upload.ico"> <a href="aggiungiProdotto.jsp"> Aggiungi Prodotto <p> (ADMIN) </p></a> </li>';
-				contenutoHtml += '<li> <img class=\"adimg\" src="./icons/edit.ico"> <a href="modificaProdotto.jsp"> Modifica Prodotto <p> (ADMIN) </p></a> </li>';
-				contenutoHtml += '<li> <img class=\"adimg\" src="./icons/delete.ico"> <a href="eliminaProdotto.jsp"> Elimina Prodotto <p> (ADMIN) </p></a> </li>';
-				contenutoHtml += '<li> <img class=\"adimg\" src="./icons/news.ico"> <a href="aggiungiNovita.jsp"> Aggiungi Notizie <p> (ADMIN) </p></a> </li>';
-				contenutoHtml += '<li> <img class=\"adimg\" src="./icons/logistic.ico"> <a href="controllaordini.jsp"> Controlla Ordini <p> (ADMIN) </p> </a> </li>';
+				contenutoHtml += '<li> <a href="aggiungiProdotto.jsp"> <img class=\"adimg\" src="./icons/upload.ico"> Aggiungi Prodotto <p> (ADMIN) </p></a> </li>';
+				contenutoHtml += '<li> <a href="modificaProdotto.jsp"> <img class=\"adimg\" src="./icons/edit.ico"> Modifica Prodotto <p> (ADMIN) </p></a> </li>';
+				contenutoHtml += '<li> <a href="eliminaProdotto.jsp"> <img class=\"adimg\" src="./icons/delete.ico"> Elimina Prodotto <p> (ADMIN) </p></a> </li>';
+				contenutoHtml += '<li> <a href="aggiungiNovita.jsp"> <img class=\"adimg\" src="./icons/news.ico"> Aggiungi Notizie <p> (ADMIN) </p></a> </li>';
+				contenutoHtml += '<li> <a href="controllaordini.jsp"> <img class=\"adimg\" src="./icons/logistic.ico"> Controlla Ordini <p> (ADMIN) </p> </a> </li>';
 				document.getElementById("admin").innerHTML = contenutoHtml;
 			});
 		}
@@ -38,16 +38,26 @@ else if (user.getId() == 1) {
 			</div>
 			<div class="account">
 				<ul>
-					<li><img class="proimg" src="./icons/profile.ico"><a
-						href="datipersonali.jsp"> Dati personali </a></li>
-					<li><img class="proimg" src="./icons/address.ico"><a
-						href="indirizzo.jsp"> Indirizzo </a></li>
-					<li><img class="proimg" src="./icons/cart.ico"><a href="carrello.jsp">
-							Carrello </a></li>
-					<li><img class="proimg" src="./icons/calendar.ico"> <a
-						href="OrdineServlet"> miei Ordini </a></li>
-					<li><img class="proimg" src="./icons/exit.ico"><a href="ExitServlet">
-							Esci </a></li>
+					<li> <a href="datipersonali.jsp">
+						<img class="proimg" src="./icons/profile.ico">
+					 	Dati personali 
+					 </a> </li>
+					<li> <a href="indirizzo.jsp"> 
+						<img class="proimg" src="./icons/address.ico">
+						Indirizzo 
+					</a></li>
+					<li> <a href="carrello.jsp">
+						<img class="proimg" src="./icons/cart.ico">
+						Carrello 
+						</a> </li>
+					<li> <a href="OrdineServlet">
+						<img class="proimg" src="./icons/calendar.ico"> 
+						I miei Ordini 
+					</a></li>
+					<li> <a href="ExitServlet">
+						<img class="proimg" src="./icons/exit.ico">
+						Esci 
+					</a></li>
 				</ul>
 				<ul id="admin">
 
