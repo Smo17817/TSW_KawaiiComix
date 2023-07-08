@@ -26,6 +26,7 @@ public class SignupServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		Connection connection = null;
 		RequestDispatcher dispatcher = null;
+		String status = "status";
 		
 		String q = "SELECT email_address FROM site_user WHERE email_address=?";
 		connection = DbManager.getConnection();
@@ -35,18 +36,14 @@ public class SignupServlet extends HttpServlet {
 			ps.setString(1, email);
 			ResultSet rs = ps.executeQuery();
 			if(rs.next()) {
-				request.setAttribute("status", "duplicato");
+				request.setAttribute(status, "duplicato");
 				dispatcher = request.getRequestDispatcher("signup.jsp");
 				dispatcher.forward(request, response);
 				return;
 				}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		String query = "INSERT INTO site_user(nome,cognome,email_address,password) values(?,?,?,?)";
-		try {
+			
+			String query = "INSERT INTO site_user(nome,cognome,email_address,password) values(?,?,?,?)";
+		
 			ps = connection.prepareStatement(query);
 			ps.setString(1, nome);
 			ps.setString(2, cognome);
@@ -61,10 +58,10 @@ public class SignupServlet extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("login.jsp");
 
 			if (rowCount > 0) {
-				request.setAttribute("status", "success");
+				request.setAttribute(status, "success");
 
 			} else {
-				request.setAttribute("status", "failed");
+				request.setAttribute(status, "failed");
 			}
 
 			dispatcher.forward(request, response);

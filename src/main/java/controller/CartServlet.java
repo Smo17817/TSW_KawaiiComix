@@ -34,15 +34,17 @@ public class CartServlet extends HttpServlet {
 		User user = (User) session.getAttribute("user");
 		Connection connection = null;
 		Gson json = new Gson();
-		PrintWriter out = response.getWriter();
-
-		if(isbn == null) {
-			HashMap<String , String> hashMap = new HashMap<>();
-			hashMap.put("url", "carrello.jsp");
-			out.write(json.toJson(hashMap));
-			return;
-		}
+		
 		try {
+			PrintWriter out = response.getWriter();
+
+			if(isbn == null) {
+				HashMap<String , String> hashMap = new HashMap<>();
+				hashMap.put("url", "carrello.jsp");
+				out.write(json.toJson(hashMap));
+				return;
+			}
+			
 			connection = DbManager.getConnection();
 			if (user == null) 
 				response.sendRedirect("login.jsp");

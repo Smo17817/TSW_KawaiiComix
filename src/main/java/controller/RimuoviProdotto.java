@@ -35,10 +35,7 @@ public class RimuoviProdotto extends HttpServlet {
 		}
 		
 		carrello.setCarrello(list);
-		session.setAttribute("carrello", carrello);
-		
-		return;
-			
+		session.setAttribute("carrello", carrello);		
 	}
 
 }
