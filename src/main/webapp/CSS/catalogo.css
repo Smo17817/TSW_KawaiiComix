@@ -15,7 +15,12 @@ main {
 	min-height: 90vh;
 }
 
+<<<<<<< HEAD
 #container {
+=======
+#container{
+	width: 100%;
+>>>>>>> branch 'main' of https://github.com/Smo17817/KawaiiComix.git
 	display: flex;
 }
 
@@ -34,21 +39,29 @@ label {
 	margin: 2rem;
 	box-shadow: 1em 1rem 1rem rgba(1, 2, 68, 0.2);
 	height: 147rem;
-	min-width: 30rem;
+	min-width: 20vw;
 }
 
 /* SCHEDE PRODOTTO */
+<<<<<<< HEAD
 #prodotti {
 	min-width: 90vw;
 	flex-wrap: wrap;
+=======
+
+#prodotti{
+	min-width: 79vw;
+	flex-wrap:  wrap;
+>>>>>>> branch 'main' of https://github.com/Smo17817/KawaiiComix.git
 	padding: 2rem;
 }
 
 #schedeProdotto {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-	grid-gap: 40px;
+	grid-gap: 4rem;
 	justify-content: center;
+	margin:1rem;
 }
 
 .scheda {
@@ -56,7 +69,7 @@ label {
 	background-color: rgba(255, 255, 255, 0.8);
 	color: #21201e;
 	text-align: center;
-	width: 24rem;
+	max-width: 24rem;
 	height: 40rem;
 	margin: 2rem 1rem;
 	padding: 2rem;
@@ -91,6 +104,7 @@ label {
 	background: #b71543;
 }
 
+<<<<<<< HEAD
 @media ( max-width : 768px) {
 	#container {
 		flex-direction: column;
@@ -119,3 +133,43 @@ label {
 		justify-items: center;
 	}
 }
+=======
+
+@media (min-width: 769px) {
+	 #filtroBottone {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  #container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #filtri {
+    display: none;
+  }
+
+  #filtroBottone {
+    display: block;
+    margin: 2rem;
+    padding: 1rem;
+    background: #ff6f88;
+    color: #fff;
+    border-radius: 40px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: background 0.5s ease-in-out;
+    cursor: pointer;
+  }
+
+  #prodotti {
+    padding-top: 1rem;
+  }
+  
+  #schedeProdotto{
+	  justify-items: center;
+  }
+}
+>>>>>>> branch 'main' of https://github.com/Smo17817/KawaiiComix.git
