@@ -20,6 +20,7 @@ body{
 }
 
 .form-wrapper{
+	margin-top: 2rem;
 	background: rgba(255,255,255, 0.9);
 	border-radius : 4rem;
 	display:flex;
@@ -84,3 +85,28 @@ body{
 	align-items: center;
     padding: 3rem;
 }
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+      
+  html {
+		font-size: 45%;
+	}
+	
+  
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (max-width: 480px) {
+  
+   html {
+		font-size: 45%;
+	}
+	
+  
+}
+

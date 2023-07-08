@@ -10,6 +10,22 @@
 	<jsp:include page="./Nav.jsp" flush="true" />
 	<script src="./Script/search.js"></script>
 	<script src="./Script/dynamicCode.js"></script>
+	  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var filtroBottone = document.getElementById('filtroBottone');
+      var filtri = document.getElementById('filtri');
+
+      filtroBottone.addEventListener('click', function() {
+        if (filtri.style.display === 'none') {
+          filtri.style.display = 'block';
+          filtroBottone.textContent = 'Nascondi filtri';
+        } else {
+          filtri.style.display = 'none';
+          filtroBottone.textContent = 'Mostra filtri';
+        }
+      });
+    });
+  </script>
 	<script>
 		$(document).ready(function() {
 		  	dynamicCatalog("<%=request.getContextPath()%>/CatalogServlet");
@@ -34,7 +50,7 @@
 
 			</div>
 		
-
+<div id="filtroBottone">Mostra filtri</div>
 		<section id="prodotti">
 			<div id="schedeProdotto"></div>
 		</section>

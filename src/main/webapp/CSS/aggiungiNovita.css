@@ -23,7 +23,7 @@ body{
 }
 
 .form-wrapper{
-	width: 50vh;
+	min-width: 60vw;
 	background: rgba(255,255,255, 0.9);
 	border-radius : 4rem;
 	display:flex;
@@ -88,7 +88,7 @@ body{
 
 .article textarea{
   height: 10rem;
-  width: 35vh;
+  width: 35vw;
   padding: 1rem 2rem;
   border: 2px solid #ccc;
   border-radius: 1rem;
@@ -97,3 +97,51 @@ body{
   resize: none;
   margin-bottom: 3rem;
  }
+ 
+ @media (min-width: 768px) and (max-width: 1024px) {
+  
+   
+  html {
+		font-size: 55%;
+	}
+	
+	
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+    
+  html {
+		font-size: 55%;
+	}
+	
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+      
+  html {
+		font-size: 50%;
+	}
+	
+  
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (max-width: 480px) {
+  
+   html {
+		font-size: 45%;
+	}
+	
+  
+}

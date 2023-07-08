@@ -10,72 +10,164 @@ html {
   font-size: 62.5%;
 }
 
-main{
-	width: 100%;
-	min-height: 71.65vh;
+main {
+  min-width: 100%;
+  min-height: 71.65vh;
 }
 
-h2{
-	padding-bottom: 2rem;
+h2 {
+  padding-bottom: 2rem;
 }
 
-#container{
-	padding: 5rem;
-	overflow-x: auto;
+#container {
+  padding: 5rem;
+  overflow-x: auto;
 }
 
-table{
-	border-radius: 12px;
-	width: 100%;
-	border-collapse: collapse;
-	table-layout: fixed;
-	white-space: nowrap;
-	background-color: rgba(255, 255, 255, 0.8);
+table {
+  border-radius: 12px;
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
-thead{
-	border-bottom: 1px solid black;
-	font-weight: 700;
+thead {
+  border-bottom: 1px solid black;
+  font-weight: 700;
 }
 
-td{
-	padding: 6px 0;
-	text-align: center;
-	border-bottom: 1px solid grey;
+td {
+  padding: 6px 0;
+  text-align: center;
+  border-bottom: 1px solid grey;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.trash{
-	height: 30px;
-	opacity: 60%;
+.trash {
+  height: 30px;
+  opacity: 60%;
 }
 
-.trash:hover{
-	opacity: 1;
+.trash:hover {
+  opacity: 1;
 }
 
-.thumbnail{
-	height: 25rem;
+.thumbnail {
+  height: 25rem;
 }
 
 /* TOTALE */
 
-#bottom{
-	margin: 5rem;
+#bottom {
+  margin: 5rem;
 }
 
-#cassa{
-	padding: 1rem 3rem;
-	border-radius: 2rem;
-	min-width: 50rem;
-	float: right;
-	margin: 0rem 2rem 5rem 3rem;
-	box-shadow: 0.5em 1em 0.3em rgba(1, 2, 68, 0.2);
-	background-color: rgba(255, 255, 255, 0.8);
+#cassa {
+  padding: 1rem 3rem;
+  border-radius: 2rem;
+  min-width: 50rem;
+  float: right;
+  margin: 0rem 2rem 5rem 3rem;
+  box-shadow: 0.5em 1em 0.3em rgba(1, 2, 68, 0.2);
+  background-color: rgba(255, 255, 255, 0.8);
 }
-
 
 .totale {
-	display: flex;
-	justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+  html {
+    font-size: 45%;
+  }
+  
+  table {
+    font-size: 1.4rem;
+  }
+  
+  td {
+    white-space: normal;
+    height: auto;
+    max-height: none;
+  }
+  
+  .thumbnail {
+    max-height: 25rem;
+  }
+  
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+    
+  html {
+    font-size: 45%;
+  }
+  
+  table {
+    font-size: 1.4rem;
+  }
+  
+  td {
+    white-space: normal;
+    height: auto;
+    max-height: none;
+  }
+  
+  .thumbnail {
+    max-height: 25rem;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  html {
+    font-size: 45%;
+  }
+  
+  table {
+    font-size: 1.4rem;
+  }
+  
+  td {
+    white-space: normal;
+    height: auto;
+    max-height: none;
+  }
+  
+  .thumbnail {
+    max-height: 15rem;
+  }
+  
+ 
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (max-width: 480px) {
+  html {
+    font-size: 45%;
+  }
+  
+  table {
+    font-size: 1.2rem;
+  }
+  
+  td {
+    white-space: normal;
+    height: auto;
+    max-height: none;
+  }
+  
+  .thumbnail {
+    max-height: 10rem;
+  }
+  
+}

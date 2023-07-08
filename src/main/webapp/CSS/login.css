@@ -33,12 +33,13 @@ main {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 80vh;
+	min-height: 90vh;
 }
 
 #login {
-	width: 70rem;
-	height: auto;
+	margin-top: 2rem;
+	min-width : 40vw;
+	min-height: auto;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -46,20 +47,24 @@ main {
 	background-color: rgba(255, 255, 255, 0.8);
 	box-shadow: 0.5em 0.3em 1em rgba(1, 2, 68, 0.1);
 	border-radius: 12px;
+	padding: 2rem;
 }
 
+
 #login-img {
+	
 	display: flex;
 	justify-content: center;
 	margin-bottom: 3rem;
 }
 
 #login-img img {
+  	height: auto;
+  	max-width: 100%;
 	margin: 0 3rem;
 	margin-top: 5rem;
-	position: relative;
 	border-radius: 12px;
-	height: 40rem;
+	height: 30rem;
 }
 
 #login h3 {
@@ -70,6 +75,7 @@ main {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	padding: 2rem;
 	width: 70%;
 }
 
@@ -81,7 +87,7 @@ main {
 .login-form button {
 	border: none;
 	font-size: 1.8rem;
-	width: 20%;
+	min-width: 20%;
 	padding: 1rem;
 	margin: 1rem;
 	border-radius: 2rem;
@@ -104,4 +110,102 @@ main {
 
 .links p {
 	text-align: center;
+}
+
+/*Media Query*/
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+  	html {
+		font-size: 50%;
+	}
+	
+	#login {
+		min-width : 40vw;
+		padding: 2rem;
+	}
+
+
+
+
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+  html {
+		font-size: 45%;
+	}
+	
+	#login {
+		min-width : 30vw;
+		padding: 2rem;
+	}
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+    
+  html {
+		font-size: 45%;
+	}
+	
+	#login {
+		min-width : 30vw;
+		padding: 2rem;
+	}
+
+  
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+      
+  html {
+		font-size: 45%;
+	}
+	
+	#login {
+		min-width : 30vw;
+		padding: 2rem;
+	}
+
+
+  
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (max-width: 480px) {
+  
+   html {
+		font-size: 45%;
+	}
+	
+	#login {
+		min-width : 50vw;
+		padding: 4rem;
+	}
+	
+	
+
+  
 }

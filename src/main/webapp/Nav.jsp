@@ -5,7 +5,7 @@
 	<header class="main-head">
 		<nav>
 			<h1 id="logo">Kawaii Comix</h1>
-			<ul class="links">
+			<ul class="links-nav">
 				<li><a href="index.jsp">Home</a></li>
 				<li><a href="catalogo.jsp">Catalogo</a></li>
 				<li><a href="NewsServlet">News</a></li>
@@ -34,7 +34,25 @@
 				<li><a href="carrello.jsp"><img
 						src="./icons/shopping-cart_icon-icons.com_65051.ico" alt="" /></a>
 				</li>
+				<li><button class="hamburger">
+					<div class="bar"></div>
+				</button></li>
 			</ul>
 		</nav>
 	</header>
+	<nav class ="mobile-nav">
+		<div class="nav-container">
+			<a href="index.jsp">Home</a>
+			<a href="catalogo.jsp">Catalogo</a>
+			<a href="NewsServlet">News</a>
+		</div>
+	</nav>
+	<script>
+		const menu_btn = document.querySelector('.hamburger');
+		const mobile_menu = document.querySelector('.mobile-nav');
+		menu_btn.addEventListener('click', function(){
+			menu_btn.classList.toggle('is-active');
+			mobile_menu.classList.toggle('is-active');
+		});
+	</script>
 </body>

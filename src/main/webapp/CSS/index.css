@@ -38,7 +38,7 @@ html {
 }
 
 .content{
-	width: 90%;
+	min-width: 90%;
 	display: flex;
 	padding: 3rem;
 	justify-content: space-around;
@@ -83,6 +83,7 @@ html {
 
 .imgbox img{
 	max-width: 34rem;
+	padding-right: 2rem;
 
 }
 
@@ -129,6 +130,7 @@ html {
 #schedeProdotto {
 	height: auto;
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	margin-bottom: 10rem;
 	justify-content: center;
@@ -141,8 +143,8 @@ html {
 	overflow: hidden;
 	color: #21201e;
 	text-align: center;
-	width: 24rem;
-	height: 45rem;
+	min-width: 24rem;
+	min-height: 45rem;
 	padding: 2rem;
 	display: flex;
 	flex-direction: column;
@@ -181,4 +183,123 @@ html {
 .nuovo h6{
 	font-weight: bold;
   	font-size: 12px;
+}
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+   
+  html {
+		font-size: 45%;
+	}
+	
+	
+	.content {
+		min-width: 80vw;
+	}
+
+  .imgbox img{
+		max-width: 30rem;
+	
+	}
+	
+	.textbox{
+	max-width:400px;
+	}
+
+	.textbox h2{
+		font-size: 6rem;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+    
+  html {
+		font-size: 45%;
+	}
+	
+	
+	.content {
+		min-width: 80vw;
+	}
+
+  .imgbox img{
+		max-width: 30rem;
+	
+	}
+	
+		.textbox{
+	max-width:400px;
+	}
+
+	.textbox h2{
+		font-size: 6rem;
+	}
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+      
+  html {
+		font-size: 45%;
+	}
+	
+	.content {
+		min-width: 70vw;
+	}
+
+	.imgbox img{
+		max-width: 25rem;
+	
+	}
+	
+	.textbox{
+		max-width:300px;
+	}
+
+	.textbox h2{
+		font-size: 5rem;
+	}
+
+  
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (max-width: 480px) {
+  
+   html {
+		font-size: 45%;
+	}
+	
+	.content {
+		min-width : 50vw;
+	}
+	
+	.imgbox img{
+		max-width: 25rem;
+	
+	}
+	
+		.textbox{
+	max-width:200px;
+	}
+
+	.textbox h2{
+		font-size: 4rem;
+	}
+  
 }

@@ -17,13 +17,12 @@ body{
 }
 
 .form-wrapper{
-	width: 60vh;
+	min-width: 60vw;
 	background: rgba(255,255,255, 0.9);
 	border-radius : 4rem;
 	display:flex;
 	flex-direction:column;
 	padding: 2rem;
-	min-width: 50%;
 	justify-content : space-between;
 	flex-wrap: wrap;
 	margin: 1rem;
@@ -44,7 +43,7 @@ body{
 .form-row input{
 	flex: 1 1 40rem;
 	padding: 0.5rem 4rem;
-	width: 35vh;
+	max-width: 50%;
 }
 
 .sub-class{
@@ -79,24 +78,26 @@ body{
 
 .file-row label{
 	flex: 1 1 1rem;
-	text-align: center;
+	margin : 0rem 1rem;
 }
 .file-row input{
-	flex: 1 1 1rem;
+	flex: 2 1 1rem;
+	
 }
 
 .form-row select{
-	flex: 1 1;
+	flex: 1 1 10rem;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     padding: 0.5rem 4rem;
+    min-width: fit-content;
     border: none;
 }
 
 .form-row textarea{
   height: 10rem;
-  width: 35vh;
+  min-width: 35vw;
   padding: 1rem 2rem;
   border: 2px solid #ccc;
   border-radius: 1rem;
@@ -116,11 +117,65 @@ input[type=file]::file-selector-button {
   border-right: 1px solid #e5e5e5;
   padding: 10px 15px;
   margin-right: 20px;
+  
   transition: .5s;
+  
 }
 
 input[type=file]::file-selector-button:hover {
   background-color: #eee;
   border: 0px;
   border-right: 1px solid #e5e5e5;
+}
+
+
+/* 
+  ##Device = Tablets, Ipads (landscape)
+  ##Screen = B/w 768px to 1024px
+*/
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+   
+  html {
+		font-size: 45%;
+	}
+	
+}
+
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  
+    
+  html {
+		font-size: 45%;
+	}
+}
+
+/* 
+  ##Device = Low Resolution Tablets, Mobiles (Landscape)
+  ##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+  
+      
+  html {
+		font-size: 45%;
+	}
+	
+  
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (max-width: 480px) {
+  
+   html {
+		font-size: 45%;
+	}
+	
+  
 }

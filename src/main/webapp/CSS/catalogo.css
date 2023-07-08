@@ -35,15 +35,16 @@ label{
 	margin: 2rem;
 	box-shadow: 1em 1rem 1rem rgba(1, 2, 68, 0.2);
 	height: 147rem;
-	width: 30rem;
+	min-width: 30rem;
 }
 
 
 /* SCHEDE PRODOTTO */
 
 #prodotti{
-	width: 90vw;
+	min-width: 90vw;
 	flex-wrap:  wrap;
+	padding: 2rem;
 }
 #schedeProdotto {
 	display: grid;
@@ -89,4 +90,37 @@ label{
 
 .info a :hover{
 	background: #b71543;
+}
+
+@media (max-width: 768px) {
+  #container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #filtri {
+    display: none;
+  }
+
+  #filtroBottone {
+    display: block;
+    margin: 2rem;
+    padding: 1rem;
+    background: #ff6f88;
+    color: #fff;
+    border-radius: 40px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: background 0.5s ease-in-out;
+    cursor: pointer;
+  }
+
+  #prodotti {
+    padding-top: 1rem;
+  }
+  
+  #schedeProdotto{
+	  justify-items: center;
+  }
 }

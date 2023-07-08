@@ -45,3 +45,25 @@ label{
 	justify-content: space-between;
 	align-items: center;
 }
+
+/* Responsive styles */
+
+@media (max-width: 768px) {
+	table {
+		display: block;
+		overflow-x: auto;
+	}
+
+	th, td {
+		min-width: 12rem;
+		max-width: 20rem;
+		word-wrap: break-word;
+	}
+
+	thead {
+		position: sticky;
+		top: 0;
+		background-color: #fff;
+	}
+
+}
