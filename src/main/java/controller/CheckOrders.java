@@ -22,7 +22,6 @@ import model.Ordine;
 import model.OrdineComparator;
 import model.OrdineSingolo;
 import model.OrdiniList;
-import model.Prodotto;
 
 @WebServlet("/CheckOrders")
 public class CheckOrders extends HttpServlet {
@@ -42,8 +41,6 @@ public class CheckOrders extends HttpServlet {
 			OrdiniList ol = new OrdiniList();
 			Ordine o = null;
 			OrdineSingolo os = null;
-			Prodotto p = null;
-
 
 			String query = "SELECT * FROM ordine_singolo";
 			ResultSet rs = s.executeQuery(query);

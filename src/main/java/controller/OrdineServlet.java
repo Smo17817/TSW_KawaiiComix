@@ -21,7 +21,6 @@ import model.Ordine;
 import model.OrdineComparator;
 import model.OrdineSingolo;
 import model.OrdiniList;
-import model.Prodotto;
 
 @WebServlet("/OrdineServlet")
 public class OrdineServlet extends HttpServlet {

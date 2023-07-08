@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,11 +26,13 @@ public class EditProductServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Connection connection = null;
-		RequestDispatcher dispatcher = null;
 		PrintWriter out = response.getWriter();
 		Gson json = new Gson();
+		String status = "status";
+		String contentType = "application/json";
+		
 		String pattern = "\\./images/[^/]+\\.[a-zA-Z]{3,4}";
-		String prodotto = (String) request.getParameter("scelta");
+		String prodotto = request.getParameter("scelta");
 		String nome = request.getParameter("nome");
 		String descrizione = request.getParameter("descrizione");
 		String immagine = request.getParameter("immagine");
@@ -44,9 +45,9 @@ public class EditProductServlet extends HttpServlet {
 		
 		if (prodotto.equals("") || prodotto.equals("-seleziona un prodotto-")) {
 			HashMap<String, String> responseMap = new HashMap<>();
-            responseMap.put("status", "Invalid_prodotto");
+            responseMap.put(status, "Invalid_prodotto");
             String jsonResponse = json.toJson(responseMap);
-            response.setContentType("application/json");
+            response.setContentType(contentType);
             out.write(jsonResponse);
             out.flush();
 			return;
@@ -54,9 +55,9 @@ public class EditProductServlet extends HttpServlet {
 		
 		if(nome.equals("")) {
 			HashMap<String, String> responseMap = new HashMap<>();
-            responseMap.put("status", "Invalid_nome");
+            responseMap.put(status, "Invalid_nome");
             String jsonResponse = json.toJson(responseMap);
-            response.setContentType("application/json");
+            response.setContentType(contentType);
             out.write(jsonResponse);
             out.flush();
 			return;
@@ -64,9 +65,9 @@ public class EditProductServlet extends HttpServlet {
 		
 		if(descrizione.equals("")) {
 			HashMap<String, String> responseMap = new HashMap<>();
-            responseMap.put("status", "Invalid_descrizione");
+            responseMap.put(status, "Invalid_descrizione");
             String jsonResponse = json.toJson(responseMap);
-            response.setContentType("application/json");
+            response.setContentType(contentType);
             out.write(jsonResponse);
             out.flush();
 			return;
@@ -77,9 +78,9 @@ public class EditProductServlet extends HttpServlet {
 		
 		if(immagine.equals("") || !(matcher.matches())) {
 			HashMap<String, String> responseMap = new HashMap<>();
-            responseMap.put("status", "Invalid_path");
+            responseMap.put(status, "Invalid_path");
             String jsonResponse = json.toJson(responseMap);
-            response.setContentType("application/json");
+            response.setContentType(contentType);
             out.write(jsonResponse);
             out.flush();
 			return;
@@ -87,11 +88,10 @@ public class EditProductServlet extends HttpServlet {
 		
 		
 		if((prezzoString == null) || (prezzoString.isEmpty())) {
-		    	System.out.println("ciao");
 				HashMap<String, String> responseMap = new HashMap<>();
-	            responseMap.put("status", "Invalid_prezzo");
+	            responseMap.put(status, "Invalid_prezzo");
 	            String jsonResponse = json.toJson(responseMap);
-	            response.setContentType("application/json");
+	            response.setContentType(contentType);
 	            out.write(jsonResponse);
 	            out.flush();
 				return;
@@ -99,23 +99,20 @@ public class EditProductServlet extends HttpServlet {
 		    prezzo = Double.parseDouble(prezzoString);
 		    if(prezzo == 0.00) {
 				HashMap<String, String> responseMap = new HashMap<>();
-	            responseMap.put("status", "Invalid_prezzo");
+	            responseMap.put(status, "Invalid_prezzo");
 	            String jsonResponse = json.toJson(responseMap);
-	            response.setContentType("application/json");
+	            response.setContentType(contentType);
 	            out.write(jsonResponse);
 	            out.flush();
 				return;
 		    }
 	    }
 	    	
-		
-		
-
 		if((quantitaString == null) || (quantitaString.isEmpty())) {
 				HashMap<String, String> responseMap = new HashMap<>();
-	            responseMap.put("status", "Invalid_quantita");
+	            responseMap.put(status, "Invalid_quantita");
 	            String jsonResponse = json.toJson(responseMap);
-	            response.setContentType("application/json");
+	            response.setContentType(contentType);
 	            out.write(jsonResponse);
 	            out.flush();
 				return;
@@ -123,9 +120,9 @@ public class EditProductServlet extends HttpServlet {
 			quantita = Integer.parseInt(quantitaString);
 			if(quantita == 0) {
 				HashMap<String, String> responseMap = new HashMap<>();
-	            responseMap.put("status", "Invalid_quantita");
+	            responseMap.put(status, "Invalid_quantita");
 	            String jsonResponse = json.toJson(responseMap);
-	            response.setContentType("application/json");
+	            response.setContentType(contentType);
 	            out.write(jsonResponse);
 	            out.flush();
 				return;
@@ -133,12 +130,11 @@ public class EditProductServlet extends HttpServlet {
 			}
 		}
 		
-		
 		if(genere.equals("") || genere.equals("-scegliere genere-")) {
 			HashMap<String, String> responseMap = new HashMap<>();
-            responseMap.put("status", "Invalid_genere");
+            responseMap.put(status, "Invalid_genere");
             String jsonResponse = json.toJson(responseMap);
-            response.setContentType("application/json");
+            response.setContentType(contentType);
             out.write(jsonResponse);
             out.flush();
 			return;
@@ -146,9 +142,9 @@ public class EditProductServlet extends HttpServlet {
 		
 		if(categoria.equals("") || categoria.equals("-scegliere categoria")) {
 			HashMap<String, String> responseMap = new HashMap<>();
-            responseMap.put("status", "Invalid_categoria");
+            responseMap.put(status, "Invalid_categoria");
             String jsonResponse = json.toJson(responseMap);
-            response.setContentType("application/json");
+            response.setContentType(contentType);
             out.write(jsonResponse);
             out.flush();
 			return;
@@ -183,22 +179,20 @@ public class EditProductServlet extends HttpServlet {
 			
 			if(rowCount > 0) {
 				HashMap<String, String> responseMap = new HashMap<>();
-	            responseMap.put("status", "success");
+	            responseMap.put(status, "success");
 	            responseMap.put("url", "profilo.jsp");
 	            String jsonResponse = json.toJson(responseMap);
-	            response.setContentType("application/json");
+	            response.setContentType(contentType);
 	            out.write(jsonResponse);
 	            out.flush();
-	            return;
 			}
 			else {
 				HashMap<String, String> responseMap = new HashMap<>();
-	            responseMap.put("status", "failed");
+	            responseMap.put(status, "failed");
 	            String jsonResponse = json.toJson(responseMap);
-	            response.setContentType("application/json");
+	            response.setContentType(contentType);
 	            out.write(jsonResponse);
 	            out.flush();
-	            return;
 			}
 
 		} catch (SQLException e) {
