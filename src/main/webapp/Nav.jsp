@@ -3,7 +3,7 @@
 <jsp:include page="./header.jsp" flush="true"/>
 <body>
 	<header class="main-head">
-		<nav>
+		<nav aria-label="principale">
 			<h1 id="logo">Kawaii Comix</h1>
 			<ul class="links-nav">
 				<li><a href="index.jsp">Home</a></li>
@@ -43,7 +43,7 @@
 			</ul>
 		</nav>
 	</header>
-	<nav class ="mobile-nav">
+	<nav class ="mobile-nav" aria-label="menuHamburger">
 		<div class="nav-container">
 			<a href="index.jsp">Home</a>
 			<a href="catalogo.jsp">Catalogo</a>
