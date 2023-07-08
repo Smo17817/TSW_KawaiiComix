@@ -24,7 +24,10 @@
 						const icon = document.querySelector(".icon");
 						const search = document.querySelector(".navsearch");
 						icon.onclick = function(){
-							search.classList.toggle("active");
+							if("<%= request.getServletPath() %>" == "/catalogo.jsp")
+								search.classList.toggle("active");
+							else
+								 window.location.href = "catalogo.jsp";
 						}
 					</script>
 				</li>

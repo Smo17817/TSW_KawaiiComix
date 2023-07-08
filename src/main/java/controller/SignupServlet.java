@@ -60,7 +60,7 @@ public class SignupServlet extends HttpServlet {
 			if (!((nome.equals("")) || (cognome.equals("")) || (email.equals("")) || (password.equals("")))) {
 				rowCount = ps.executeUpdate();
 			}
-			dispatcher = request.getRequestDispatcher("signup.jsp");
+			dispatcher = request.getRequestDispatcher("login.jsp");
 
 			if (rowCount > 0) {
 				request.setAttribute("status", "success");
