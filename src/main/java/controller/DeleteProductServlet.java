@@ -66,6 +66,8 @@ public class DeleteProductServlet extends HttpServlet {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		} finally {
 			try {
 				connection.close();
