@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Carrello implements Serializable{
 	private static final long serialVersionUID = 1L;
-	private ArrayList<Prodotto> list = new ArrayList<>();
+	private transient ArrayList<Prodotto> list = new ArrayList<>();
 	private int Id;
 	
 	public Carrello(int id) {

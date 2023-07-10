@@ -27,7 +27,7 @@ public class ExitServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		Connection connection = null;
 		
-		if(session.getAttribute("carrello").equals(null))
+		if(session.getAttribute("carrello") == null)
 			session.invalidate();
 			
 		Carrello carrello = (Carrello) session.getAttribute("carrello");

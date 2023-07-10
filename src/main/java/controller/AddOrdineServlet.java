@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -8,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
-import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -60,7 +60,7 @@ public class AddOrdineServlet extends HttpServlet {
 			java.sql.Date sqlDate = new Date(javaDate.getTime());
 
 			double totale = Double.parseDouble(request.getParameter("totale"));
-			Random random = new Random();
+			SecureRandom random = new SecureRandom();
 			int ordine_id = 10000 + random.nextInt(90000);
 
 			query = "INSERT INTO ordini (id, data, totale, site_user_id, stato_ordine_id, metodo_spedizione_id, address_id) values(?, ?, ?, ?, ?, ?, ?)";

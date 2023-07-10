@@ -21,7 +21,6 @@ public class AddNewsServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Connection connection = null;
 		RequestDispatcher dispatcher = null;
 		PreparedStatement ps = null;
 
@@ -37,9 +36,9 @@ public class AddNewsServlet extends HttpServlet {
 		if(immagine.equals("")) immagine = null;
 		if(video.equals("")) video = null;
 
-		try {
+		try (Connection connection = DbManager.getConnection();){
 			String query = "INSERT INTO novita (titolo, sottotitolo, data, corpo, immagine, video) values(?, ?, ?, ?, ?, ?)";
-			connection = DbManager.getConnection();
+			
 			ps = connection.prepareStatement(query);
 			ps.setString(1, titolo);
 			ps.setString(2,  sottotitolo);
@@ -54,19 +53,18 @@ public class AddNewsServlet extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("aggiungiNovita.jsp");
 			dispatcher.forward(request, response);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.err.println("Errore");
 		} catch (ServletException e) {
-			e.printStackTrace();
+			System.err.println("Errore");
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.err.println("Errore");
 		} finally {
 			try {
 				ps.close();
-				connection.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				System.err.println("Errore");
 			} catch (NullPointerException e) {
-				e.printStackTrace();
+				System.err.println("Errore");
 			}
 		}
 	}
