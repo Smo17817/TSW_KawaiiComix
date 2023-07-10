@@ -62,6 +62,8 @@ public class AddNewsServlet extends HttpServlet {
 			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
 			logger.log(Level.ALL, error, e);
+		} catch(NullPointerException e) {
+			logger.log(Level.ALL, error, e);
 		} finally {
 			try {
 				ps.close();

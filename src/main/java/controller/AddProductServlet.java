@@ -39,13 +39,12 @@ public class AddProductServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Connection connection = null;
 		RequestDispatcher dispatcher = null;
 		PreparedStatement ps = null;
 
 		String query = "INSERT INTO prodotti(isbn, nome, descrizione, immagine_prod, prezzo, quantita, genere_nome, categoria_nome) values(?,?,?,?, ?, ?, ?, ?)";
 
-		try {
+		try (Connection connection = DbManager.getConnection();){
 			String isbn = request.getParameter("isbn");
 			String nome = request.getParameter("nome");
 			String descrizione = request.getParameter("descrizione");
@@ -53,8 +52,7 @@ public class AddProductServlet extends HttpServlet {
 			double prezzo = Double.parseDouble(request.getParameter("prezzo"));
 			int quantita = Integer.parseInt(request.getParameter("quantita"));
 			String genere = request.getParameter("genere");
-			String categoria = request.getParameter("categoria");
-			connection = DbManager.getConnection();
+			String categoria = request.getParameter("categoria");			
 			ps = connection.prepareStatement(query);
 			ps.setString(1, isbn);
 			ps.setString(2, nome);
@@ -83,12 +81,13 @@ public class AddProductServlet extends HttpServlet {
 			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
 			logger.log(Level.ALL, error, e);
+		} catch(NullPointerException e) {
+			logger.log(Level.ALL, error, e);
 		} catch (NumberFormatException e) {
 			logger.log(Level.ALL, error, e);
 		} finally {
 			try {
 				ps.close();
-				connection.close();
 			} catch (SQLException e) {
 				logger.log(Level.ALL, error, e);
 			} catch (NullPointerException e) {

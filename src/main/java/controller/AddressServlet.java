@@ -129,6 +129,8 @@ public class AddressServlet extends HttpServlet {
 			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
 			logger.log(Level.ALL, error, e);
+		}  catch(NullPointerException e) {
+			logger.log(Level.ALL, error, e);
 		} finally {
 			try {
 				s.close();
