@@ -6,6 +6,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/AddNewsServlet")
 public class AddNewsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = Logger.getLogger(AddNewsServlet.class.getName());
+	private String error = "Errore";
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -53,18 +57,18 @@ public class AddNewsServlet extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("aggiungiNovita.jsp");
 			dispatcher.forward(request, response);
 		} catch (SQLException e) {
-			System.err.println("Errore");
+			logger.log(Level.ALL, error, e);
 		} catch (ServletException e) {
-			System.err.println("Errore");
+			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
-			System.err.println("Errore");
+			logger.log(Level.ALL, error, e);
 		} finally {
 			try {
 				ps.close();
 			} catch (SQLException e) {
-				System.err.println("Errore");
+				logger.log(Level.ALL, error, e);
 			} catch (NullPointerException e) {
-				System.err.println("Errore");
+				logger.log(Level.ALL, error, e);
 			}
 		}
 	}

@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,7 +27,9 @@ import model.User;
 @WebServlet("/AddOrdineServlet")
 public class AddOrdineServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private static final Logger logger = Logger.getLogger(AddNewsServlet.class.getName());
+	private String error = "Errore";
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -107,21 +111,21 @@ public class AddOrdineServlet extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("profilo.jsp");
 			dispatcher.forward(request, response);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (ServletException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} finally {
 			try {
 				s.close();
 				connection.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				logger.log(Level.ALL, error, e);
 			} catch (NullPointerException e) {
-				e.printStackTrace();
+				logger.log(Level.ALL, error, e);
 			}
 		}
 	}
