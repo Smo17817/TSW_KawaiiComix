@@ -6,6 +6,7 @@ User user = (User) session.getAttribute("user");
 if (user == null)
 	response.sendRedirect("login.jsp");
 %>
+
 <jsp:include page="./header.jsp" flush="true" />
 <body>
 	<jsp:include page="./Nav.jsp" flush="true" />
