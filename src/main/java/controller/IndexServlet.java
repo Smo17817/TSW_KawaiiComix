@@ -31,8 +31,9 @@ public class IndexServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Gson json = new Gson();
 
-		try (Connection connection = DbManager.getConnection()){
-			PreparedStatement ps = connection.prepareStatement("SELECT * FROM prodotti ORDER BY isbn DESC LIMIT 5;");
+		try (Connection connection = DbManager.getConnection();
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM prodotti ORDER BY isbn DESC LIMIT 5;");){
+			
 			ResultSet rs = ps.executeQuery();
 			PrintWriter out = response.getWriter();
 			ArrayList<Prodotto> prodotti = new ArrayList<>();

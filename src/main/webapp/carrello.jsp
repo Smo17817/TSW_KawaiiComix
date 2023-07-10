@@ -20,12 +20,12 @@
 			<table id="table">
 				<thead>
 					<tr>
-					<td>Elimina</td>
-					<td>Immagine</td>
-					<td>Prodotto</td>
-					<td>Prezzo</td>
-					<td>Quantità</td>
-					<td>Totale</td>
+					<th>Elimina</th>
+					<th>Immagine</th>
+					<th>Prodotto</th>
+					<th>Prezzo</th>
+					<th>Quantità</th>
+					<th>Totale</th>
 					</tr>
 				</thead>
 				<tbody id="dinamico">

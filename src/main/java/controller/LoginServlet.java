@@ -38,8 +38,9 @@ public class LoginServlet extends HttpServlet {
 		RequestDispatcher dispatcher = null;
 		String query = "SELECT * FROM site_user WHERE email_address = ? and password = ?";
 
-		try (Connection connection = DbManager.getConnection();){		
-			PreparedStatement ps = connection.prepareStatement(query);
+		try (Connection connection = DbManager.getConnection();
+			Statement s = connection.createStatement();
+			PreparedStatement ps = connection.prepareStatement(query);){			
 			ps.setString(1, email);
 			ps.setString(2, password);
 
@@ -51,7 +52,6 @@ public class LoginServlet extends HttpServlet {
 				User user = new User(id, email, nome, cognome);
 
 				query = "SELECT * FROM address WHERE user_id = " + id;
-				Statement s = connection.createStatement();
 				rs = s.executeQuery(query);
 
 				/* quando si fa il log in, vengono caricate anche le info sull'indirizzo */
@@ -78,12 +78,10 @@ public class LoginServlet extends HttpServlet {
 					 carrello = new Carrello(carrelloid);
 				}
 				else {
-					query = "INSERT INTO carrello(user_id) VALUES (?)";
-					ps = connection.prepareStatement(query);
-					ps.setInt(1, id);
-					ps.executeUpdate();
+					query = "INSERT INTO carrello(user_id) VALUES (" + id + ")";
+					s.executeUpdate(query);
 					query = "SELECT * FROM carrello WHERE user_id=" + id;
-					rs = ps.executeQuery(query);
+					rs = s.executeQuery(query);
 					if(rs.next()) {
 						carrelloid = rs.getInt("id");
 						 carrello = new Carrello(carrelloid);
@@ -92,7 +90,6 @@ public class LoginServlet extends HttpServlet {
 				
 				query = "SELECT * FROM carrello_prodotto WHERE carrello_id=" + carrelloid;
 				rs = s.executeQuery(query);
-				
 				
 				ArrayList<Prodotto> list = (ArrayList<Prodotto>) carrello.getCarrello();
 				ArrayList<String> isbnList = new ArrayList<String>();
@@ -120,13 +117,11 @@ public class LoginServlet extends HttpServlet {
 					query = "DELETE  FROM carrello_prodotto WHERE prodotto_isbn=" + isbn;
 					ps.executeUpdate(query);
 				}
-				ps.close();
 				carrello.setCarrello(list);
 				session.setAttribute("carrello", carrello);
 
 				session.setAttribute("user", user);
 				dispatcher = request.getRequestDispatcher("index.jsp");
-				s.close();
 				
 			} else {
 				request.setAttribute("status", "failed");

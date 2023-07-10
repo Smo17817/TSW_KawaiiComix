@@ -36,13 +36,13 @@ if (user == null)
 	<table>
 		<thead>
 			<tr>
-				<td>Data</td>
-				<td> Utente </td>
-				<td>Codice Ordine</td>				
-				<td>Nome</td>
-				<td>Totale</td>
-				<td>Stato</td>
-				<td>Annulla ordine</td>
+				<th>Data</th>
+				<th> Utente </th>
+				<th>Codice Ordine</th>				
+				<th>Nome</th>
+				<th>Totale</th>
+				<th>Stato</th>
+				<th>Annulla ordine</th>
 			</tr>
 		</thead>
 		<tbody id="container">

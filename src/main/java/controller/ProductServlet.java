@@ -30,8 +30,8 @@ public class ProductServlet extends HttpServlet {
 		String isbn = request.getParameter("isbn");
 		HttpSession session = request.getSession();
 
-		try (Connection connection = DbManager.getConnection();){
-			PreparedStatement ps = connection.prepareStatement("SELECT * FROM prodotti WHERE isbn = ?");
+		try (Connection connection = DbManager.getConnection();
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM prodotti WHERE isbn = ?");){	
 			ps.setString(1, isbn);
 			ResultSet rs = ps.executeQuery();
 
@@ -51,7 +51,6 @@ public class ProductServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 			rs.close();
-			ps.close();
 		} catch (SQLException e) {
 			logger.log(Level.ALL, error, e);
 		} catch (ServletException e) {

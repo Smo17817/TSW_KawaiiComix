@@ -18,7 +18,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
 	<jsp:include page="./Nav.jsp" flush="true"/>	
 	<main>
 		<section id="login">
-			<div id="login-img"><img src="./images/anya.jpg"/></div>
+			<div id="login-img"><img src="./images/anya.jpg" alt=""/></div>
 				<h3>Accedi al tuo account</h3>
 				<form action="Login" name="login" method="POST" class="login-form" >
 					<input type="email" name="email" placeholder="E-mail">

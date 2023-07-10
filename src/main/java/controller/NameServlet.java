@@ -29,8 +29,8 @@ public class NameServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Gson json = new Gson();
 
-		try (Connection connection = DbManager.getConnection();){		
-			PreparedStatement ps = connection.prepareStatement("SELECT nome FROM prodotti ORDER BY nome");
+		try (Connection connection = DbManager.getConnection();
+			PreparedStatement ps = connection.prepareStatement("SELECT nome FROM prodotti ORDER BY nome");){				
 			ResultSet rs = ps.executeQuery();
 			PrintWriter out = response.getWriter();
 			ArrayList<String> nomi = new ArrayList<>();

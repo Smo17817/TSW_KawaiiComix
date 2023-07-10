@@ -22,7 +22,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
 	<jsp:include page="./Nav.jsp" flush="true"/>
 	<main>
 		<section id ="signup">
- 			<div id="signup-img"><img src="./images/anya-signup.png"/></div>
+ 			<div id="signup-img"><img src="./images/anya-signup.png" alt=""/></div>
  			<form  action = "SignupServlet" method = "POST" class = "signup-form">
  				<h3>Iscrizione</h3>
  				<div class="form-row">

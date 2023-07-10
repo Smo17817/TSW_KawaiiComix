@@ -39,23 +39,23 @@ else if (user.getId() == 1) {
 			<div class="account">
 				<ul>
 					<li> <a href="datipersonali.jsp">
-						<img class="proimg" src="./icons/profile.ico">
+						<img class="proimg" alt="" src="./icons/profile.ico">
 					 	Dati personali 
 					 </a> </li>
 					<li> <a href="indirizzo.jsp"> 
-						<img class="proimg" src="./icons/address.ico">
+						<img class="proimg" alt="" src="./icons/address.ico">
 						Indirizzo 
 					</a></li>
 					<li> <a href="carrello.jsp">
-						<img class="proimg" src="./icons/cart.ico">
+						<img class="proimg" alt="" src="./icons/cart.ico">
 						Carrello 
 						</a> </li>
 					<li> <a href="OrdineServlet">
-						<img class="proimg" src="./icons/calendar.ico"> 
+						<img class="proimg" alt="" src="./icons/calendar.ico"> 
 						I miei Ordini 
 					</a></li>
 					<li> <a href="ExitServlet">
-						<img class="proimg" src="./icons/exit.ico">
+						<img class="proimg" alt="" src="./icons/exit.ico">
 						Esci 
 					</a></li>
 				</ul>

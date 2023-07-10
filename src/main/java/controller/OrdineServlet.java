@@ -36,9 +36,9 @@ public class OrdineServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		RequestDispatcher dispatcher = null;
 
-		try (Connection connection = DbManager.getConnection();){
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			Statement s = connection.createStatement();
+		try (Connection connection = DbManager.getConnection();
+			Statement s = connection.createStatement();){
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");		
 			OrdiniList ol = new OrdiniList();
 			Ordine o = null;
 			OrdineSingolo os = null;

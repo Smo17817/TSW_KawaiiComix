@@ -26,7 +26,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
 	<jsp:include page="./Nav.jsp" flush="true"/>
 	<main>
 		<section id ="reset-pass">
- 			<div id="reset-img"><img src="./images/forgot.jpg"/></div>
+ 			<div id="reset-img"><img src="./images/forgot.jpg" alt=""/></div>
  			<form  action = "ForgotPasswordServlet" method = "POST" class = "reset-form">
  				<h3>Reset password</h3>
  	      		<div class="form-row">

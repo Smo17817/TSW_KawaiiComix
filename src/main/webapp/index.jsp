@@ -20,7 +20,7 @@
 					<a href="ProductServlet?isbn=10000000000000001"> Acquista ora</a>
 				</div>
 				<div class="imgbox">
-					<img src="./images/db1.jpg" class="db">
+					<img src="./images/db1.jpg" alt="" class="db">
 				</div>
 			</div>
 			 <div class="content" id="slide2">
@@ -30,7 +30,7 @@
 					<a href="ProductServlet?isbn=10000000000000006"> Acquista ora</a>
 				</div>
 				<div class="imgbox">
-					<img src="./images/op1.jpg" class="db">
+					<img src="./images/op1.jpg" alt="" class="db">
 				</div>
 			</div>
 			<div class="content" id="slide3">
@@ -40,7 +40,7 @@
 					<a href="ProductServlet?isbn=10000000000000004"> Acquista ora</a>
 				</div>
 				<div class="imgbox">
-					<img src="./images/naruto1.jpg" class="db">
+					<img src="./images/naruto1.jpg" alt="" class="db">
 				</div>
 			</div>
 		</div>

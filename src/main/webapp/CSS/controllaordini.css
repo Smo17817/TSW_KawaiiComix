@@ -25,7 +25,7 @@ thead{
 	font-weight: 700;
 }
 
-td{
+td, th{
 	padding: 6px 0;
 	text-align: center;
 	border-bottom: 1px solid grey;

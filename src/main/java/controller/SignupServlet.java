@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -30,12 +31,14 @@ public class SignupServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		RequestDispatcher dispatcher = null;
-		String q = "SELECT email_address FROM site_user WHERE email_address=?";	
+		String q = "SELECT email_address FROM site_user WHERE email_address='" + email + "'";	
+		String query = "INSERT INTO site_user(nome,cognome,email_address,password) values(?,?,?,?)";
 		
-		try (Connection connection = DbManager.getConnection();){
-			PreparedStatement ps = connection.prepareStatement(q);
-			ps.setString(1, email);
-			ResultSet rs = ps.executeQuery();
+		try (Connection connection = DbManager.getConnection();
+			Statement s = connection.createStatement();
+			PreparedStatement ps = connection.prepareStatement(query)){		
+			
+			ResultSet rs = s.executeQuery(q);
 			
 			if(rs.next()) {
 				request.setAttribute(status, "duplicato");
@@ -44,9 +47,6 @@ public class SignupServlet extends HttpServlet {
 				return;
 			}
 			
-			String query = "INSERT INTO site_user(nome,cognome,email_address,password) values(?,?,?,?)";
-		
-			ps = connection.prepareStatement(query);
 			ps.setString(1, nome);
 			ps.setString(2, cognome);
 			ps.setString(3, email);

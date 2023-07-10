@@ -33,10 +33,10 @@ public class NewsServlet extends HttpServlet {
 		RequestDispatcher dispatcher = null;
 		HttpSession session = request.getSession();
 		Novita novita = new Novita();
+		String query = "SELECT * FROM novita";
 		
-		try (Connection connection = DbManager.getConnection();){
-			String query = "SELECT * FROM novita";
-			PreparedStatement ps = connection.prepareStatement(query);
+		try (Connection connection = DbManager.getConnection();
+			PreparedStatement ps = connection.prepareStatement(query);){
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {

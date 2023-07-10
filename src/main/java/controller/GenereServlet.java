@@ -29,10 +29,10 @@ public class GenereServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Gson json = new Gson();
-		try (Connection connection = DbManager.getConnection();){	
+		try (Connection connection = DbManager.getConnection(); 
+				Statement s = connection.createStatement();) {
 			PrintWriter out = response.getWriter();
 
-			Statement s = connection.createStatement();
 			String query = "SELECT nome FROM genere";
 			ResultSet rs = s.executeQuery(query);
 			ArrayList<String> generi = new ArrayList<>();
@@ -50,6 +50,6 @@ public class GenereServlet extends HttpServlet {
 			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
 			logger.log(Level.ALL, error, e);
-		} 
+		}
 	}
 }

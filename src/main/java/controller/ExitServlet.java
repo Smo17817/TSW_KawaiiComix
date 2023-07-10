@@ -54,9 +54,7 @@ public class ExitServlet extends HttpServlet {
 
 			session.invalidate(); // Invalida la sessione, rimuovendo tutti gli attributi ad essa associati
 			response.sendRedirect("login.jsp"); // Reindirizza all'URL specificato (pagina di login nel nostro esempio)
-		} catch (
-
-		SQLException e) {
+		} catch (SQLException e) {
 			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
 			logger.log(Level.ALL, error, e);
