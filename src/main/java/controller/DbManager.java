@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class DbManager {
 	private static String userName = "root";
-	private static String pass = "vittismo13";
+	private static String pass = "S&ttembre3*";
 	private static String dbURL = "jdbc:mysql://localhost:3306/KawaiiComix";
 	private static final Logger logger = Logger.getLogger(DbManager.class.getName());
 	private static final String error = "Errore";

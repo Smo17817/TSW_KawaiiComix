@@ -51,14 +51,22 @@ function confermaModifica(event) {
                 },
                 }).done(function (response) {
                     var status = response.status;
-                    status = status.trim();
+                    if (typeof status !== 'undefined') {
+                    	  status = status.trim();
+                    }
+                    else{
+                    	Swal.fire('errore falliti del cazzo','','error');
+                    }
                     status = status.replace(/[\u0000-\u001F]+/g, '');
+                    
                     if(status == 'Invalid_prodotto'){
                     	Swal.fire('Scegliere un prodotto da modificare','','error')
                     }
                     else if(status =='Invalid_nome'){
                     	Swal.fire('Scegliere un nome!','','error')
-                  	} else if(status =='Invalid_descrizione'){
+              		}else if(status =='Invalid_nome_caratteri_speciali'){
+                    	Swal.fire('Scegliere un nome senza caratteri speciali!','','error')
+              		}else if(status =='Invalid_descrizione'){
                     	Swal.fire('Descrivere il prodotto!','','error')
                     }else if(status =='Invalid_path'){
                     	Swal.fire('Inserire un path valido!','','error')

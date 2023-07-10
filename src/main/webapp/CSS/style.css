@@ -359,7 +359,7 @@ footer {
 	
 }
 
-@media (max-width: 472px){
+@media (max-width: 545px){
 	nav{
 		align-items: center;
 		justify-content: center;

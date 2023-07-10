@@ -44,7 +44,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
         var categoriaInput = document.querySelector("select[name=categoria]");
         var immagineInput = document.querySelector("input[name=immagine]");
 
-        if (!/^[0-9]{17}$/.test(isbnInput.value)) {
+        if (!/^[0-9]{17}$/.test(isbnInput.value) || (isbnInput.value === "")) {
           event.preventDefault();
           Swal.fire("Errore!", "Inserire un ISBN valido (17 cifre)", "error");
         }
@@ -95,7 +95,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
 				<h2>Aggiungi un Prodotto</h2>
 				<div class="form-row">
 					<label for="isbn">ISBN: </label>
-					<input type="text" name="isbn" maxlength="17" pattern="^[0-9]{17}$" placeholder="00000000000000000">
+					<input type="text" name="isbn" maxlength="17" placeholder="00000000000000000">
 				</div>
 				<div class="form-row">
 					<label for="nome">Nome: </label>
@@ -115,7 +115,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.12/dist/sweetalert2.min.css
 				</div>
 				<div class="form-row">
 					<label for="prezzo">Prezzo: </label>
-					<input type="number" step="0.01" min="1 name="prezzo" >
+					<input type="number" step="0.01" min="1" name="prezzo" >
 				</div>
 				<div class="form-row">
 					<label for="quantita">Quantità: </label>

@@ -63,6 +63,17 @@ public class EditProductServlet extends HttpServlet {
 				return;
 			}
 
+			
+		    if (nome.matches(".*[^a-zA-Z0-9 ].*")) {
+		        HashMap<String, String> responseMap = new HashMap<>();
+		        responseMap.put(status, "Invalid_nome_caratteri_speciali");
+		        String jsonResponse = json.toJson(responseMap);
+		        response.setContentType(contentType);
+		        out.write(jsonResponse);
+		        out.flush();
+		        return;
+		    }
+		    
 			if (nome.equals("")) {
 				HashMap<String, String> responseMap = new HashMap<>();
 				responseMap.put(status, "Invalid_nome");
@@ -148,7 +159,7 @@ public class EditProductServlet extends HttpServlet {
 				return;
 			}
 
-			if (categoria.equals("") || categoria.equals("-scegliere categoria")) {
+			if (categoria.equals("") || categoria.equals("-scegliere categoria-")) {
 				HashMap<String, String> responseMap = new HashMap<>();
 				responseMap.put(status, "Invalid_categoria");
 				String jsonResponse = json.toJson(responseMap);

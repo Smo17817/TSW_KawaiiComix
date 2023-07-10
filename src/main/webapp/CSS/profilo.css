@@ -61,7 +61,15 @@ html {
 	box-shadow: 0.5em 0.3em 1em rgba(1, 2, 68, 0.1);
 }
 
-a{
+.account ul li a{
+	display: grid;
+	align-items: center;
+	justify-content: center;
+	height: 10rem;
+	width: 15rem;
+}
+
+#admin a{
 	display: grid;
 	align-items: center;
 	justify-content: center;

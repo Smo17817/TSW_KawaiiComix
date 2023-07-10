@@ -29,20 +29,24 @@ public class ExitServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// prima di invalidare la sessione ci prendiamo i dati dal carrello
 		HttpSession session = request.getSession(false);
-
-		if (session.getAttribute("carrello") == null)
-			session.invalidate();
-
-		Carrello carrello = (Carrello) session.getAttribute("carrello");
-		ArrayList<Prodotto> prodotti = (ArrayList<Prodotto>) carrello.getCarrello();
-		ArrayList<String> isbnList = new ArrayList<>();
 		String query = "INSERT INTO carrello_prodotto (carrello_id , prodotto_isbn) VALUES (?,?)";
 
-		for (Prodotto prod : prodotti) {
-			isbnList.add(prod.getIsbn());
-		}
 		try (Connection connection = DbManager.getConnection();
 				PreparedStatement ps = connection.prepareStatement(query);) {
+
+			if (((Carrello) session.getAttribute("carrello")).getCarrello().isEmpty()) {
+				session.invalidate();
+				response.sendRedirect("login.jsp");
+				return;
+			}
+			Carrello carrello = (Carrello) session.getAttribute("carrello");
+			ArrayList<Prodotto> prodotti = (ArrayList<Prodotto>) carrello.getCarrello();
+			ArrayList<String> isbnList = new ArrayList<>();
+
+			for (Prodotto prod : prodotti) {
+				isbnList.add(prod.getIsbn());
+			}
+
 			for (String isbn : isbnList) {
 				ps.setInt(1, carrello.getId());
 				ps.setString(2, isbn);

@@ -33,9 +33,10 @@ public class AddProductServlet extends HttpServlet {
 				return token.substring(token.indexOf('=') + 1).trim().replace("\"", "");
 			}
 		}
-		return null;
+		return "";
 	}
 
+	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -43,22 +44,23 @@ public class AddProductServlet extends HttpServlet {
 		final String query = "INSERT INTO prodotti(isbn, nome, descrizione, immagine_prod, prezzo, quantita, genere_nome, categoria_nome) values(?,?,?,?, ?, ?, ?, ?)";
 
 		try (Connection connection = DbManager.getConnection();
-				PreparedStatement ps = connection.prepareStatement(query);) {
+			PreparedStatement ps = connection.prepareStatement(query);) {
 			String isbn = request.getParameter("isbn");
 			String nome = request.getParameter("nome");
 			String descrizione = request.getParameter("descrizione");
 			String immagine = request.getParameter("immagine");
-			double prezzo = Double.parseDouble(request.getParameter("prezzo"));
-			int quantita = Integer.parseInt(request.getParameter("quantita"));
+			String prezzoString =(request.getParameter("prezzo"));
+			String quantitaString = (request.getParameter("quantita"));
 			String genere = request.getParameter("genere");
 			String categoria = request.getParameter("categoria");
+
 
 			ps.setString(1, isbn);
 			ps.setString(2, nome);
 			ps.setString(3, descrizione);
 			ps.setString(4, immagine);
-			ps.setDouble(5, prezzo);
-			ps.setInt(6, quantita);
+			ps.setDouble(5, Double.parseDouble(prezzoString));
+			ps.setInt(6, Integer.parseInt(quantitaString));
 			ps.setString(7, genere);
 			ps.setString(8, categoria);
 			ps.executeUpdate();

@@ -41,6 +41,7 @@ function confermaEliminazione(event) {
 	                    status = status.replace(/[\u0000-\u001F]+/g, '');
 	                    if(status == 'success'){
 	                    	Swal.fire('Prodotto eliminato correttamente','','success')
+	                    	 location.reload();
 	                    }
 	                    else if(status =='Invalid_Manga'){
 	                    	Swal.fire('Scegliere un Manga da eliminare!','Riprovare','error')
