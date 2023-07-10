@@ -20,9 +20,9 @@ import com.google.gson.Gson;
 public class DeleteProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(DeleteProductServlet.class.getName());
-	private final String error = "Errore";
-	private final String status = "status";
-	private final String contentType = "application/json";
+	private static final String error = "Errore";
+	private static final String status = "status";
+	private static final String contentType = "application/json";
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

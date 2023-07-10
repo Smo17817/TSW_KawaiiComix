@@ -23,7 +23,7 @@ import com.google.gson.Gson;
 public class CategoriaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(CategoriaServlet.class.getName());
-	private final String error = "Errore";
+	private static final String error = "Errore";
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

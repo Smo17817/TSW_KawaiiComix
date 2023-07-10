@@ -24,9 +24,9 @@ import model.User;
 public class AddressServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(AddressServlet.class.getName());
-	private final String error = "Errore";
-	private final String url = "indirizzo.jsp";
-	private final String status = "status";
+	private static final String error = "Errore";
+	private static final String url = "indirizzo.jsp";
+	private static final String status = "status";
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

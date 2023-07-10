@@ -26,7 +26,7 @@ import model.Prodotto;
 public class ConsigliatiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(ConsigliatiServlet.class.getName());
-	private final String error = "Errore";
+	private static final String error = "Errore";
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
