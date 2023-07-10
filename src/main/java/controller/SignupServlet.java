@@ -18,9 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/SignupServlet")
 public class SignupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger logger = Logger.getLogger(ProductServlet.class.getName());
-	private String error = "Errore";
-	private String status = "status";
+	private static final Logger logger = Logger.getLogger(SignupServlet.class.getName());
+	private final String error = "Errore";
+	private final String status = "status";
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

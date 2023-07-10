@@ -18,15 +18,17 @@ import javax.servlet.http.HttpServletResponse;
 public class ForgotPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(ForgotPasswordServlet.class.getName());
-	private String error = "Errore";
+	private final String error = "Errore";
+	private final String status = "status";
+	private final String url = "richiestapassword.jsp";
+	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password1 = request.getParameter("password");
 		String password2 = request.getParameter("conf-password");
-		String status = "status";
-		String url = "richiestapassword.jsp";
+		
 
 		int rowCount = 0;
 		RequestDispatcher dispatcher = null;

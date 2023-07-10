@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -26,8 +25,8 @@ import model.User;
 @WebServlet("/Login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger logger = Logger.getLogger(DatiPersonaliServlet.class.getName());
-	private String error = "Errore";
+	private static final Logger logger = Logger.getLogger(LoginServlet.class.getName());
+	private final String error = "Errore";
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

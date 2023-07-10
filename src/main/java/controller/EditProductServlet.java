@@ -25,15 +25,14 @@ import com.google.gson.Gson;
 public class EditProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(EditProductServlet.class.getName());
-	private String error = "Errore";
-	
+	private final String error = "Errore";
+	private final String status = "status";
+	private final String contentType = "application/json";
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Gson json = new Gson();
-		String status = "status";
-		String contentType = "application/json";
 
 		String pattern = "\\./images/[^/]+\\.[a-zA-Z]{3,4}";
 		String prodotto = request.getParameter("scelta");

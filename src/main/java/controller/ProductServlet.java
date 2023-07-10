@@ -22,7 +22,7 @@ import model.Prodotto;
 public class ProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(ProductServlet.class.getName());
-	private String error = "Errore";
+	private final String error = "Errore";
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

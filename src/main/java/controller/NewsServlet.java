@@ -24,9 +24,9 @@ import model.Novita;
 @WebServlet("/NewsServlet")
 public class NewsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger logger = Logger.getLogger(DatiPersonaliServlet.class.getName());
-	private String error = "Errore";
-
+	private static final Logger logger = Logger.getLogger(NewsServlet.class.getName());
+	private final String error = "Errore";
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

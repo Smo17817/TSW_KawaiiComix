@@ -21,7 +21,9 @@ import model.User;
 public class DatiPersonaliServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(DatiPersonaliServlet.class.getName());
-	private String error = "Errore";
+	private final String error = "Errore";
+	private final String status = "status";
+	private final String url = "datipersonali.jsp";
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,11 +37,7 @@ public class DatiPersonaliServlet extends HttpServlet {
 		String nome = request.getParameter("nome");
 		String cognome = request.getParameter("cognome");
 		int rowCount = 0;
-		/* SonarCloud Issues */
-		String status = "status";
-		String url = "datipersonali.jsp";
 		
-
 		try (Connection connection = DbManager.getConnection();){
 			if (nome.equals("")) {
 				request.setAttribute(status, "Invalid_nome");

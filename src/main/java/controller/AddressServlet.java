@@ -24,7 +24,9 @@ import model.User;
 public class AddressServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(AddressServlet.class.getName());
-	private String error = "Errore";
+	private final String error = "Errore";
+	private final String url = "indirizzo.jsp";
+	private final String status = "status";
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -38,9 +40,6 @@ public class AddressServlet extends HttpServlet {
 		String citta = request.getParameter("citta");
 		String provincia = request.getParameter("provincia");
 		String nazione = request.getParameter("nazione");
-		/* SonarCloud issues */
-		String url = "indirizzo.jsp";
-		String status = "status";
 
 		try (Connection connection = DbManager.getConnection();){
 			if (indirizzo.equals("")) {

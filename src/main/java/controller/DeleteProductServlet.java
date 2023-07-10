@@ -20,16 +20,15 @@ import com.google.gson.Gson;
 public class DeleteProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = Logger.getLogger(DeleteProductServlet.class.getName());
-	private String error = "Errore";
+	private final String error = "Errore";
+	private final String status = "status";
+	private final String contentType = "application/json";
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String scelta = request.getParameter("scelta");
-		
 		Gson json = new Gson();
-		String status = "status";
-		String contentType = "application/json";
 
 		try (Connection connection = DbManager.getConnection();){
 			PrintWriter out = response.getWriter();
