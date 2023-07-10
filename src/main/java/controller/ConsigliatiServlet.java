@@ -34,8 +34,9 @@ public class ConsigliatiServlet extends HttpServlet {
 		String categoria = request.getParameter("categoria");
 		Gson json = new Gson();
 
-		try (Connection connection = DbManager.getConnection();){
-			PreparedStatement ps = connection.prepareStatement("SELECT * FROM prodotti WHERE categoria_nome = ?");
+		try (Connection connection = DbManager.getConnection();
+			PreparedStatement ps = connection.prepareStatement("SELECT * FROM prodotti WHERE categoria_nome = ?");){
+			
 			ps.setString(1, categoria);
 			ResultSet rs = ps.executeQuery();
 			PrintWriter out = response.getWriter();

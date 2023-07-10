@@ -41,32 +41,27 @@ public class AddNewsServlet extends HttpServlet {
 		if (video.equals(""))
 			video = null;
 
-		try (Connection connection = DbManager.getConnection();) {
-			String query = "INSERT INTO novita (titolo, sottotitolo, data, corpo, immagine, video) values(?, ?, ?, ?, ?, ?)";
+		String query = "INSERT INTO novita (titolo, sottotitolo, data, corpo, immagine, video) values(?, ?, ?, ?, ?, ?)";
+		try (Connection connection = DbManager.getConnection();
+				PreparedStatement ps = connection.prepareStatement(query);) {
+			ps.setString(1, titolo);
+			ps.setString(2, sottotitolo);
+			ps.setDate(3, sqlDate);
+			ps.setString(4, corpo);
+			ps.setString(5, immagine);
+			ps.setString(6, video);
 
-			try (PreparedStatement ps = connection.prepareStatement(query);) {
-				ps.setString(1, titolo);
-				ps.setString(2, sottotitolo);
-				ps.setDate(3, sqlDate);
-				ps.setString(4, corpo);
-				ps.setString(5, immagine);
-				ps.setString(6, video);
+			ps.executeUpdate();
 
-				ps.executeUpdate();
-			} catch (SQLException e) {
-				logger.log(Level.ALL, error, e);
-			}
 			dispatcher = request.getRequestDispatcher("aggiungiNovita.jsp");
 			dispatcher.forward(request, response);
-			
+
 		} catch (SQLException e) {
 			logger.log(Level.ALL, error, e);
 		} catch (ServletException e) {
 			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
 			logger.log(Level.ALL, error, e);
-		} catch (NullPointerException e) {
-			logger.log(Level.ALL, error, e);
-		} 
+		}
 	}
 }

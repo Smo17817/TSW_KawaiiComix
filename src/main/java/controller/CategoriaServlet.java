@@ -29,28 +29,30 @@ public class CategoriaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Gson json = new Gson();
-		try (Connection connection = DbManager.getConnection();){
+		try (Connection connection = DbManager.getConnection();) {
 			PrintWriter out = response.getWriter();
-
-			Statement s = connection.createStatement();
-			String query = "SELECT nome FROM categoria";
-			ResultSet rs = s.executeQuery(query);
 			ArrayList<String> categorie = new ArrayList<>();
+			String query = "SELECT nome FROM categoria";
 
-			/* Aggiunta categorie all'arraylist */
-			while (rs.next()) {
-				String c = rs.getString("nome");
-				categorie.add(c);
+			try (Statement s = connection.createStatement();) {
+				ResultSet rs = s.executeQuery(query);
+
+				/* Aggiunta categorie all'arraylist */
+				while (rs.next()) {
+					String c = rs.getString("nome");
+					categorie.add(c);
+				}
+
+				Collections.sort(categorie);
+				out.write(json.toJson(categorie));
+			} catch (SQLException e) {
+				logger.log(Level.ALL, error, e);
 			}
-
-			Collections.sort(categorie);
-			out.write(json.toJson(categorie));
-
 		} catch (SQLException e) {
 			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
 			logger.log(Level.ALL, error, e);
-		} 
+		}
 	}
 
 }

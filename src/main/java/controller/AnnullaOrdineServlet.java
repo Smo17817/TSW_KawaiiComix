@@ -25,32 +25,20 @@ public class AnnullaOrdineServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String id = request.getParameter("id");
 		RequestDispatcher dispatcher = null;
-		PreparedStatement ps = null;
 
-		try (Connection connection = DbManager.getConnection();){			
-			ps = connection.prepareStatement("UPDATE ordini SET stato_ordine_id = 2 WHERE id = ?");
+		try (Connection connection = DbManager.getConnection();
+			PreparedStatement ps = connection.prepareStatement("UPDATE ordini SET stato_ordine_id = 2 WHERE id = ?");){					
 			ps.setString(1, id);
 			ps.executeUpdate();
 
 			dispatcher = request.getRequestDispatcher("controllaordini.jsp");
 			dispatcher.forward(request, response);
-			ps.close();
 		} catch (SQLException e) {
 			logger.log(Level.ALL, error, e);
 		} catch (ServletException e) {
 			logger.log(Level.ALL, error, e);
-		} catch(NullPointerException e) {
-			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
 			logger.log(Level.ALL, error, e);
-		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				logger.log(Level.ALL, error, e);
-			} catch(NullPointerException e) {
-				logger.log(Level.ALL, error, e);
-			}
 		}
 	}
 }

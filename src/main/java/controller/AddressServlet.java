@@ -40,7 +40,8 @@ public class AddressServlet extends HttpServlet {
 		String provincia = request.getParameter("provincia");
 		String nazione = request.getParameter("nazione");
 
-		try (Connection connection = DbManager.getConnection();) {
+		try (Connection connection = DbManager.getConnection(); 
+			Statement s = connection.createStatement();) {
 			if (indirizzo.equals("")) {
 				request.setAttribute(status, "Invalid_address");
 				dispatcher = request.getRequestDispatcher(url);
@@ -72,67 +73,60 @@ public class AddressServlet extends HttpServlet {
 				return;
 			}
 
-			try (Statement s = connection.createStatement();) {
-				String query = "SELECT * FROM address WHERE user_id=" + user.getId();
-				ResultSet rs = s.executeQuery(query);
-				int rowCount = 0;
+			String query = "SELECT * FROM address WHERE user_id=" + user.getId();
+			ResultSet rs = s.executeQuery(query);
+			int rowCount = 0;
 
-				if (!rs.next()) {
-					query = "INSERT INTO address (indirizzo, codice_postale, citta, provincia, nazione, user_id) values(?, ?, ?, ?, ?, ?)";
-					try (PreparedStatement ps = connection.prepareStatement(query);) {
-						ps.setString(1, indirizzo);
-						ps.setString(2, cap);
-						ps.setString(3, citta);
-						ps.setString(4, provincia);
-						ps.setString(5, nazione);
-						ps.setInt(6, user.getId());
-						rowCount = ps.executeUpdate();
-					} catch (SQLException e) {
-						logger.log(Level.ALL, error, e);
-					}
-				} else {
-					query = "UPDATE address SET indirizzo = ?, codice_postale = ?, citta = ?, provincia = ?, nazione = ? WHERE user_id = ?";
-					try (PreparedStatement ps = connection.prepareStatement(query);) {
-						ps.setString(1, indirizzo);
-						ps.setString(2, cap);
-						ps.setString(3, citta);
-						ps.setString(4, provincia);
-						ps.setString(5, nazione);
-						ps.setInt(6, user.getId());
-						rowCount = ps.executeUpdate();
-					} catch (SQLException e) {
-						logger.log(Level.ALL, error, e);
-					}
+			if (!rs.next()) {
+				query = "INSERT INTO address (indirizzo, codice_postale, citta, provincia, nazione, user_id) values(?, ?, ?, ?, ?, ?)";
+				try (PreparedStatement ps = connection.prepareStatement(query);) {
+					ps.setString(1, indirizzo);
+					ps.setString(2, cap);
+					ps.setString(3, citta);
+					ps.setString(4, provincia);
+					ps.setString(5, nazione);
+					ps.setInt(6, user.getId());
+					rowCount = ps.executeUpdate();
+				} catch (SQLException e) {
+					logger.log(Level.ALL, error, e);
 				}
-
-				if (rowCount > 0) {
-					request.setAttribute(status, "success");
-					/*
-					 * sia se si crea, sia se si modifica, le informazioni in sessione vanno
-					 * aggiornate
-					 */
-					Indirizzo i = new Indirizzo(indirizzo, cap, citta, provincia, nazione);
-					session.setAttribute("indirizzo", i);
-
-				} else {
-					request.setAttribute(status, "failed");
+			} else {
+				query = "UPDATE address SET indirizzo = ?, codice_postale = ?, citta = ?, provincia = ?, nazione = ? WHERE user_id = ?";
+				try (PreparedStatement ps = connection.prepareStatement(query);) {
+					ps.setString(1, indirizzo);
+					ps.setString(2, cap);
+					ps.setString(3, citta);
+					ps.setString(4, provincia);
+					ps.setString(5, nazione);
+					ps.setInt(6, user.getId());
+					rowCount = ps.executeUpdate();
+				} catch (SQLException e) {
+					logger.log(Level.ALL, error, e);
 				}
-
-				dispatcher = request.getRequestDispatcher("indirizzo.jsp");
-				dispatcher.forward(request, response);
-
-				rs.close();
-			} catch (SQLException e) {
-				logger.log(Level.ALL, error, e);
 			}
 
+			if (rowCount > 0) {
+				request.setAttribute(status, "success");
+				/*
+				 * sia se si crea, sia se si modifica, le informazioni in sessione vanno
+				 * aggiornate
+				 */
+				Indirizzo i = new Indirizzo(indirizzo, cap, citta, provincia, nazione);
+				session.setAttribute("indirizzo", i);
+
+			} else {
+				request.setAttribute(status, "failed");
+			}
+
+			dispatcher = request.getRequestDispatcher("indirizzo.jsp");
+			dispatcher.forward(request, response);
+
+			rs.close();
 		} catch (SQLException e) {
 			logger.log(Level.ALL, error, e);
 		} catch (ServletException e) {
 			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
-			logger.log(Level.ALL, error, e);
-		} catch (NullPointerException e) {
 			logger.log(Level.ALL, error, e);
 		}
 	}

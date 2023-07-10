@@ -37,52 +37,54 @@ public class CartServlet extends HttpServlet {
 		String isbn = request.getParameter("isbn");
 		User user = (User) session.getAttribute("user");
 		Gson json = new Gson();
-		
-		try (Connection connection = DbManager.getConnection();){
+
+		try (Connection connection = DbManager.getConnection();) {
 			PrintWriter out = response.getWriter();
 
-			if(isbn == null) {
-				HashMap<String , String> hashMap = new HashMap<>();
+			if (isbn == null) {
+				HashMap<String, String> hashMap = new HashMap<>();
 				hashMap.put("url", "carrello.jsp");
 				out.write(json.toJson(hashMap));
 				return;
 			}
-			
-			
-			if (user == null) 
+
+			if (user == null)
 				response.sendRedirect("login.jsp");
 			else {
 				String query = "SELECT * FROM prodotti WHERE isbn = ?";
-				PreparedStatement ps = connection.prepareStatement(query);
-				ps.setString(1, isbn);
-				ResultSet rs = ps.executeQuery();
+				try (PreparedStatement ps = connection.prepareStatement(query);) {
+					ps.setString(1, isbn);
+					ResultSet rs = ps.executeQuery();
 
-				if (rs.next()) {
-					String nome = rs.getString("nome");
-					String descrizione = rs.getString("descrizione");
-					String img = rs.getString("immagine_prod");
-					String genere = rs.getString("genere_nome");
-					String categoria = rs.getString("categoria_nome");
-					int quantita = rs.getInt("quantita");
-					double prezzo = rs.getDouble("prezzo");
-					Prodotto prodotto = new Prodotto(isbn, nome, descrizione, img, genere, categoria, quantita, prezzo);
+					if (rs.next()) {
+						String nome = rs.getString("nome");
+						String descrizione = rs.getString("descrizione");
+						String img = rs.getString("immagine_prod");
+						String genere = rs.getString("genere_nome");
+						String categoria = rs.getString("categoria_nome");
+						int quantita = rs.getInt("quantita");
+						double prezzo = rs.getDouble("prezzo");
+						Prodotto prodotto = new Prodotto(isbn, nome, descrizione, img, genere, categoria, quantita,
+								prezzo);
 
-					/* controlla che ci sia solo una ripetizione per ogni prodotto */
-					int flag = 0;
-					for (Prodotto p : carrello.getCarrello()) {
-						if (prodotto.getIsbn().equals(p.getIsbn()))
-							flag = 1;
+						/* controlla che ci sia solo una ripetizione per ogni prodotto */
+						int flag = 0;
+						for (Prodotto p : carrello.getCarrello()) {
+							if (prodotto.getIsbn().equals(p.getIsbn()))
+								flag = 1;
+						}
+
+						if (flag == 0) {
+							carrello.add(prodotto);
+							session.setAttribute("carrello", carrello);
+						}
 					}
 
-					if (flag == 0) {
-						carrello.add(prodotto);
-						session.setAttribute("carrello", carrello);
-					}
+					rs.close();
+					out.write(json.toJson(carrello.getCarrello()));
+				} catch (SQLException e) {
+					logger.log(Level.ALL, error, e);
 				}
-
-				rs.close();
-				ps.close();
-				out.write(json.toJson(carrello.getCarrello()));
 			}
 
 		} catch (SQLException e) {

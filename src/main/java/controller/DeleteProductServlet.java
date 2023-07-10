@@ -30,7 +30,8 @@ public class DeleteProductServlet extends HttpServlet {
 		String scelta = request.getParameter("scelta");
 		Gson json = new Gson();
 
-		try (Connection connection = DbManager.getConnection();){
+		try (Connection connection = DbManager.getConnection();
+			Statement s = connection.createStatement();){
 			PrintWriter out = response.getWriter();
 			
 			if (scelta.equals("") || scelta.equals("-seleziona un prodotto-")) {
@@ -42,8 +43,7 @@ public class DeleteProductServlet extends HttpServlet {
 				out.flush();
 				return;
 			}
-
-			Statement s = connection.createStatement();
+			
 			String query = "DELETE FROM prodotti WHERE nome = '" + scelta + "'";
 
 			if (request.getParameter("risposta").equals("conferma")) {

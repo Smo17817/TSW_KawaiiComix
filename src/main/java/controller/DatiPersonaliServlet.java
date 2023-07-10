@@ -37,8 +37,10 @@ public class DatiPersonaliServlet extends HttpServlet {
 		String nome = request.getParameter("nome");
 		String cognome = request.getParameter("cognome");
 		int rowCount = 0;
+		String query = "UPDATE site_user SET email_address = ?, password = ?, nome = ?, cognome = ? WHERE id = ?";
 		
-		try (Connection connection = DbManager.getConnection();){
+		try (Connection connection = DbManager.getConnection();
+				PreparedStatement ps = connection.prepareStatement(query);){
 			if (nome.equals("")) {
 				request.setAttribute(status, "Invalid_nome");
 				dispatcher = request.getRequestDispatcher(url);
@@ -69,9 +71,7 @@ public class DatiPersonaliServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 				return;
 			}
-
-			String query = "UPDATE site_user SET email_address = ?, password = ?, nome = ?, cognome = ? WHERE id = ?";
-			PreparedStatement ps = connection.prepareStatement(query);
+	
 			ps.setString(1, email);
 			ps.setString(2, password1);
 			ps.setString(3, nome);

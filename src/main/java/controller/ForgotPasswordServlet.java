@@ -21,19 +21,18 @@ public class ForgotPasswordServlet extends HttpServlet {
 	private static final String error = "Errore";
 	private static final String status = "status";
 	private static final String url = "richiestapassword.jsp";
-	
+
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password1 = request.getParameter("password");
 		String password2 = request.getParameter("conf-password");
-		
 
 		int rowCount = 0;
 		RequestDispatcher dispatcher = null;
-		
-		try (Connection connection = DbManager.getConnection();){
+
+		try (Connection connection = DbManager.getConnection();) {
 			if (email.equals("")) {
 				request.setAttribute(status, "Invalid_email");
 				request.setAttribute("emailValue", email);
@@ -55,20 +54,20 @@ public class ForgotPasswordServlet extends HttpServlet {
 			}
 
 			String query = "UPDATE site_user SET  password = ? WHERE email_address = ?";
-			PreparedStatement ps = connection.prepareStatement(query);
-			ps.setString(1, password1);
-			ps.setString(2, email);
-			rowCount = ps.executeUpdate();
-			ps.close();
+			try (PreparedStatement ps = connection.prepareStatement(query);) {
+				ps.setString(1, password1);
+				ps.setString(2, email);
+				rowCount = ps.executeUpdate();
+				if (rowCount > 0)
+					request.setAttribute(status, "success");
+				else
+					request.setAttribute(status, "failed");
 
-			if (rowCount > 0)
-				request.setAttribute(status, "success");
-			else
-				request.setAttribute(status, "failed");
-
-			dispatcher = request.getRequestDispatcher(url);
-			dispatcher.forward(request, response);
-			ps.close();
+				dispatcher = request.getRequestDispatcher(url);
+				dispatcher.forward(request, response);
+			} catch (SQLException e) {
+				logger.log(Level.ALL, error, e);
+			}
 		} catch (SQLException e) {
 			logger.log(Level.ALL, error, e);
 		} catch (ServletException e) {
