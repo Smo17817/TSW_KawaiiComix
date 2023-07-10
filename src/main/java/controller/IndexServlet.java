@@ -25,11 +25,9 @@ public class IndexServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Connection connection = null;
 		Gson json = new Gson();
 
-		try {
-			connection = DbManager.getConnection();
+		try (Connection connection = DbManager.getConnection()){
 			PreparedStatement ps = connection.prepareStatement("SELECT * FROM prodotti ORDER BY isbn DESC LIMIT 5;");
 			ResultSet rs = ps.executeQuery();
 			PrintWriter out = response.getWriter();
@@ -55,12 +53,6 @@ public class IndexServlet extends HttpServlet {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 
