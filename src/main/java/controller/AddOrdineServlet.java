@@ -31,6 +31,8 @@ public class AddOrdineServlet extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Connection connection = null;
+		Statement s = null;
+		
 		RequestDispatcher dispatcher = null;
 		User user = (User) session.getAttribute("user");
 		Carrello carrello = (Carrello) session.getAttribute("carrello");
@@ -41,7 +43,7 @@ public class AddOrdineServlet extends HttpServlet {
 			connection = DbManager.getConnection();
 
 			String query = "SELECT id FROM address WHERE user_id = " + user.getId();
-			Statement s = connection.createStatement();
+			s = connection.createStatement();
 			ResultSet rs = s.executeQuery(query);
 
 			if (rs.next())
@@ -71,10 +73,6 @@ public class AddOrdineServlet extends HttpServlet {
 			ps.setInt(6, 1); // posteItaliane
 			ps.setInt(7, address_id);
 			ps.executeUpdate();
-			
-			
-
-			
 
 			String[] values = request.getParameter("quantita").split(",");
 			int i = 0;
@@ -109,18 +107,15 @@ public class AddOrdineServlet extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("profilo.jsp");
 			dispatcher.forward(request, response);
 		} catch (SQLException e) {
-			e.printStackTrace();
 		} catch (ServletException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
 		} finally {
 			try {
+				s.close();
 				connection.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+			} catch (NullPointerException e) {
 			}
 		}
 	}

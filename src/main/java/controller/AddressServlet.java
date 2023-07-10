@@ -18,9 +18,6 @@ import javax.servlet.http.HttpSession;
 import model.Indirizzo;
 import model.User;
 
-/**
- * Servlet implementation class AddressServlet
- */
 @WebServlet("/AddressServlet")
 public class AddressServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,6 +28,7 @@ public class AddressServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Connection connection = null;
 		RequestDispatcher dispatcher = null;
+		Statement s = null;
 		User user = (User) session.getAttribute("user");
 		String indirizzo = request.getParameter("indirizzo");
 		String cap = request.getParameter("cap");
@@ -74,34 +72,35 @@ public class AddressServlet extends HttpServlet {
 			}
 
 			connection = DbManager.getConnection();
-			Statement s = connection.createStatement();
+			s = connection.createStatement();
 			String query = "SELECT * FROM address WHERE user_id=" + user.getId();
 			ResultSet rs = s.executeQuery(query);
 			int rowCount = 0;
 
 			if (!rs.next()) {
 				query = "INSERT INTO address (indirizzo, codice_postale, citta, provincia, nazione, user_id) values(?, ?, ?, ?, ?, ?)";
-				PreparedStatement ps = connection.prepareStatement(query);
-				ps.setString(1, indirizzo);
-				ps.setString(2, cap);
-				ps.setString(3, citta);
-				ps.setString(4, provincia);
-				ps.setString(5, nazione);
-				ps.setInt(6, user.getId());
-				rowCount = ps.executeUpdate();
-				ps.close();
+				try (PreparedStatement ps = connection.prepareStatement(query);) {
+					ps.setString(1, indirizzo);
+					ps.setString(2, cap);
+					ps.setString(3, citta);
+					ps.setString(4, provincia);
+					ps.setString(5, nazione);
+					ps.setInt(6, user.getId());
+					rowCount = ps.executeUpdate();
+					ps.close();
+				}
 			} else {
 				query = "UPDATE address SET indirizzo = ?, codice_postale = ?, citta = ?, provincia = ?, nazione = ? WHERE user_id = ?";
-				PreparedStatement ps = connection.prepareStatement(query);
-				ps.setString(1, indirizzo);
-				ps.setString(2, cap);
-				ps.setString(3, citta);
-				ps.setString(4, provincia);
-				ps.setString(5, nazione);
-
-				ps.setInt(6, user.getId());
-				rowCount = ps.executeUpdate();
-				ps.close();
+				try (PreparedStatement ps = connection.prepareStatement(query);) {
+					ps.setString(1, indirizzo);
+					ps.setString(2, cap);
+					ps.setString(3, citta);
+					ps.setString(4, provincia);
+					ps.setString(5, nazione);
+					ps.setInt(6, user.getId());
+					rowCount = ps.executeUpdate();
+					ps.close();
+				}
 			}
 
 			rs.close();
@@ -123,16 +122,14 @@ public class AddressServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 
 		} catch (SQLException e) {
-			e.printStackTrace();
 		} catch (ServletException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
 		} finally {
 			try {
+				s.close();
 				connection.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+			} catch (NullPointerException e) {
 			}
 		}
 	}
