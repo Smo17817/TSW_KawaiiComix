@@ -13,7 +13,7 @@ public class Ordine implements Serializable{
 	private int stato;
 	private int spedizione;
 	private int idIndirizzo;
-	private ArrayList<OrdineSingolo> singoli = new ArrayList<>();
+	private transient ArrayList<OrdineSingolo> singoli = new ArrayList<>();
 	
 	public Ordine(int id, String data, double totale, int userId, int stato, int spedizione, int idIndirizzo) {
 		super();

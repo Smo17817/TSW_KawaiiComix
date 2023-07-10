@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,14 +30,14 @@ public class SignupServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		RequestDispatcher dispatcher = null;
-		String q = "SELECT email_address FROM site_user WHERE email_address='" + email + "'";	
+		String q = "SELECT email_address FROM site_user WHERE email_address=?";	
 		String query = "INSERT INTO site_user(nome,cognome,email_address,password) values(?,?,?,?)";
 		
 		try (Connection connection = DbManager.getConnection();
-			Statement s = connection.createStatement();
-			PreparedStatement ps = connection.prepareStatement(query)){		
-			
-			ResultSet rs = s.executeQuery(q);
+			PreparedStatement ps1 = connection.prepareStatement(q);
+			PreparedStatement ps2 = connection.prepareStatement(query)){		
+			ps1.setString(1,  email);
+			ResultSet rs = ps1.executeQuery(q);
 			
 			if(rs.next()) {
 				request.setAttribute(status, "duplicato");
@@ -47,15 +46,15 @@ public class SignupServlet extends HttpServlet {
 				return;
 			}
 			
-			ps.setString(1, nome);
-			ps.setString(2, cognome);
-			ps.setString(3, email);
-			ps.setString(4, password);
+			ps2.setString(1, nome);
+			ps2.setString(2, cognome);
+			ps2.setString(3, email);
+			ps2.setString(4, password);
 
 			int rowCount = 0;
 
 			if (!((nome.equals("")) || (cognome.equals("")) || (email.equals("")) || (password.equals("")))) {
-				rowCount = ps.executeUpdate();
+				rowCount = ps2.executeUpdate();
 			}
 			dispatcher = request.getRequestDispatcher("login.jsp");
 

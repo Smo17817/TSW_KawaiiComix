@@ -78,7 +78,6 @@ public class DatiPersonaliServlet extends HttpServlet {
 			ps.setString(4, cognome);
 			ps.setInt(5, user.getId());
 			rowCount = ps.executeUpdate();
-			ps.close();
 
 			user.setEmail(email);
 			user.setNome(nome);

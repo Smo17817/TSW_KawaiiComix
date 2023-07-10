@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Novita implements Serializable{
 	private static final long serialVersionUID = 1L;
-	ArrayList<Articolo> list = new ArrayList<>();
+	private transient ArrayList<Articolo> list = new ArrayList<>();
 	
 	public Novita() {
 		super();

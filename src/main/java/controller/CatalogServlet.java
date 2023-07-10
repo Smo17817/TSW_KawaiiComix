@@ -33,32 +33,30 @@ public class CatalogServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Gson json = new Gson();
 
-		try (Connection connection = DbManager.getConnection();) {
+		try (Connection connection = DbManager.getConnection();
+				PreparedStatement ps = connection.prepareStatement("SELECT * FROM prodotti");) {
 			PrintWriter out = response.getWriter();
 			ArrayList<Prodotto> catalogo = new ArrayList<>();
-			try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM prodotti");) {
-				ResultSet rs = ps.executeQuery();
 
-				while (rs.next()) {
-					String isbn = rs.getString("isbn");
-					String nome = rs.getString("nome");
-					String descrizione = rs.getString("descrizione");
-					String img = rs.getString("immagine_prod");
-					String genere = rs.getString("genere_nome");
-					String categoria = rs.getString("categoria_nome");
-					int quantita = rs.getInt("quantita");
-					double prezzo = rs.getDouble("prezzo");
-					Prodotto p = new Prodotto(isbn, nome, descrizione, img, genere, categoria, quantita, prezzo);
+			ResultSet rs = ps.executeQuery();
 
-					catalogo.add(p);
-				}
-				Collections.sort(catalogo, new ProdottoComparator());
-				out.write(json.toJson(catalogo));
+			while (rs.next()) {
+				String isbn = rs.getString("isbn");
+				String nome = rs.getString("nome");
+				String descrizione = rs.getString("descrizione");
+				String img = rs.getString("immagine_prod");
+				String genere = rs.getString("genere_nome");
+				String categoria = rs.getString("categoria_nome");
+				int quantita = rs.getInt("quantita");
+				double prezzo = rs.getDouble("prezzo");
+				Prodotto p = new Prodotto(isbn, nome, descrizione, img, genere, categoria, quantita, prezzo);
 
-				rs.close();
-			} catch (SQLException e) {
-				logger.log(Level.ALL, error, e);
+				catalogo.add(p);
 			}
+			Collections.sort(catalogo, new ProdottoComparator());
+			out.write(json.toJson(catalogo));
+
+			rs.close();
 		} catch (SQLException e) {
 			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {

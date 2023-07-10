@@ -71,7 +71,8 @@ public class LoginServlet extends HttpServlet {
 				query = "SELECT * FROM carrello WHERE user_id=" + id;
 				rs =  s.executeQuery(query);
 				int carrelloid = 0;
-				Carrello carrello = null;
+				Carrello carrello = new Carrello(0);
+				
 				//se l'utente ha un carrello assegnato lo si prende e lo si assegna 
 				if(rs.next()) {
 					carrelloid = rs.getInt("id");
@@ -92,7 +93,7 @@ public class LoginServlet extends HttpServlet {
 				rs = s.executeQuery(query);
 				
 				ArrayList<Prodotto> list = (ArrayList<Prodotto>) carrello.getCarrello();
-				ArrayList<String> isbnList = new ArrayList<String>();
+				ArrayList<String> isbnList = new ArrayList<>();
 				while(rs.next()) {
 					String isbn = rs.getString("prodotto_isbn");
 					isbnList.add(isbn);	

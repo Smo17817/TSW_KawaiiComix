@@ -31,8 +31,10 @@ public class ForgotPasswordServlet extends HttpServlet {
 
 		int rowCount = 0;
 		RequestDispatcher dispatcher = null;
+		String query = "UPDATE site_user SET  password = ? WHERE email_address = ?";
 
-		try (Connection connection = DbManager.getConnection();) {
+		try (Connection connection = DbManager.getConnection();
+				PreparedStatement ps = connection.prepareStatement(query);) {
 			if (email.equals("")) {
 				request.setAttribute(status, "Invalid_email");
 				request.setAttribute("emailValue", email);
@@ -53,21 +55,17 @@ public class ForgotPasswordServlet extends HttpServlet {
 				return;
 			}
 
-			String query = "UPDATE site_user SET  password = ? WHERE email_address = ?";
-			try (PreparedStatement ps = connection.prepareStatement(query);) {
-				ps.setString(1, password1);
-				ps.setString(2, email);
-				rowCount = ps.executeUpdate();
-				if (rowCount > 0)
-					request.setAttribute(status, "success");
-				else
-					request.setAttribute(status, "failed");
+			ps.setString(1, password1);
+			ps.setString(2, email);
+			rowCount = ps.executeUpdate();
+			if (rowCount > 0)
+				request.setAttribute(status, "success");
+			else
+				request.setAttribute(status, "failed");
 
-				dispatcher = request.getRequestDispatcher(url);
-				dispatcher.forward(request, response);
-			} catch (SQLException e) {
-				logger.log(Level.ALL, error, e);
-			}
+			dispatcher = request.getRequestDispatcher(url);
+			dispatcher.forward(request, response);
+
 		} catch (SQLException e) {
 			logger.log(Level.ALL, error, e);
 		} catch (ServletException e) {

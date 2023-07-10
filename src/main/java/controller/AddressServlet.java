@@ -120,7 +120,6 @@ public class AddressServlet extends HttpServlet {
 
 			dispatcher = request.getRequestDispatcher("indirizzo.jsp");
 			dispatcher.forward(request, response);
-
 		} catch (SQLException e) {
 			logger.log(Level.ALL, error, e);
 		} catch (ServletException e) {

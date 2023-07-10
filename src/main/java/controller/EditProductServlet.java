@@ -46,7 +46,11 @@ public class EditProductServlet extends HttpServlet {
 		String genere = request.getParameter("genere");
 		String categoria = request.getParameter("categoria");
 
-		try (Connection connection = DbManager.getConnection(); Statement s = connection.createStatement();) {
+		try (Connection connection = DbManager.getConnection();
+				Statement s = connection.createStatement();
+				PreparedStatement ps = connection.prepareStatement("UPDATE prodotti "
+						+ "SET nome=?, descrizione=?, immagine_prod=?, prezzo=?, quantita=?, categoria_nome=?, genere_nome=? "
+						+ "WHERE isbn=?");) {
 			PrintWriter out = response.getWriter();
 
 			if (prodotto.equals("") || prodotto.equals("-seleziona un prodotto-")) {
@@ -162,40 +166,33 @@ public class EditProductServlet extends HttpServlet {
 			rs.next();
 			String isbn = rs.getString("isbn");
 
-			query = "UPDATE prodotti "
-					+ "SET nome=?, descrizione=?, immagine_prod=?, prezzo=?, quantita=?, categoria_nome=?, genere_nome=? "
-					+ "WHERE isbn=?";
+			ps.setString(1, nome);
+			ps.setString(2, descrizione);
+			ps.setString(3, immagine);
+			ps.setDouble(4, prezzo);
+			ps.setInt(5, quantita);
+			ps.setString(6, categoria);
+			ps.setString(7, genere);
+			ps.setString(8, isbn);
+			rowCount = ps.executeUpdate();
 
-			try (PreparedStatement ps = connection.prepareStatement(query);) {
-				ps.setString(1, nome);
-				ps.setString(2, descrizione);
-				ps.setString(3, immagine);
-				ps.setDouble(4, prezzo);
-				ps.setInt(5, quantita);
-				ps.setString(6, categoria);
-				ps.setString(7, genere);
-				ps.setString(8, isbn);
-				rowCount = ps.executeUpdate();
-
-				if (rowCount > 0) {
-					HashMap<String, String> responseMap = new HashMap<>();
-					responseMap.put(status, "success");
-					responseMap.put("url", "profilo.jsp");
-					String jsonResponse = json.toJson(responseMap);
-					response.setContentType(contentType);
-					out.write(jsonResponse);
-					out.flush();
-				} else {
-					HashMap<String, String> responseMap = new HashMap<>();
-					responseMap.put(status, "failed");
-					String jsonResponse = json.toJson(responseMap);
-					response.setContentType(contentType);
-					out.write(jsonResponse);
-					out.flush();
-				}
-			} catch (SQLException e) {
-				logger.log(Level.ALL, error, e);
+			if (rowCount > 0) {
+				HashMap<String, String> responseMap = new HashMap<>();
+				responseMap.put(status, "success");
+				responseMap.put("url", "profilo.jsp");
+				String jsonResponse = json.toJson(responseMap);
+				response.setContentType(contentType);
+				out.write(jsonResponse);
+				out.flush();
+			} else {
+				HashMap<String, String> responseMap = new HashMap<>();
+				responseMap.put(status, "failed");
+				String jsonResponse = json.toJson(responseMap);
+				response.setContentType(contentType);
+				out.write(jsonResponse);
+				out.flush();
 			}
+
 		} catch (SQLException e) {
 			logger.log(Level.ALL, error, e);
 		} catch (NumberFormatException e) {
