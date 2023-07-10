@@ -47,7 +47,7 @@ public class AnnullaOrdineServlet extends HttpServlet {
 			try {
 				ps.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				logger.log(Level.ALL, error, e);
 			} catch(NullPointerException e) {
 				logger.log(Level.ALL, error, e);
 			}

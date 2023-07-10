@@ -39,12 +39,9 @@ public class AddProductServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher dispatcher = null;
-		PreparedStatement ps = null;
+		RequestDispatcher dispatcher = null;	
 
-		String query = "INSERT INTO prodotti(isbn, nome, descrizione, immagine_prod, prezzo, quantita, genere_nome, categoria_nome) values(?,?,?,?, ?, ?, ?, ?)";
-
-		try (Connection connection = DbManager.getConnection();){
+		try (Connection connection = DbManager.getConnection();) {
 			String isbn = request.getParameter("isbn");
 			String nome = request.getParameter("nome");
 			String descrizione = request.getParameter("descrizione");
@@ -52,17 +49,22 @@ public class AddProductServlet extends HttpServlet {
 			double prezzo = Double.parseDouble(request.getParameter("prezzo"));
 			int quantita = Integer.parseInt(request.getParameter("quantita"));
 			String genere = request.getParameter("genere");
-			String categoria = request.getParameter("categoria");			
-			ps = connection.prepareStatement(query);
-			ps.setString(1, isbn);
-			ps.setString(2, nome);
-			ps.setString(3, descrizione);
-			ps.setString(4, immagine);
-			ps.setDouble(5, prezzo);
-			ps.setInt(6, quantita);
-			ps.setString(7, genere);
-			ps.setString(8, categoria);
-			ps.executeUpdate();
+			String categoria = request.getParameter("categoria");
+			
+			final String query = "INSERT INTO prodotti(isbn, nome, descrizione, immagine_prod, prezzo, quantita, genere_nome, categoria_nome) values(?,?,?,?, ?, ?, ?, ?)";
+			try (PreparedStatement ps = connection.prepareStatement(query);) {
+				ps.setString(1, isbn);
+				ps.setString(2, nome);
+				ps.setString(3, descrizione);
+				ps.setString(4, immagine);
+				ps.setDouble(5, prezzo);
+				ps.setInt(6, quantita);
+				ps.setString(7, genere);
+				ps.setString(8, categoria);
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				logger.log(Level.ALL, error, e);
+			}
 
 			Part imagePart = request.getPart("file");
 			if (imagePart.getSize() != 0) {
@@ -81,18 +83,10 @@ public class AddProductServlet extends HttpServlet {
 			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
 			logger.log(Level.ALL, error, e);
-		} catch(NullPointerException e) {
+		} catch (NullPointerException e) {
 			logger.log(Level.ALL, error, e);
 		} catch (NumberFormatException e) {
 			logger.log(Level.ALL, error, e);
-		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				logger.log(Level.ALL, error, e);
-			} catch (NullPointerException e) {
-				logger.log(Level.ALL, error, e);
-			}
 		}
 	}
 
