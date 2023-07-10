@@ -32,7 +32,7 @@ public class ExitServlet extends HttpServlet {
 			
 		Carrello carrello = (Carrello) session.getAttribute("carrello");
 		ArrayList<Prodotto> prodotti = (ArrayList<Prodotto>) carrello.getCarrello();
-		ArrayList<String> isbnList = new ArrayList<String>();
+		ArrayList<String> isbnList = new ArrayList<>();
 		
 		
 		for (Prodotto prod : prodotti) {

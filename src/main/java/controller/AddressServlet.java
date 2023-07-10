@@ -105,8 +105,6 @@ public class AddressServlet extends HttpServlet {
 				}
 			}
 
-			rs.close();
-
 			if (rowCount > 0) {
 				request.setAttribute(status, "success");
 				/*
@@ -122,7 +120,8 @@ public class AddressServlet extends HttpServlet {
 
 			dispatcher = request.getRequestDispatcher("indirizzo.jsp");
 			dispatcher.forward(request, response);
-
+			
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ServletException e) {
