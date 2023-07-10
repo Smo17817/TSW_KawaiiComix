@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,18 +19,19 @@ import com.google.gson.Gson;
 @WebServlet("/DeleteProductServlet")
 public class DeleteProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private static final Logger logger = Logger.getLogger(DeleteProductServlet.class.getName());
+	private String error = "Errore";
+	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Connection connection = null;
 		String scelta = request.getParameter("scelta");
 		
 		Gson json = new Gson();
 		String status = "status";
 		String contentType = "application/json";
 
-		try {
+		try (Connection connection = DbManager.getConnection();){
 			PrintWriter out = response.getWriter();
 			
 			if (scelta.equals("") || scelta.equals("-seleziona un prodotto-")) {
@@ -41,7 +44,6 @@ public class DeleteProductServlet extends HttpServlet {
 				return;
 			}
 
-			connection = DbManager.getConnection();
 			Statement s = connection.createStatement();
 			String query = "DELETE FROM prodotti WHERE nome = '" + scelta + "'";
 
@@ -65,15 +67,9 @@ public class DeleteProductServlet extends HttpServlet {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			logger.log(Level.ALL, error, e);
 		}
 	}
 

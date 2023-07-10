@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,6 +21,8 @@ import javax.servlet.http.Part;
 @WebServlet("/AddProductServlet")
 public class AddProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = Logger.getLogger(AddProductServlet.class.getName());
+	private String error = "Errore";
 
 	private String getFileName(Part part) {
 		String contentDisposition = part.getHeader("content-disposition");
@@ -74,21 +78,21 @@ public class AddProductServlet extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("profilo.jsp");
 			dispatcher.forward(request, response);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (ServletException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} finally {
 			try {
 				ps.close();
 				connection.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				logger.log(Level.ALL, error, e);
 			} catch (NullPointerException e) {
-				e.printStackTrace();
+				logger.log(Level.ALL, error, e);
 			}
 		}
 	}

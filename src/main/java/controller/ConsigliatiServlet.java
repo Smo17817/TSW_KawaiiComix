@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,16 +25,16 @@ import model.Prodotto;
 @WebServlet("/ConsigliatiServlet")
 public class ConsigliatiServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private static final Logger logger = Logger.getLogger(ConsigliatiServlet.class.getName());
+	private String error = "Errore";
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String categoria = request.getParameter("categoria");
-		Connection connection = null;
 		Gson json = new Gson();
 
-		try {
-			connection = DbManager.getConnection();
+		try (Connection connection = DbManager.getConnection();){
 			PreparedStatement ps = connection.prepareStatement("SELECT * FROM prodotti WHERE categoria_nome = ?");
 			ps.setString(1, categoria);
 			ResultSet rs = ps.executeQuery();
@@ -55,15 +57,9 @@ public class ConsigliatiServlet extends HttpServlet {
 			rs.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			logger.log(Level.ALL, error, e);
 		}
 	}
 	public List<Prodotto> prodottiCasuali(List<Prodotto> prodotti, int quantita) {

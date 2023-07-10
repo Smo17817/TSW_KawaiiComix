@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ForgotPasswordServlet")
 public class ForgotPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private static final Logger logger = Logger.getLogger(ForgotPasswordServlet.class.getName());
+	private String error = "Errore";
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -26,10 +29,9 @@ public class ForgotPasswordServlet extends HttpServlet {
 		String url = "richiestapassword.jsp";
 
 		int rowCount = 0;
-		Connection connection = null;
 		RequestDispatcher dispatcher = null;
 		
-		try {
+		try (Connection connection = DbManager.getConnection();){
 			if (email.equals("")) {
 				request.setAttribute(status, "Invalid_email");
 				request.setAttribute("emailValue", email);
@@ -50,7 +52,6 @@ public class ForgotPasswordServlet extends HttpServlet {
 				return;
 			}
 
-			connection = DbManager.getConnection();
 			String query = "UPDATE site_user SET  password = ? WHERE email_address = ?";
 			PreparedStatement ps = connection.prepareStatement(query);
 			ps.setString(1, password1);
@@ -65,18 +66,13 @@ public class ForgotPasswordServlet extends HttpServlet {
 
 			dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(request, response);
+			ps.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (ServletException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			logger.log(Level.ALL, error, e);
 		}
 	}
 

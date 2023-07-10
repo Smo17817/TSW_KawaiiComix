@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,14 +22,14 @@ import com.google.gson.Gson;
 @WebServlet("/CategoriaServlet")
 public class CategoriaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = Logger.getLogger(CategoriaServlet.class.getName());
+	private String error = "Errore";
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Connection connection = null;
 		Gson json = new Gson();
-		try {
-			connection = DbManager.getConnection();
+		try (Connection connection = DbManager.getConnection();){
 			PrintWriter out = response.getWriter();
 
 			Statement s = connection.createStatement();
@@ -45,16 +47,10 @@ public class CategoriaServlet extends HttpServlet {
 			out.write(json.toJson(categorie));
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+			logger.log(Level.ALL, error, e);
+		} 
 	}
 
 }

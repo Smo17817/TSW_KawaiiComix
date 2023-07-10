@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,11 +24,13 @@ import com.google.gson.Gson;
 @WebServlet("/EditProductServlet")
 public class EditProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = Logger.getLogger(EditProductServlet.class.getName());
+	private String error = "Errore";
+	
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Connection connection = null;
 		Gson json = new Gson();
 		String status = "status";
 		String contentType = "application/json";
@@ -43,7 +47,7 @@ public class EditProductServlet extends HttpServlet {
 		String genere = request.getParameter("genere");
 		String categoria = request.getParameter("categoria");
 
-		try {
+		try (Connection connection = DbManager.getConnection();){
 			PrintWriter out = response.getWriter();
 			
 			if (prodotto.equals("") || prodotto.equals("-seleziona un prodotto-")) {
@@ -128,7 +132,6 @@ public class EditProductServlet extends HttpServlet {
 					out.write(jsonResponse);
 					out.flush();
 					return;
-
 				}
 			}
 
@@ -153,7 +156,6 @@ public class EditProductServlet extends HttpServlet {
 			}
 
 			int rowCount = 0;
-			connection = DbManager.getConnection();
 			String query = "SELECT isbn FROM prodotti WHERE nome = '" + prodotto + "'";
 			Statement s = connection.createStatement();
 			ResultSet rs = s.executeQuery(query);
@@ -195,18 +197,12 @@ public class EditProductServlet extends HttpServlet {
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
-			e.printStackTrace(); 
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+			logger.log(Level.ALL, error, e);
+		} 
 	}
 
 }

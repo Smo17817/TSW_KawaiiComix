@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,6 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/SignupServlet")
 public class SignupServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = Logger.getLogger(ProductServlet.class.getName());
+	private String error = "Errore";
+	private String status = "status";
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -24,23 +29,20 @@ public class SignupServlet extends HttpServlet {
 		String cognome = request.getParameter("cognome");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		Connection connection = null;
 		RequestDispatcher dispatcher = null;
-		String status = "status";
+		String q = "SELECT email_address FROM site_user WHERE email_address=?";	
 		
-		String q = "SELECT email_address FROM site_user WHERE email_address=?";
-		connection = DbManager.getConnection();
-		PreparedStatement ps;
-		try {
-			ps = connection.prepareStatement(q);
+		try (Connection connection = DbManager.getConnection();){
+			PreparedStatement ps = connection.prepareStatement(q);
 			ps.setString(1, email);
 			ResultSet rs = ps.executeQuery();
+			
 			if(rs.next()) {
 				request.setAttribute(status, "duplicato");
 				dispatcher = request.getRequestDispatcher("signup.jsp");
 				dispatcher.forward(request, response);
 				return;
-				}
+			}
 			
 			String query = "INSERT INTO site_user(nome,cognome,email_address,password) values(?,?,?,?)";
 		
@@ -67,18 +69,11 @@ public class SignupServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (ServletException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {	
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			logger.log(Level.ALL, error, e);
 		}
-
 	}
 }

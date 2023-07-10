@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,12 +23,13 @@ import model.User;
 @WebServlet("/AddressServlet")
 public class AddressServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = Logger.getLogger(AddressServlet.class.getName());
+	private String error = "Errore";
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		Connection connection = null;
 		RequestDispatcher dispatcher = null;
 		Statement s = null;
 		User user = (User) session.getAttribute("user");
@@ -39,7 +42,7 @@ public class AddressServlet extends HttpServlet {
 		String url = "indirizzo.jsp";
 		String status = "status";
 
-		try {
+		try (Connection connection = DbManager.getConnection();){
 			if (indirizzo.equals("")) {
 				request.setAttribute(status, "Invalid_address");
 				dispatcher = request.getRequestDispatcher(url);
@@ -71,7 +74,6 @@ public class AddressServlet extends HttpServlet {
 				return;
 			}
 
-			connection = DbManager.getConnection();
 			s = connection.createStatement();
 			String query = "SELECT * FROM address WHERE user_id=" + user.getId();
 			ResultSet rs = s.executeQuery(query);
@@ -123,19 +125,18 @@ public class AddressServlet extends HttpServlet {
 			
 			rs.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (ServletException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} finally {
 			try {
 				s.close();
-				connection.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
+				logger.log(Level.ALL, error, e);
 			} catch (NullPointerException e) {
-				e.printStackTrace();
+				logger.log(Level.ALL, error, e);
 			}
 		}
 	}

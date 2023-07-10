@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,16 +21,16 @@ import model.Prodotto;
 @WebServlet("/ProductServlet")
 public class ProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = Logger.getLogger(ProductServlet.class.getName());
+	private String error = "Errore";
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String isbn = request.getParameter("isbn");
 		HttpSession session = request.getSession();
-		Connection connection = null;
 
-		try {
-			connection = DbManager.getConnection();
+		try (Connection connection = DbManager.getConnection();){
 			PreparedStatement ps = connection.prepareStatement("SELECT * FROM prodotti WHERE isbn = ?");
 			ps.setString(1, isbn);
 			ResultSet rs = ps.executeQuery();
@@ -49,19 +51,13 @@ public class ProductServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 			rs.close();
-
+			ps.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (ServletException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			logger.log(Level.ALL, error, e);
 		}
 	}
 

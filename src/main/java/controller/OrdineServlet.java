@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,16 +27,16 @@ import model.OrdiniList;
 @WebServlet("/OrdineServlet")
 public class OrdineServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = Logger.getLogger(OrdineServlet.class.getName());
+	private String error = "Errore";
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		Connection connection = null;
 		RequestDispatcher dispatcher = null;
 
-		try {
-			connection = DbManager.getConnection();
+		try (Connection connection = DbManager.getConnection();){
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			Statement s = connection.createStatement();
 			OrdiniList ol = new OrdiniList();
@@ -85,17 +87,11 @@ public class OrdineServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (ServletException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			logger.log(Level.ALL, error, e);
 		}
 	}
 

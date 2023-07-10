@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,15 +25,15 @@ import model.ProdottoComparator;
 @WebServlet("/CatalogServlet")
 public class CatalogServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = Logger.getLogger(CartServlet.class.getName());
+	private String error = "Errore";
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Connection connection = null;
 		Gson json = new Gson();
 
-		try {
-			connection = DbManager.getConnection();
+		try (Connection connection = DbManager.getConnection();){			
 			PreparedStatement ps = connection.prepareStatement("SELECT * FROM prodotti");
 			ResultSet rs = ps.executeQuery();
 			PrintWriter out = response.getWriter();
@@ -53,20 +55,14 @@ public class CatalogServlet extends HttpServlet {
 			Collections.sort(catalogo, new ProdottoComparator());
 			out.write(json.toJson(catalogo));
 
-
+			ps.close();
 			rs.close();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		}catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+			logger.log(Level.ALL, error, e);
+		} 
 	}
 
 }

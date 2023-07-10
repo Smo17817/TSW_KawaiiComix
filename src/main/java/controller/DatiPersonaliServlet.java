@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,12 +20,13 @@ import model.User;
 @WebServlet("/DatiPersonaliServlet")
 public class DatiPersonaliServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private static final Logger logger = Logger.getLogger(DatiPersonaliServlet.class.getName());
+	private String error = "Errore";
+	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		Connection connection = null;
 		RequestDispatcher dispatcher = null;
 		User user = (User) session.getAttribute("user");
 		String email = request.getParameter("email");
@@ -37,7 +40,7 @@ public class DatiPersonaliServlet extends HttpServlet {
 		String url = "datipersonali.jsp";
 		
 
-		try {
+		try (Connection connection = DbManager.getConnection();){
 			if (nome.equals("")) {
 				request.setAttribute(status, "Invalid_nome");
 				dispatcher = request.getRequestDispatcher(url);
@@ -69,7 +72,6 @@ public class DatiPersonaliServlet extends HttpServlet {
 				return;
 			}
 
-			connection = DbManager.getConnection();
 			String query = "UPDATE site_user SET email_address = ?, password = ?, nome = ?, cognome = ? WHERE id = ?";
 			PreparedStatement ps = connection.prepareStatement(query);
 			ps.setString(1, email);
@@ -94,18 +96,12 @@ public class DatiPersonaliServlet extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("datipersonali.jsp");
 			dispatcher.forward(request, response);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (ServletException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+			logger.log(Level.ALL, error, e);
+		} 
 	}
 
 }

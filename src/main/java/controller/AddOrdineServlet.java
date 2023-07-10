@@ -27,14 +27,13 @@ import model.User;
 @WebServlet("/AddOrdineServlet")
 public class AddOrdineServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger logger = Logger.getLogger(AddNewsServlet.class.getName());
+	private static final Logger logger = Logger.getLogger(AddOrdineServlet.class.getName());
 	private String error = "Errore";
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		Connection connection = null;
 		Statement s = null;
 		
 		RequestDispatcher dispatcher = null;
@@ -43,9 +42,7 @@ public class AddOrdineServlet extends HttpServlet {
 		
 		int address_id = -1;
 
-		try {
-			connection = DbManager.getConnection();
-
+		try (Connection connection = DbManager.getConnection();){		
 			String query = "SELECT id FROM address WHERE user_id = " + user.getId();
 			s = connection.createStatement();
 			ResultSet rs = s.executeQuery(query);
@@ -121,7 +118,6 @@ public class AddOrdineServlet extends HttpServlet {
 		} finally {
 			try {
 				s.close();
-				connection.close();
 			} catch (SQLException e) {
 				logger.log(Level.ALL, error, e);
 			} catch (NullPointerException e) {

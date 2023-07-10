@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,13 +21,15 @@ import model.Prodotto;
 @WebServlet("/ExitServlet")
 public class ExitServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = Logger.getLogger(DatiPersonaliServlet.class.getName());
+	private String error = "Errore";
+	
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// prima di invalidare la sessione ci prendiamo i dati dal carrello
 		HttpSession session = request.getSession(false);
-		Connection connection = null;
 		
 		if(session.getAttribute("carrello") == null)
 			session.invalidate();
@@ -38,9 +42,7 @@ public class ExitServlet extends HttpServlet {
 		for (Prodotto prod : prodotti) {
 			isbnList.add(prod.getIsbn());
 		}
-		try {
-			connection = DbManager.getConnection();
-
+		try (Connection connection = DbManager.getConnection();){
 			for (String isbn : isbnList) {
 				String query = "INSERT INTO carrello_prodotto (carrello_id , prodotto_isbn) VALUES (?,?)";
 				PreparedStatement ps = connection.prepareStatement(query);
@@ -52,16 +54,10 @@ public class ExitServlet extends HttpServlet {
 			session.invalidate(); // Invalida la sessione, rimuovendo tutti gli attributi ad essa associati
 			response.sendRedirect("login.jsp"); // Reindirizza all'URL specificato (pagina di login nel nostro esempio)
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+			logger.log(Level.ALL, error, e);
+		} 
 	}
 
 }

@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +23,8 @@ import model.Prodotto;
 @WebServlet("/IndexServlet")
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	private static final Logger logger = Logger.getLogger(IndexServlet.class.getName());
+	private String error = "Errore";
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -50,9 +53,9 @@ public class IndexServlet extends HttpServlet {
 			out.write(json.toJson(prodotti));
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		}
 	}
 
@@ -62,9 +65,9 @@ public class IndexServlet extends HttpServlet {
 		try {
 			doGet(request, response);
 		} catch (ServletException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		}
 	}
 }

@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,8 +25,9 @@ import model.User;
 
 @WebServlet("/Login")
 public class LoginServlet extends HttpServlet {
-
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = Logger.getLogger(DatiPersonaliServlet.class.getName());
+	private String error = "Errore";
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -34,12 +37,9 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		HttpSession session = request.getSession();
 		RequestDispatcher dispatcher = null;
-		Connection connection = null;
-
 		String query = "SELECT * FROM site_user WHERE email_address = ? and password = ?";
 
-		try {
-			connection = DbManager.getConnection();
+		try (Connection connection = DbManager.getConnection();){		
 			PreparedStatement ps = connection.prepareStatement(query);
 			ps.setString(1, email);
 			ps.setString(2, password);
@@ -127,20 +127,16 @@ public class LoginServlet extends HttpServlet {
 
 				session.setAttribute("user", user);
 				dispatcher = request.getRequestDispatcher("index.jsp");
+				s.close();
+				
 			} else {
 				request.setAttribute("status", "failed");
 				dispatcher = request.getRequestDispatcher("login.jsp");
 			}
-
 			dispatcher.forward(request, response);
+			rs.close();
 		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			logger.log(Level.ALL, error, e);
 		}
 	}
 }

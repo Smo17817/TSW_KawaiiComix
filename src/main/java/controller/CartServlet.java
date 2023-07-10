@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,6 +26,8 @@ import model.User;
 @WebServlet("/CartServlet")
 public class CartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = Logger.getLogger(CartServlet.class.getName());
+	private String error = "Errore";
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -32,10 +36,9 @@ public class CartServlet extends HttpServlet {
 		Carrello carrello = (Carrello) session.getAttribute("carrello");
 		String isbn = request.getParameter("isbn");
 		User user = (User) session.getAttribute("user");
-		Connection connection = null;
 		Gson json = new Gson();
 		
-		try {
+		try (Connection connection = DbManager.getConnection();){
 			PrintWriter out = response.getWriter();
 
 			if(isbn == null) {
@@ -45,7 +48,7 @@ public class CartServlet extends HttpServlet {
 				return;
 			}
 			
-			connection = DbManager.getConnection();
+			
 			if (user == null) 
 				response.sendRedirect("login.jsp");
 			else {
@@ -78,19 +81,14 @@ public class CartServlet extends HttpServlet {
 				}
 
 				rs.close();
+				ps.close();
 				out.write(json.toJson(carrello.getCarrello()));
 			}
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.log(Level.ALL, error, e);
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			logger.log(Level.ALL, error, e);
 		}
 	}
 }
