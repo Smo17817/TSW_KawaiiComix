@@ -54,14 +54,19 @@ public class AddNewsServlet extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("aggiungiNovita.jsp");
 			dispatcher.forward(request, response);
 		} catch (SQLException e) {
+			e.printStackTrace();
 		} catch (ServletException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
 		} finally {
 			try {
 				ps.close();
 				connection.close();
 			} catch (SQLException e) {
+				e.printStackTrace();
 			} catch (NullPointerException e) {
+				e.printStackTrace();
 			}
 		}
 	}

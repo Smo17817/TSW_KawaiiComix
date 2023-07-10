@@ -122,14 +122,19 @@ public class AddressServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 
 		} catch (SQLException e) {
+			e.printStackTrace();
 		} catch (ServletException e) {
+			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
 		} finally {
 			try {
 				s.close();
 				connection.close();
 			} catch (SQLException e) {
+				e.printStackTrace();
 			} catch (NullPointerException e) {
+				e.printStackTrace();
 			}
 		}
 	}
