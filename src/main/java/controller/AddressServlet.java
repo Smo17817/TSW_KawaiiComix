@@ -89,7 +89,7 @@ public class AddressServlet extends HttpServlet {
 					ps.setInt(6, user.getId());
 					rowCount = ps.executeUpdate();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					logger.log(Level.ALL, error, e);
 				}
 			} else {
 				query = "UPDATE address SET indirizzo = ?, codice_postale = ?, citta = ?, provincia = ?, nazione = ? WHERE user_id = ?";
@@ -102,7 +102,7 @@ public class AddressServlet extends HttpServlet {
 					ps.setInt(6, user.getId());
 					rowCount = ps.executeUpdate();
 				} catch (SQLException e) {
-					e.printStackTrace();
+					logger.log(Level.ALL, error, e);
 				}
 			}
 

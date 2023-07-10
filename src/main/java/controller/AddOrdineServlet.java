@@ -30,11 +30,13 @@ public class AddOrdineServlet extends HttpServlet {
 	private static final Logger logger = Logger.getLogger(AddOrdineServlet.class.getName());
 	private static final String error = "Errore";
 	
+	@SuppressWarnings("resource")
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Statement s = null;
+		PreparedStatement ps = null;
 		
 		RequestDispatcher dispatcher = null;
 		User user = (User) session.getAttribute("user");
@@ -65,7 +67,7 @@ public class AddOrdineServlet extends HttpServlet {
 			int ordine_id = 10000 + random.nextInt(90000);
 
 			query = "INSERT INTO ordini (id, data, totale, site_user_id, stato_ordine_id, metodo_spedizione_id, address_id) values(?, ?, ?, ?, ?, ?, ?)";
-			PreparedStatement ps = connection.prepareStatement(query);
+			ps = connection.prepareStatement(query);
 			ps.setInt(1, ordine_id);
 			ps.setDate(2, sqlDate);
 			ps.setDouble(3, totale);
@@ -118,6 +120,7 @@ public class AddOrdineServlet extends HttpServlet {
 		} finally {
 			try {
 				s.close();
+				ps.close();
 			} catch (SQLException e) {
 				logger.log(Level.ALL, error, e);
 			} catch (NullPointerException e) {
