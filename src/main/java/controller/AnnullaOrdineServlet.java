@@ -2,8 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,13 +27,13 @@ public class AnnullaOrdineServlet extends HttpServlet {
 		RequestDispatcher dispatcher = null;
 
 		try (Connection connection = DbManager.getConnection();){			
-			String query = "UPDATE ordini SET stato_ordine_id = 2 WHERE id = " + id;
-			Statement s = connection.createStatement();
-			s.executeUpdate(query);
+			PreparedStatement ps = connection.prepareStatement("UPDATE ordini SET stato_ordine_id = 2 WHERE id = ?");
+			ps.setString(1, id);
+			ps.executeUpdate();
 
 			dispatcher = request.getRequestDispatcher("controllaordini.jsp");
 			dispatcher.forward(request, response);
-			s.close();
+			ps.close();
 		} catch (SQLException e) {
 			logger.log(Level.ALL, error, e);
 		} catch (ServletException e) {
