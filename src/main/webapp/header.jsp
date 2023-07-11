@@ -8,6 +8,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name=" description" content="Vendita Manga al Dettaglio" />
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
 <meta name="robots" content="index,follow" />
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="./Script/carrello.js"></script>
